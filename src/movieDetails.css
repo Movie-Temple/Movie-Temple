@@ -1,0 +1,8 @@
+.movie-details {
+    color: white;
+}
+
+.movie-details .movie-details-image {
+    border: 1px solid white;
+    height: 50%;
+}
