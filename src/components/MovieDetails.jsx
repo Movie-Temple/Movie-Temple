@@ -5,8 +5,9 @@ const MovieDetails = () => {
     return (
         <div className='movie-details'>
             <img className='movie-details-image' src="" alt="" />
-            <h2>Movie Title</h2>
+            
             <div className='movie-details-information'>
+                <h2>Movie Title</h2>
                 <p>Description .....</p>
                 <p>Actors: .....</p>
                 <div className='movie-details-buttons'>
