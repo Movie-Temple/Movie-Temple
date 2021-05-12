@@ -1,23 +1,19 @@
 
 
 
-// one specific movie: "http://www.omdbapi.com/?i=tt3896198&apikey=a79f43b6"
 
 
 
 
-async function getMovie({title}) {
-    let infoUrl = `http://www.omdbapi.com/?s=${title}&page=1&apikey=a79f43b6`;
-    let posterUrl = '';
+async function getMovie(title) {
+    let infoUrl = `http://www.omdbapi.com/?t=${title}&plot=full&apikey=a79f43b6`;
+
 
     try {
         let response = await fetch(infoUrl);
-        let info = await response.json();
-        posterUrl = info.Search[0].Poster;
-        return {
-            info: info.Search[0],
-            poster: posterUrl
-        };
+        let data = await response.json();
+        return data;
+
     }
     catch(error) {
         console.log("error")

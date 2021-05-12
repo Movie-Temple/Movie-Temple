@@ -1,29 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import getMovie from "./components/api";
-import movieDb from './components/movieDb';
 
+import './App.css';
+import movieDb from './components/movieDb';
+import ApiTemplates from './components/ApiTemplates'
 
 function App() {
 
 
-  const [movieList, setMovieList] = useState([movieDb]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getMovie(movieDb[0]);
-      console.log(data)
-    }
-    fetchData();
-  }, [])
-
-  
 
 
   return (
     <div className="App">
-      
-    
+      <ApiTemplates title= {movieDb[0]}/>
     </div>
   );
 }
