@@ -17,6 +17,7 @@ const ApiTemplates = ({title}) => {
     
     return (
         <div>
+            {/* 
             <h1>{movie.Title}</h1>
             <img src={movie.Poster} alt="" />
             <p>Plot: {movie.Plot}</p>
@@ -25,6 +26,7 @@ const ApiTemplates = ({title}) => {
             <p>Release year: {movie.Year}</p>
             <p>Metascore: {movie.Metascore}</p>
             <p>Genre: {movie.Genre}</p>
+             */}
 
         </div>
     )
