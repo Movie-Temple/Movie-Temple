@@ -1,0 +1,16 @@
+.rented {
+    color: #08F6AF;
+}
+
+.rented .rented-browser {
+    display: flex;
+    flex-direction: row;
+    margin: 0 10%;
+}
+
+.rented .rented-image {
+    border: 1px solid white;
+    height: 200px;
+    width: 150px;
+    margin: 20px 40px 0 0;
+}
