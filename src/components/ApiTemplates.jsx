@@ -3,7 +3,7 @@ import getMovie from './api'
 
 
 const ApiTemplates = ({title}) => {
-    const [movie, setMovie] = useState({Title: "", Poster: ""});
+    const [movie, setMovie] = useState({});
     useEffect(() => {
         async function fetchData() {
           let data = await getMovie(title);
