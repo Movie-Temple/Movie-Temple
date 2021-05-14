@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './MTLogoPerspTrans.png';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import Tabs from './components/Tabs';
 
 
 // Test comment for commit
@@ -9,10 +10,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <p>whaddup yall</p>
-    
-    </div>
+    <Tabs />
   );
 }
 

@@ -1,3 +1,17 @@
-.tabs .tabsBarItem-showing {
-    color: var(--darkGrey);
+#tabsBar {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 10vh;
 }
+
+
+.tabs {
+    color: var(--turqoise);
+    background-color: var(--almostBlack);
+}
+
+.tabs .tabsBarItem-showing {
+    color: var(--buttonText);
+}
+
