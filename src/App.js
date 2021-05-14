@@ -1,16 +1,19 @@
-import React from 'react';
-import logo from './MTLogoPerspTrans.png';
-import { Counter } from './features/counter/Counter';
+
 import './App.css';
+import movieDb from './components/movieDb';
+import ApiTemplates from './components/ApiTemplates'
 
 
 
 function App() {
+
+
+
+
+
   return (
     <div className="App">
-      {/* <p>whaddup yall</p> */}
-      <img src={logo}></img>
-    
+      <ApiTemplates title= {movieDb[0]}/>
     </div>
   );
 }
