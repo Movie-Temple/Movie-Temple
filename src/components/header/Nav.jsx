@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import Logo from '../../MTLogoPerspTrans.png'
+
+
 
 export class Nav extends Component {
     state = {
@@ -15,11 +18,9 @@ export class Nav extends Component {
         return (
             <>
                 <ul className={toggle ? "toggle" : ""}>
-                    <li><Link to="/">Home</Link></li>
-                   
-                    
-                    <li><Link to="/search">Search</Link></li>
-                    <li><Link to="/login">Login / Register</Link></li>
+                    <li><Link to="/Search">Search</Link></li>
+                    <li><Link to="/"><img src={Logo}></img></Link></li>
+                    <li><Link to="/Log">Login / Register</Link></li>
                     
                 </ul>
                

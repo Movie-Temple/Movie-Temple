@@ -1,25 +1,20 @@
 import React from 'react'
-import Logo from '../../MTLogoPerspTrans.png'
+import Header from '../../components/Header'
+import Section from '../../components/Section'
+import {BrowserRouter as Router} from 'react-router-dom'
 
+class Navbar extends React.Component{
+    render() {
 
-const Navbar = () => {
     return (
-        <div>
-            <header>
-                <div className="logo">
-                    
-                </div>
-                <ul> 
-                    <li><a href="/" className="search">Search</a></li>
-                    <li><a href="/" className="mtlogo"> <img src={Logo}/> </a></li>
-                    <li><a href="/" className="login" >Login / Register</a></li>
-                </ul>
-            </header>
-            <section>
-
-            </section>
-        </div>
+        <Router>
+            <div>
+                <Header />
+                <Section />
+            </div>
+        </Router>
     )
+}
 }
 
 export default Navbar
