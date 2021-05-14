@@ -13,7 +13,9 @@ function App() {
 
   return (
     <div className="App">
+
       <ApiTemplates title= {movieDb[0]}/>
+
     </div>
   );
 }
