@@ -1,3 +1,25 @@
+:root {
+  --turqoise: #08F6AF;
+  --almostBlack: #333333;
+  --darkGrey: #3C3C3C;
+  --whiteText: #CFCFCF;
+  --buttonText: #3C3C3C;
+}
+
+/*
+HOW TO USE THE COLOR VARIABLES:
+
+whatever {
+  background: var(--almostBlack);
+  background: var(--darkGrey);
+  color: var(--turqoise);
+  color: var(--whiteText);
+  color: var(--buttonText);
+}
+*/
+
+
+
 .App {
   text-align: center;
 }

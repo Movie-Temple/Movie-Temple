@@ -10,8 +10,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      {/* <p>whaddup yall</p> */}
-      <img src={logo}></img>
+      <p>whaddup yall</p>
     
     </div>
   );
