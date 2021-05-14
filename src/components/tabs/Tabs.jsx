@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import '../tabs/tabs.css'
 
 const Tabs = () => {
 

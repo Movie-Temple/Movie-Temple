@@ -5,8 +5,8 @@ import Navbar from './components/navigation/Navbar'
 import './components/navigation/navbar.css'
 
 
-import './components/tabs.css';
-import Tabs from './components/Tabs';
+
+
 
 import movieDb from './components/movieDb';
 import ApiTemplates from './components/ApiTemplates'
@@ -26,7 +26,7 @@ function App() {
     <div className="App">
       
     <Navbar />
-    <Tabs />
+    
 
     <ApiTemplates title= {movieDb[0]}/>
     </div>

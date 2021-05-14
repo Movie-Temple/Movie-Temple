@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import Tabs from '../tabs/Tabs'
+
 
 export class Home extends Component {
     render() {
         return (
             <div>
-                <h2>Home Component</h2>
+                
+                <Tabs />
             </div>
         )
     }
