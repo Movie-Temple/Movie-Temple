@@ -1,5 +1,9 @@
 
 import './App.css';
+
+import './components/tabs.css';
+import Tabs from './components/Tabs';
+
 import movieDb from './components/movieDb';
 import ApiTemplates from './components/ApiTemplates'
 
@@ -12,11 +16,15 @@ function App() {
 
 
   return (
+
+    <Tabs />
+
     <div className="App">
 
       <ApiTemplates title= {movieDb[0]}/>
 
     </div>
+
   );
 }
 

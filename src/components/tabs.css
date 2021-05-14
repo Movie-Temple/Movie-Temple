@@ -1,0 +1,32 @@
+#tabsBar {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    font-size: medium;
+    height: 2em;
+    background-color: var(--almostBlack);
+    padding: 0;
+    margin: 0;
+}
+
+.tabWrapper {
+    background-color: var(--almostBlack);
+    flex: 1;
+    height: 2em;
+}
+
+.tab {
+    color: var(--turqoise);
+    background-color: green;
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+    margin: 0;
+    align-self: center;
+    justify-self: center;
+}
+
+.selectedTab {
+    color: var(--buttonText);
+}
+

@@ -1,7 +1,8 @@
 :root {
   --turqoise: #08F6AF;
-  --almostBlack: #333333;
-  --darkGrey: #3C3C3C;
+  --almostBlack: #101010;
+  --background: #333333;
+  --lighterBackground: #3C3C3C;
   --whiteText: #CFCFCF;
   --buttonText: #3C3C3C;
 }
