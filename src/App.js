@@ -1,22 +1,37 @@
-import React from 'react';
-import logo from './MTLogoPerspTrans.png';
-import { Counter } from './features/counter/Counter';
+
 import './App.css';
+import movieDb from './components/movieDb';
+import ApiTemplates from './components/ApiTemplates'
 
 
-// Test comment for commit
-// JJ branch test
 
 function App() {
+
+
+
+
+
   return (
     <div className="App">
-      <p>whaddup yall</p>
-    
+
+      <ApiTemplates title= {movieDb[0]}/>
+
     </div>
   );
 }
 
 export default App;
 
-// Test comment for commit
-// Cao branch test
+
+// JJ: To show the sign up view:
+/* <AuthProvider> 
+      <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh"}}>
+      
+        <div className="w-100" style={{ maxWidth: "400px" }}>
+          <Signup />
+        </div>
+      
+      </Container>
+    </AuthProvider>
+
+    */
