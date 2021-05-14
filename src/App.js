@@ -4,8 +4,6 @@ import { Counter } from './features/counter/Counter';
 import './App.css';
 
 
-// Test comment for commit
-// JJ branch test
 
 function App() {
   return (
@@ -19,5 +17,16 @@ function App() {
 
 export default App;
 
-// Test comment for commit
-// Cao branch test
+
+// JJ: To show the sign up view:
+/* <AuthProvider> 
+      <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh"}}>
+      
+        <div className="w-100" style={{ maxWidth: "400px" }}>
+          <Signup />
+        </div>
+      
+      </Container>
+    </AuthProvider>
+
+    */
