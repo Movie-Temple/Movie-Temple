@@ -11,25 +11,29 @@ const Tabs = () => {
     }, [selectedTab])
 
     function handleClick() {
-        let tabs = document.getElementsByClassName('tab');
-        console.log(tabs)
-        tabs.forEach(element => {
-            element.className = '';
-            element.classList.add('tab')
-
-        });
-        let selected = document.getElementById(`tab${selectedTab}`)
-        selected.classList.add('tabsBarItem-selected')
-        
+        for (let i = 1; i <=5; i++) {
+            document.getElementById(`tab${i}`).className = 'tab';
+        }
+        document.getElementById(`tab${selectedTab}`).classList.add('selectedTab');
     }
 
     return (
         <section id='tabsBar'>
-            <p id='tab1' className='tabsBarItem-selected tab' onClick={setSelectedTab(1)}>Featured</p>;
-            <p id='tab2' className='tab' onClick={setSelectedTab(2)}>Categories</p>;
-            <p id='tab3' className='tab' onClick={setSelectedTab(3)}>Watchlist</p>;
-            <p id='tab4' className='tab' onClick={setSelectedTab(4)}>Rented</p>;
-            <p id='tab5' className='tab' onClick={setSelectedTab(5)}>Purchased</p>;
+            <div className='tabWrapper'>
+                <p id='tab1' className='tab selectedTab' onClick={() => setSelectedTab(1)}>Featured</p>
+            </div>
+            <div className='tabWrapper'>
+                <p id='tab2' className='tab' onClick={() => setSelectedTab(2)}>Categories</p>
+            </div>
+            <div className='tabWrapper'>
+                <p id='tab3' className='tab' onClick={() => setSelectedTab(3)}>Watchlist</p>
+            </div>
+            <div className='tabWrapper'>
+                <p id='tab4' className='tab' onClick={() => setSelectedTab(4)}>Rented</p>
+            </div>
+            <div className='tabWrapper'>
+                <p id='tab5' className='tab' onClick={() => setSelectedTab(5)}>Purchased</p>
+            </div>
         </section>
     )
 }

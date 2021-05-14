@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './MTLogoPerspTrans.png';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import './components/tabs.css';
 import Tabs from './components/Tabs';
 
 
