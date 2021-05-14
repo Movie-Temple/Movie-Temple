@@ -24,22 +24,12 @@ function App() {
 
    
     <div className="App">
-      {/* <p>whaddup yall</p> */}
       
     <Navbar />
-   
-    </div>
-   
-
-
     <Tabs />
 
-    <div className="App">
-
-      <ApiTemplates title= {movieDb[0]}/>
-
+    <ApiTemplates title= {movieDb[0]}/>
     </div>
-
 
   );
 }
