@@ -10,6 +10,7 @@ import Tabs from './components/Tabs';
 
 import movieDb from './components/movieDb';
 import ApiTemplates from './components/ApiTemplates'
+import SideScroller from './components/SideScroller';
 
 
 
@@ -27,7 +28,7 @@ function App() {
       
     <Navbar />
     <Tabs />
-
+    <SideScroller titles={movieDb[0]}/>
     </div>
 
   );
