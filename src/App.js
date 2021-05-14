@@ -28,7 +28,6 @@ function App() {
     <Navbar />
     <Tabs />
 
-    <ApiTemplates title= {movieDb[0]}/>
     </div>
 
   );
