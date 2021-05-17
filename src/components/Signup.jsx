@@ -1,8 +1,9 @@
 import React, {useLayoutEffect, useRef, useState} from 'react';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext';
+import '../register.css'
 
-
+// JJ: This code is not used at the moment, as they are moved to Register.jsx
 export default function Signup() {
 
     const emailRef = useRef();
@@ -34,7 +35,32 @@ export default function Signup() {
     }
 
     return (
-        <div>
+
+        <div className='register'>
+            <div className='register-container'>
+                <h2 className='register-header'>Register</h2>
+                {error && <Alert variant="danger"> {error} </Alert>}
+                <form className='register-form' action=''>
+                    <label for='register-name'>Name</label><br/>
+                    <input type='text' id='register-name' name='register-name' value=''/><br/>
+
+                    <label for='register-email'>E-mail</label><br/>
+                    <input type='text' id='register-email' name='register-email' ref={emailRef}/><br/>
+                    
+                    <label for='register-password'>Password</label><br/>
+                    <input type='text' id='register-password' name='register-password' ref={passwordRef}/><br/>
+                    
+                    <label for='register-repeat-password'>Repeat Password</label><br/>
+                    <input type='text' id='register-repeat-password' name='register-repeat-password' ref={passwordConfirmRef}/><br/>
+                </form>
+
+                <button onClick={handleSubmit} disabled={loading} >Sign up</button>
+                <p className='register-signin'>Already have an account? Click here to <a className='register-signin-link' href=''>Sign in</a></p>
+            </div>
+        </div>
+        
+
+        /*<div>
             <Card>
                 <Card.Body>
                     <h2 className="text-center mb-4">Sign Up</h2>
@@ -63,6 +89,7 @@ export default function Signup() {
                     Already have an account? Log In
             </div>
         </div>
+        */
     );
 
 }
