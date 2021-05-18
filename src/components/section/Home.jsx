@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import Tabs from '../tabs/Tabs'
-
+import Tab from '../header/Tab'
+import '../tabs/tabs.css'
 
 export class Home extends Component {
     render() {
         return (
             <div>
                 
-                <Tabs />
+            
+                <Tab />
             </div>
         )
     }
