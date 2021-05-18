@@ -1,0 +1,8 @@
+.profile-settings {
+    background: var(--almostBlack);
+    color: var(--turqoise);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

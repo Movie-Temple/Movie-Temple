@@ -1,0 +1,17 @@
+.footer {
+    background: var(--almostBlack);
+    color: var(--turqoise);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.footer .footer-element {
+    padding: 10px;
+    margin: 0;
+}

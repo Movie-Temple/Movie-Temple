@@ -1,0 +1,19 @@
+.policy {
+    color: #08F6AF;
+}
+
+.policy p {
+    width: 80%;
+    margin-left: 10%;
+    color: #cfcfcf;
+}
+
+.policy button {
+    padding: 5px 50px;
+    margin: 50px 0;
+    border-radius: 5px;
+    background-color: #08F6AF;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+}

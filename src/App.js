@@ -38,11 +38,17 @@ export default App;
 
 
 // JJ: To show the sign up view:
-/* <AuthProvider> 
+/* 
+
+  import { Container } from 'react-bootstrap';
+  import {AuthProvider} from './contexts/AuthContext';
+  import Register from './components/Register';
+
+    <AuthProvider> 
       <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh"}}>
       
         <div className="w-100" style={{ maxWidth: "400px" }}>
-          <Signup />
+          <Signup />  * should change to <Register />
         </div>
       
       </Container>
