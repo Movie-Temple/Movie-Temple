@@ -1,8 +1,9 @@
 .movie-details {
+    background-color: var(--almostBlack);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--whiteText);
     height: 100vh;
     margin: 0;
 
@@ -28,7 +29,7 @@
     margin-left: 20px;
 }
 .movie-details .movie-details-information h2 {
-    color: #08F6AF;
+    color: var(--turqoise);
 }
 .movie-details .movie-details-information p {
     margin-left: 20px;
@@ -44,7 +45,7 @@
     padding: 5px 50px;
     margin-bottom: 10px;
     border-radius: 5px;
-    background-color: #08F6AF;
-    color: black;
+    background-color: var(--turqoise);
+    color: var(--buttonText);
     font-weight: bold;
 }
