@@ -8,7 +8,7 @@ export class Header extends Component {
             <header>
                 
                 <Nav />
-                 
+                
             </header>
         )
     }

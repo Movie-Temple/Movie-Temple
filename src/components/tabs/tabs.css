@@ -16,14 +16,17 @@
 }
 
 .tab {
-    color: var(--turqoise);
-    background-color: green;
-    width: fit-content;
-    height: fit-content;
-    padding: 0;
-    margin: 0;
-    align-self: center;
-    justify-self: center;
+    text-decoration: none;
+    color: aqua;
+    text-transform: uppercase;
+    opacity: 0.6;
+   
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: space-between;
 }
 
 .selectedTab {
