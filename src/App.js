@@ -3,20 +3,16 @@ import './App.css';
 
 import Navbar from './components/navigation/Navbar'
 import './components/navigation/navbar.css'
-
-
-
-
-
 import movieDb from './components/movieDb';
 import ApiTemplates from './components/ApiTemplates'
 
-
+import Footer from './components/Footer';
 
 
 function App() {
 
 
+  const content = 'Hello!';
 
 
 
@@ -24,9 +20,17 @@ function App() {
 
    
     <div className="App">
-      
-    <Navbar />
+      <header>
+        <Navbar />
+      </header>
+
+      <main>
+        {content}
+      </main>
     
+      <footer>
+        <Footer />
+      </footer>
 
     </div>
 

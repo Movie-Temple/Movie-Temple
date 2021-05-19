@@ -1,30 +1,33 @@
 .watchlist {
-    color: #08F6AF;
+    background: var(--almostBlack);
+    color: var(--turqoise);
 }
 
 .watchlist .watchlist-category-header {
     text-align: left;
     margin: 20px 0 0 10%;
-    color: #08F6AF;
+    
 }
 
 .watchlist .watchlist-category-breakline {
     width: 80%;
+    margin-left: 10%;
     height: 2px;
     border-width: 0;
-    color: #3c3c3c;
-    background: #3c3c3c;
+    color: var(--whiteText);
+    background: var(--whiteText);
 }
 
 .watchlist .watchlist-category-browser {
-    display: flex;
-    flex-direction: row;
-    margin: 0 10%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
 }
 
 .watchlist .watchlist-image {
     border: 1px solid white;
     height: 200px;
     width: 150px;
-    margin: 20px 40px 0 0;
+    grid-column: 1fr;
+    justify-self: center;
 }
