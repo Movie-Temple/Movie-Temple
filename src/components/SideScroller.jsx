@@ -4,11 +4,9 @@ import getMovie from "./api";
 
 
 
-const SideScroller = ({titles}) => {
-
-    
+const SideScroller = ({scrollerName, titles}) => {
     const [movies, setMovies] = useState([]);
-    let content = null;
+    const [content, setContent] = useState();
 
     useEffect(() => {
         let moviesTemp = [];
@@ -18,41 +16,47 @@ const SideScroller = ({titles}) => {
                 const movie = await getMovie(title);
                 moviesTemp.push(movie);
             }
+            return fetchData();
         });
         setMovies(moviesTemp);
-    }, [])
-
-    useEffect(() => {
-        content = movies.map((movie) => {
-            return (
-                <div className='scrollerItem'>
-                    <img src={movie.Poster} alt="" />
-                    <p>{movie.Title}</p>
-                </div>
-            )
-        })
-    },[movies])
-
+    }, [titles])
    
 
-    const scrollerItem = (movie) => {
-        return (
-            <div className='scrollerItem'>
-                <img className='scrollerImg' src="" alt="" />
-            </div>
-        )
-    }
+    useEffect(() => {
+        setContent(() => {
+            movies.map((movie) =>{
+                return (
+                    <div>
+                        <img src={movie.Poster} alt="" />
+                        <p>{movie.Title}</p>
+                    </div>
+                );
+            })
+        })
+    })
 
 
+    // useEffect(() => {
+    //     console.log(movies)
+    //     setContent(() => {
+    //         return (
+    //             movies.map((movie) => {
+    //                 console.log(movie);
+    //                 return (
+    //                     <div className='scrollerItem'>
+    //                         <img src={movie.Poster} alt={movie.Title}  />
+    //                         <p>{movie.Title}</p>
+    //                     </div>
+    //                 );
+    //             })
+    //         );
+    //     });
+    // }, [movies])
 
     return (
-        <div id='scroller'>
-            
+        <div className='sideScroller'>
             {content}
-
         </div>
-
-
     )
 }
 

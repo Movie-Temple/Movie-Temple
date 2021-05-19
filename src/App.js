@@ -9,7 +9,7 @@ import './components/tabs.css';
 import Tabs from './components/Tabs';
 
 import movieDb from './components/movieDb';
-import ApiTemplates from './components/ApiTemplates'
+//import ApiTemplates from './components/ApiTemplates'
 import SideScroller from './components/SideScroller';
 
 
@@ -28,7 +28,7 @@ function App() {
       
     <Navbar />
     <Tabs />
-    <SideScroller titles={movieDb[0]}/>
+    <SideScroller scrollerName="Popular" titles={[movieDb[0], movieDb[1], movieDb[2]]}/>
     </div>
 
   );
