@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
 
-export class Tab extends Component {
+export class TabC extends Component {
     state = {
         toggle: false
     }
@@ -28,4 +28,4 @@ export class Tab extends Component {
     }
 }
 
-export default Tab
+export default TabC;

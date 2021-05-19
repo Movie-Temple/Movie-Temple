@@ -1,18 +1,27 @@
 import React, { Component } from 'react'
-import Tabs from '../tabs/Tabs'
-import Tab from '../header/Tab'
-import '../tabs/tabs.css'
 
-export class Home extends Component {
-    render() {
+
+import '../tabs/tabs.css'
+import { AppBar, Tabs, Tab } from '@material-ui/core';
+
+const Home = () => {
+   
         return (
             <div>
-                
-            
-                <Tab />
+                <AppBar position="static">
+
+                    <Tabs>
+                        <Tab label="Dumpling" />
+                        <Tab label="Doggy" />
+                        <Tab label="Taipei" />
+                    </Tabs>
+
+                </AppBar>
+
+
             </div>
         )
-    }
+    
 }
 
-export default Home
+export default Home;
