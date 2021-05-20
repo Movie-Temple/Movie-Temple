@@ -4,15 +4,15 @@
     justify-content: center;
     align-items: center;
     color: var(--whiteText);
-    height: 100vh;
-    margin: 0;
+    margin: auto;
+    max-width: 1000px;
 
 }
 
 .movie-details .movie-details-image {
     border: 1px solid white;
-    height: 400px;
-    width: 250px;
+    object-fit: cover;
+    width: 500px;
 }
 
 @media (max-width: 500px) {
@@ -30,19 +30,27 @@
 }
 .movie-details .movie-details-information h2 {
     color: var(--turqoise);
+    margin-left: 20px;
 }
 .movie-details .movie-details-information p {
     margin-left: 20px;
+}
+
+.movie-details .movie-details-subhead {
+    font-weight: bold;
+    color: var(--turqoise);
 }
 
 .movie-details .movie-details-buttons {
     display: flex;
     flex-direction: column;
     margin-top: 40px;
+    align-items: center;
 }
 
 .movie-details .movie-details-buttons button {
     padding: 5px 50px;
+    width: 300px;
     margin-bottom: 10px;
     border-radius: 5px;
     background-color: var(--turqoise);
