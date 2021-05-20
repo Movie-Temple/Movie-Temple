@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import getMovie from "./api";
-
+import './sideScroller.css';
 
 
 
@@ -19,16 +19,20 @@ const SideScroller = ({scrollerName, titles}) => {
 
     return (
         <div className='sideScroller'>
-            {movies.map((movie) => {
-                return (
-                    <div className='scrollerItem'>
-                        <img src={movie.Poster} alt={movie.Title} />
-                        <p>{movie.Title}</p>
-                    </div>
-                );
-                })
+            <h3 className='scrollerName'>{scrollerName}</h3>
+            <div className='scrollerWrapper'>
+                {movies.map((movie) => {
+                    return (
+                        <div className='scrollerItem'>
+                            <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
+                            {/* <p className='scrollerTitle'>{movie.Title}</p> */}
+                        </div>
+                    );
+                    })
 
-            }   
+                }  
+            </div>
+             
         </div>
     )
 }

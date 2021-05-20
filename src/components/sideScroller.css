@@ -1,0 +1,29 @@
+.sideScroller {
+    background-color: var(--almostBlack);
+    color: var(--turqoise);
+    width: 100vw;
+    padding: 1em;
+}
+
+.scrollerName {
+    width: fit-content;
+    height: 1em;
+}
+.scrollerWrapper {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    height: 14em;
+}
+
+.scrollerItem {
+    width: 10em;
+    height: 13em;
+    margin-right: 3em;
+
+}
+
+.scrollerImg {
+    width: 7em;
+    
+}
