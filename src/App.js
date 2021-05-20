@@ -6,32 +6,15 @@ import './components/navigation/navbar.css'
 import movieDb from './components/movieDb';
 import ApiTemplates from './components/ApiTemplates'
 
-import Footer from './components/Footer';
-
 
 function App() {
 
-
-  const content = 'Hello!';
-
-
-
   return (
-
    
     <div className="App">
-      <header>
+      <div>
         <Navbar />
-      </header>
-
-      <main>
-        {content}
-      </main>
-    
-      <footer>
-        <Footer />
-      </footer>
-
+      </div>
     </div>
 
   );
