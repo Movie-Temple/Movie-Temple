@@ -5,7 +5,7 @@ import Search from '../section/Search';
 import Log from '../section/Log';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import {Link} from 'react-router-dom';
-import Nav from '../header/Nav';
+import Nav from './Nav';
 
 
 const Navbar = () => {
