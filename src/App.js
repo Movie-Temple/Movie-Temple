@@ -4,7 +4,8 @@ import './App.css';
 import Navbar from './components/navigation/Navbar'
 import './components/navigation/navbar.css'
 import movieDb from './components/movieDb';
-import ApiTemplates from './components/ApiTemplates'
+//import ApiTemplates from './components/ApiTemplates'
+import SideScroller from './components/SideScroller';
 
 
 function App() {
@@ -12,9 +13,8 @@ function App() {
   return (
    
     <div className="App">
-      <div>
-        <Navbar />
-      </div>
+      <Navbar />
+      <SideScroller scrollerName="Popular" titles={[movieDb[0], movieDb[1], movieDb[2]]}/>
     </div>
 
   );
