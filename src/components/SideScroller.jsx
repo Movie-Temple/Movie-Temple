@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 import getMovie from "./api";
 import './sideScroller.css';
+import { useHistory } from 'react-router-dom';
+import { Router, Route, Link, Switch } from 'react-router-dom';
 
 
 
 const SideScroller = ({scrollerName, titles}) => {
+    const history = useHistory();
     const [movies, setMovies] = useState([]);
     
 
@@ -23,7 +26,7 @@ const SideScroller = ({scrollerName, titles}) => {
             <div className='scrollerWrapper'>
                 {movies.map((movie) => {
                     return (
-                        <div className='scrollerItem'>
+                        <div className='scrollerItem' onClick={() => history.push('/moviedetails')}>
                             <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
                             {/* <p className='scrollerTitle'>{movie.Title}</p> */}
                         </div>
