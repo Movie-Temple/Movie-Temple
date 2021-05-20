@@ -1,13 +1,16 @@
 import React from 'react'
-import Header from '../../components/Header'
-import Section from '../../components/Section'
+import Header from '../../components/Header';
+import Career from '../../components/Career';
+import Policy from '../../components/Policy';
+import FAQ from '../../components/FrequentlyAskedQuestions';
 import AboutUs from '../../components/AboutUs';
 import Home from '../section/Home';
 import Search from '../section/Search';
-import Register from '../../components/Register';
+import Support from '../../components/Support';
 import Log from '../section/Log';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import {Link} from 'react-router-dom';
+import Footer from '../Footer';
 
 
 
@@ -25,7 +28,7 @@ class Navbar extends React.Component {
                 </div>
                 <Switch>
 
-                <Route exact path="/AboutUs">
+                  <Route exact path="/AboutUs">
                         <AboutUs />
                     </Route>
 
@@ -37,14 +40,32 @@ class Navbar extends React.Component {
                         <Search />
                     </Route>
 
+                    
+
                     <Redirect exact from="/" to="/Home/Categories" />
 
                     <Route exact path="/Home/:page?" render={props => <Home {...props} />} />
 
+                    <Route exact path="/AboutUs">
+                        <AboutUs />
+                    </Route>
+
+                    <Route exact path="/Support">
+                        <Support />
+                    </Route>
+                    <Route exact path="/Career">
+                        <Career />
+                    </Route>
+                    <Route exact path="/Policy">
+                        <Policy />
+                    </Route>
+                    <Route exact path="/FAQ">
+                        <FAQ />
+                    </Route>
                 </Switch>
 
                 <div>
-                <li><Link to="/AboutUs">About Us</Link></li>
+                <Footer />
                 </div>
             </Router>
 
@@ -54,30 +75,3 @@ class Navbar extends React.Component {
 
 export default Navbar
 
-/*
-<Switch>
-        <Route exact path="/">
-          <WelcomeView />
-        </Route>
-        <Route path="/register">
-          <RegisterView
-            dataLoaded = {loaded}
-            getDogData = {getDogData}
-            setSelectedDog = {setSelectedDog}
-          />
-        </Route>
-        <Route path="/info">
-          <InfoView
-            dataLoaded = {loaded}
-            getDogData = {getDogData}
-            selectedDog = {selectedDog}
-          />
-        </Route>
-      </Switch>
-
-
-
-      <Route exact path="" render={props => <Home {...props}/>} />
-                    <Route exact path="/Search" render={props => <Search {...props}/>} />
-                    <Route exact path="/Log" render={props => <Log {...props}/>} />
-*/
