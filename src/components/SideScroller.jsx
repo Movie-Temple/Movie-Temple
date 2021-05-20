@@ -18,17 +18,21 @@ const SideScroller = ({scrollerName, titles}) => {
 
 
     return (
-        <div className='sideScroller'>{scrollerName}
-            {movies.map((movie) => {
-                return (
-                    <div className='scrollerWrapper'>
-                        <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
-                        {/* <p className='scrollerTitle'>{movie.Title}</p> */}
-                    </div>
-                );
-                })
+        <div className='sideScroller'>
+            <h3 className='scrollerName'>{scrollerName}</h3>
+            <div className='scrollerWrapper'>
+                {movies.map((movie) => {
+                    return (
+                        <div className='scrollerItem'>
+                            <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
+                            {/* <p className='scrollerTitle'>{movie.Title}</p> */}
+                        </div>
+                    );
+                    })
 
-            }   
+                }  
+            </div>
+             
         </div>
     )
 }
