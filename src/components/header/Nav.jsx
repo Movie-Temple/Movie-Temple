@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Logo from '../../MTLogoPerspTrans.png'
+import './nav.css';
 
+const Nav = () => {
 
+    return (
+        <div className='nav'>
+            <p className='nav-search-link'><Link to="/Search">Search</Link></p>
+            <p className='nav-logo-link'><Link  to="/"><img src={Logo}></img></Link></p>
+            <p className='nav-login-link'><Link to="/Log">Sign In</Link></p>
+        </div>
+    )
+}
 
-export class Nav extends Component {
+export default Nav;
+
+/* can be deleted? Elmirs code? /Emelie
+    const {toggle} = this.state;    
+    
     state = {
         toggle: false
     }
@@ -13,20 +27,4 @@ export class Nav extends Component {
         this.setState({toggle: !this.state.toggle})
     }
 
-    render() {
-        const {toggle} = this.state;
-        return (
-            <>
-                <ul className={toggle ? "toggle" : ""}>
-                    <li><Link to="/Search">Search</Link></li>
-                    <li><Link to="/"><img src={Logo}></img></Link></li>
-                    <li><Link to="/Log">Login / Register</Link></li>
-                    
-                </ul>
-               
-            </>
-        )
-    }
-}
-
-export default Nav
+*/
