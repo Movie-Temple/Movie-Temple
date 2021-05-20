@@ -11,6 +11,7 @@ import Log from '../section/Log';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import Footer from '../Footer';
+import MovieDetails from '../MovieDetails';
 
 
 
@@ -61,6 +62,9 @@ class Navbar extends React.Component {
                     </Route>
                     <Route exact path="/FAQ">
                         <FAQ />
+                    </Route>
+                    <Route path='/moviedetails'>
+                        <MovieDetails />
                     </Route>
                 </Switch>
 
