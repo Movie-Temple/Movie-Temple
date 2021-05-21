@@ -1,12 +1,11 @@
-import React, { Component } from 'react'
 import { useState } from 'react';
 import { useHistory } from "react-router-dom";
-import '../tabs/tabs.css'
 import { AppBar, Tabs, Tab } from '@material-ui/core';
 import Categories from '../Categories';
 import Purchased from '../Purchased';
 import Rented from '../Rented';
 import WatchList from '../Watchlist';
+import '../navigation/tabs.css';
 
 const Home = props => {
 
@@ -35,17 +34,15 @@ const Home = props => {
             setSelectedTab(newValue);
         };
 
-       
-
         return (
             <div>
-                <AppBar position="static">
+                <AppBar  position="static">
 
-                    <Tabs value={selectedTab} onChange={handleChange}>
-                        <Tab label="Categories" />
-                        <Tab label="Purchased" />
-                        <Tab label="Rented" />
-                        <Tab label="Watch List" />
+                    <Tabs className='tabs' value={selectedTab} onChange={handleChange} variant='fullWidth'>
+                        <Tab className={selectedTab === 0 ? 'selectedTab' : ''} label="Categories" />
+                        <Tab className={selectedTab === 1 ? 'selectedTab' : ''} label="Purchased" />
+                        <Tab className={selectedTab === 2 ? 'selectedTab' : ''} label="Rented" />
+                        <Tab className={selectedTab === 3 ? 'selectedTab' : ''} label="Watchlist" />
                     </Tabs>
 
                 </AppBar>
@@ -56,7 +53,6 @@ const Home = props => {
 
             </div>
         )
-    
 }
 
 export default Home;

@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../../components/Header';
+import Nav from './Nav';
 import Career from '../../components/Career';
 import Policy from '../../components/Policy';
 import FAQ from '../../components/FrequentlyAskedQuestions';
@@ -15,67 +15,60 @@ import MovieDetails from '../MovieDetails';
 
 
 
+const Navbar = () => {
+  return (
 
-class Navbar extends React.Component {
-    render() {
+    <Router>
+        <div>
+            <Nav />
+        </div>
+        <Switch>
 
 
+            <Route exact path="/Log">
+                <Log />
+            </Route>
 
-        return (
+            <Route exact path="/Search">
+                <Search />
+    
+            </Route>
 
-            <Router>
-                <div>
-                    <Header />
-                </div>
-                <Switch>
+    
+            <Route exact path="/AboutUs">
+                <AboutUs />
+            </Route>
 
-                  <Route exact path="/AboutUs">
-                        <AboutUs />
-                    </Route>
+            <Route exact path="/Support">
+                <Support />
+            </Route>
+            <Route exact path="/Career">
+                <Career />
+            </Route>
+            <Route exact path="/Policy">
+                <Policy />
+            </Route>
+            <Route exact path="/FAQ">
+                <FAQ />
+            </Route>
+            <Route path='/moviedetails'>
+                <MovieDetails />
+            </Route>
+    
+            <Redirect exact from="/" to="/Home/Categories" />
 
-                    <Route exact path="/Log">
-                        <Log />
-                    </Route>
+            <Route exact path="/Home/:page?" render={props => <Home {...props} />} />
+      
 
-                    <Route exact path="/Search">
-                        <Search />
-                    </Route>
-
-                    
-
-                    <Redirect exact from="/" to="/Home/Categories" />
-
-                    <Route exact path="/Home/:page?" render={props => <Home {...props} />} />
-
-                    <Route exact path="/AboutUs">
-                        <AboutUs />
-                    </Route>
-
-                    <Route exact path="/Support">
-                        <Support />
-                    </Route>
-                    <Route exact path="/Career">
-                        <Career />
-                    </Route>
-                    <Route exact path="/Policy">
-                        <Policy />
-                    </Route>
-                    <Route exact path="/FAQ">
-                        <FAQ />
-                    </Route>
-                    <Route path='/moviedetails'>
-                        <MovieDetails />
-                    </Route>
-                </Switch>
-
-                <div>
+        </Switch>
+      <div>
                 <Footer />
-                </div>
-            </Router>
+      </div>
+        
+    </Router>
+  )
 
-        )
-    }
 }
 
-export default Navbar
+export default Navbar;
 
