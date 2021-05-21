@@ -1,32 +1,32 @@
 import React from 'react'
-import Nav from './Nav';
-import Career from '../../components/Career';
-import Policy from '../../components/Policy';
-import FAQ from '../../components/FrequentlyAskedQuestions';
-import AboutUs from '../../components/AboutUs';
+import HeadBar from './header/HeadBar';
+import Career from '../Career';
+import Policy from '../Policy';
+import FAQ from '../FrequentlyAskedQuestions';
+import AboutUs from '../AboutUs';
 import Home from '../section/Home';
 import Search from '../section/Search';
-import Support from '../../components/Support';
-import Log from '../section/Log';
+import Support from '../Support';
+import Account from './contents/account/Account';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import {Link} from 'react-router-dom';
-import Footer from '../Footer';
+import Footer from './footer/Footer';
 import MovieDetails from '../MovieDetails';
 
 
 
-const Navbar = () => {
+const WebsiteRoute = () => {
   return (
 
     <Router>
         <div>
-            <Nav />
+            <HeadBar />
         </div>
         <Switch>
 
 
-            <Route exact path="/Log">
-                <Log />
+            <Route exact path="/Account">
+                <Account />
             </Route>
 
             <Route exact path="/Search">
@@ -70,5 +70,5 @@ const Navbar = () => {
 
 }
 
-export default Navbar;
+export default WebsiteRoute;
 

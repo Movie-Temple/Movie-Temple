@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
-import Register from '../Register';
+
+import Register from './signUp/Register';
 import { Container } from 'react-bootstrap';
-import {AuthProvider} from '../../contexts/AuthContext';
+import {AuthProvider} from '../../../../contexts/AuthContext';
 
 
 
-
-export class Log extends Component {
-    render() {
+const Profile = () =>  {
+    
         return (
             <div>
                 <AuthProvider>
@@ -21,7 +20,7 @@ export class Log extends Component {
                 </AuthProvider>
             </div>
         )
-    }
+    
 }
 
-export default Log
+export default Profile;

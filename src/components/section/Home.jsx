@@ -5,7 +5,7 @@ import Categories from '../Categories';
 import Purchased from '../Purchased';
 import Rented from '../Rented';
 import WatchList from '../Watchlist';
-import '../navigation/tabs.css';
+import '../website/contents/homeTabs.css';
 
 const Home = props => {
 

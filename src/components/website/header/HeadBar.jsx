@@ -1,19 +1,19 @@
 import {Link} from 'react-router-dom';
-import Logo from '../../MTLogoPerspTrans.png'
-import './nav.css';
+import Logo from '../../../MTLogoPerspTrans.png'
+import '../header/headBar.css';
 
-const Nav = () => {
+const HeadBar = () => {
 
     return (
         <div className='nav'>
             <p className='nav-search-link'><Link to="/Search">Search</Link></p>
             <p className='nav-logo-link'><Link  to="/"><img src={Logo}></img></Link></p>
-            <p className='nav-login-link'><Link to="/Log">Sign In</Link></p>
+            <p className='nav-login-link'><Link to="/Account">Account</Link></p>
         </div>
     )
 }
 
-export default Nav;
+export default HeadBar;
 
 /* can be deleted? Elmirs code? /Emelie
     const {toggle} = this.state;    

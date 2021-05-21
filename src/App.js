@@ -1,8 +1,8 @@
 
 import './App.css';
 
-import Navbar from './components/navigation/Navbar'
-import './components/navigation/navbar.css';
+import WebsiteRoute from './components/website/WebsiteRoute'
+
 //import ApiTemplates from './components/ApiTemplates'
 import SideScroller from './components/SideScroller';
 
@@ -12,7 +12,7 @@ function App() {
   return (
    
     <div className="App">
-      <Navbar />
+      <WebsiteRoute />
     </div>
 
   );
