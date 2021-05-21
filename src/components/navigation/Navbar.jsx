@@ -1,11 +1,18 @@
 import React from 'react'
+import Nav from './Nav';
+import Career from '../../components/Career';
+import Policy from '../../components/Policy';
+import FAQ from '../../components/FrequentlyAskedQuestions';
 import AboutUs from '../../components/AboutUs';
 import Home from '../section/Home';
 import Search from '../section/Search';
+import Support from '../../components/Support';
 import Log from '../section/Log';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import {Link} from 'react-router-dom';
-import Nav from './Nav';
+import Footer from '../Footer';
+import MovieDetails from '../MovieDetails';
+
 
 
 const Navbar = () => {
@@ -17,9 +24,6 @@ const Navbar = () => {
         </div>
         <Switch>
 
-            <Route exact path="/AboutUs">
-                <AboutUs />
-            </Route>
 
             <Route exact path="/Log">
                 <Log />
@@ -27,47 +31,44 @@ const Navbar = () => {
 
             <Route exact path="/Search">
                 <Search />
+    
             </Route>
 
+    
+            <Route exact path="/AboutUs">
+                <AboutUs />
+            </Route>
+
+            <Route exact path="/Support">
+                <Support />
+            </Route>
+            <Route exact path="/Career">
+                <Career />
+            </Route>
+            <Route exact path="/Policy">
+                <Policy />
+            </Route>
+            <Route exact path="/FAQ">
+                <FAQ />
+            </Route>
+            <Route path='/moviedetails'>
+                <MovieDetails />
+            </Route>
+    
             <Redirect exact from="/" to="/Home/Categories" />
 
             <Route exact path="/Home/:page?" render={props => <Home {...props} />} />
+      
 
         </Switch>
-
-        <div>
-            <li><Link to="/AboutUs">About Us</Link></li>
-        </div>
+      <div>
+                <Footer />
+      </div>
+        
     </Router>
   )
+
 }
 
 export default Navbar;
 
-/*
-<Switch>
-        <Route exact path="/">
-          <WelcomeView />
-        </Route>
-        <Route path="/register">
-          <RegisterView
-            dataLoaded = {loaded}
-            getDogData = {getDogData}
-            setSelectedDog = {setSelectedDog}
-          />
-        </Route>
-        <Route path="/info">
-          <InfoView
-            dataLoaded = {loaded}
-            getDogData = {getDogData}
-            selectedDog = {selectedDog}
-          />
-        </Route>
-      </Switch>
-
-
-
-      <Route exact path="" render={props => <Home {...props}/>} />
-                    <Route exact path="/Search" render={props => <Search {...props}/>} />
-                    <Route exact path="/Log" render={props => <Log {...props}/>} />
-*/

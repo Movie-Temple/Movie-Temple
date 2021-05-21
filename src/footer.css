@@ -1,7 +1,7 @@
 .footer {
     background: var(--almostBlack);
     color: var(--turqoise);
-    position: fixed;
+    position: sticky;
     left: 0;
     bottom: 0;
     text-align: center;
@@ -15,3 +15,4 @@
     padding: 10px;
     margin: 0;
 }
+
