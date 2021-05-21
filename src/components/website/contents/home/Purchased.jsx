@@ -1,4 +1,4 @@
-import '../purchased.css'
+import './purchased.css'
 
 const Purchased = () => {
 

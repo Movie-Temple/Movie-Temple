@@ -1,4 +1,4 @@
-import '../rented.css'
+import './rented.css'
 
 const Rented = () => {
 

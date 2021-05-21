@@ -1,17 +1,17 @@
 import React from 'react'
 import HeadBar from './header/HeadBar';
-import Career from '../Career';
-import Policy from '../Policy';
-import FAQ from '../FrequentlyAskedQuestions';
-import AboutUs from '../AboutUs';
-import Home from '../section/Home';
-import Search from '../section/Search';
-import Support from '../Support';
-import Account from './contents/account/Account';
+import Career from './contents/footerContents/Career';
+import Policy from './contents/footerContents/Policy';
+import FAQ from './contents/footerContents/Faq';
+import AboutUs from './contents/footerContents/AboutUs';
+import Home from './contents/home/Home';
+import Search from './contents/search/Search';
+import Support from './contents/footerContents/Support';
+import AccountContainer from './contents/account/AccountContainer';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import Footer from './footer/Footer';
-import MovieDetails from '../MovieDetails';
+import MovieDetails from './contents/movieContent/MovieDetails';
 
 
 
@@ -26,7 +26,7 @@ const WebsiteRoute = () => {
 
 
             <Route exact path="/Account">
-                <Account />
+                <AccountContainer />
             </Route>
 
             <Route exact path="/Search">

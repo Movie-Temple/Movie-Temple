@@ -1,6 +1,6 @@
-import '../frequentlyAskedQuestions.css'
+import './faq.css'
 
-const FrequentlyAskedQuestions = () => {
+const Faq = () => {
 
     return (
         <div className='faq'>
@@ -17,4 +17,4 @@ const FrequentlyAskedQuestions = () => {
     )
 }
 
-export default FrequentlyAskedQuestions;
+export default Faq;

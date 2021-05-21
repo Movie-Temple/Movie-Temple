@@ -1,4 +1,4 @@
-import '../searchResults.css'
+import './searchResults.css'
 
 const SearchResults = () => {
 

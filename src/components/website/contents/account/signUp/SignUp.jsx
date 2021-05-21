@@ -1,9 +1,9 @@
 import React, {useLayoutEffect, useRef, useState} from 'react';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../../../../../contexts/AuthContext';
-import './register.css';
+import './signUp.css';
 
-export default function Register() {
+export default function SignUp() {
 
     const emailRef = useRef();
     const passwordRef = useRef();

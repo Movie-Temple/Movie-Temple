@@ -1,11 +1,11 @@
 
-import Register from './signUp/Register';
+import SignUp from './signUp/SignUp';
 import { Container } from 'react-bootstrap';
 import {AuthProvider} from '../../../../contexts/AuthContext';
 
 
 
-const Profile = () =>  {
+const AccountContainer = () =>  {
     
         return (
             <div>
@@ -13,7 +13,7 @@ const Profile = () =>  {
                     <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
 
                         <div className="w-100" style={{ maxWidth: "400px" }}>
-                            <Register />
+                            <SignUp />
                         </div>
 
                     </Container>
@@ -23,4 +23,4 @@ const Profile = () =>  {
     
 }
 
-export default Profile;
+export default AccountContainer;

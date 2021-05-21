@@ -1,4 +1,4 @@
-import '../watchlist.css'
+import './watchlist.css'
 
 const Watchlist = () => {
 

@@ -1,8 +1,8 @@
-import '../categories.css'
-import SideScroller from './SideScroller'
-import movieDb from './movieDb';
+import './movies.css';
+import SideScroller from './SideScroller';
+import movieDb from '../../../movieDb';
 
-const Categories = () => {
+const Movies = () => {
 
     return (
         <div className='categories'>
@@ -27,4 +27,4 @@ const Categories = () => {
 
 }
 
-export default Categories;
+export default Movies;

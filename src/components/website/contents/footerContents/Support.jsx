@@ -1,4 +1,4 @@
-import '../support.css'
+import './support.css'
 
 const Support = () => {
 

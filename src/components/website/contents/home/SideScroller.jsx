@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import getMovie from "./api";
+import getMovie from "../../../api";
 import './sideScroller.css';
 import { useHistory } from 'react-router-dom';
-import { Router, Route, Link, Switch } from 'react-router-dom';
+
 
 
 

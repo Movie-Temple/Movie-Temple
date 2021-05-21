@@ -1,4 +1,4 @@
-import '../profileHistory.css'
+import './profileHistory.css'
 
 const ProfileHistory = () => {
 

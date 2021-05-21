@@ -1,7 +1,6 @@
 import './footer.css';
 import { useHistory } from 'react-router-dom';
-import { Router, Route, Link, Switch } from 'react-router-dom';
-import AboutUs from '../../AboutUs';
+
 
 const Footer = () => {
 

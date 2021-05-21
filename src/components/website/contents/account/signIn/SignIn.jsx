@@ -1,6 +1,6 @@
-import '../login.css'
+import './signIn.css'
 
-const Login = () => {
+const SignIn = () => {
 
     return (
         <div className='login'>
@@ -21,4 +21,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default SignIn;
