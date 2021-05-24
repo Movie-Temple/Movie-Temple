@@ -1,7 +1,8 @@
+import { useSelector } from 'react-redux'
 import '../movieDetails.css'
 
-const MovieDetails = ({movie}) => {
-
+const MovieDetails = () => {
+    const movie = useSelector(state => state.currentMovie);
     // CHANGE BUTTONS ACCORDING TO PROFILE. Already bought? Already rented? Already added to watchlist?
 
     if (movie == null) {

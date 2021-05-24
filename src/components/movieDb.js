@@ -1,5 +1,7 @@
 
-const movieDb = [
+
+
+const titles = [
     'thor',
     'iron man',
     'happy gilmore',
@@ -27,4 +29,6 @@ const movieDb = [
 
 ]
 
-export default movieDb;
+
+
+export default titles;
