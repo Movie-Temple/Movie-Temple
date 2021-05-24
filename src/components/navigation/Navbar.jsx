@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../../components/Header';
+import Nav from './Nav';
 import Career from '../../components/Career';
 import Policy from '../../components/Policy';
 import FAQ from '../../components/FrequentlyAskedQuestions';
@@ -13,6 +13,7 @@ import {Link} from 'react-router-dom';
 import Footer from '../Footer';
 import MovieDetails from '../MovieDetails';
 import Categories from '../Categories';
+
 
 
 const Navbar = ({movies}) => {
@@ -35,12 +36,16 @@ const Navbar = ({movies}) => {
                     <Route path='/moviedetails'> <MovieDetails /> </Route>
                 </Switch>
 
-                <div>
-                <Footer />
+                <div>  
+                      <Footer />
                 </div>
-            </Router>
+        
+      </Router>
 
-    )
+  );
+
+
+  
 };
 
 
