@@ -4,7 +4,6 @@
 
 
 
-
 async function getMovie(title) {
     let infoUrl = `http://www.omdbapi.com/?t=${title}&plot=full&apikey=a79f43b6`;
 
