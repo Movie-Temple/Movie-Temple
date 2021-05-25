@@ -10,7 +10,7 @@ import Support from './contents/footerContents/Support';
 import AccountContainer from './contents/account/AccountContainer';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 //import {Link} from 'react-router-dom';
-//import Footer from './footer/Footer';
+import Footer from './footer/Footer';
 import MovieDetails from './contents/movieContent/MovieDetails';
 
 
@@ -60,6 +60,9 @@ const WebsiteRoute = () => {
 
             <Route exact path="/Home/:page?" render={props => <Home {...props} />} />
             </Switch>
+            <div>
+                <Footer />
+            </div>
 
     </Router>);
 }

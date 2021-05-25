@@ -3,7 +3,7 @@ import WebsiteRoute from './components/website/WebsiteRoute'
 
 //import ApiTemplates from './components/ApiTemplates'
 //import Navbar from './components/navigation/Navbar';
-import './components/navigation/navbar.css';
+//import './components/navigation/navbar.css';
 //import ApiTemplates from './components/ApiTemplates';
 //import SideScroller from './components/SideScroller';
 import titles from './components/movieDb';

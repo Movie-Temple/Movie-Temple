@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 //import { Router, Route, Link, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { replaceMovie } from "../features/currentMovie";
+import { replaceMovie } from "../../../../features/currentMovie";
 
 
 
