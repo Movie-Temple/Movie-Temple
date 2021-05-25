@@ -26,6 +26,21 @@ const titles = [
     'secret magic constrol agency',
     'wandavision',
     'my octopus teacher',
+    'dirty dancing',
+    'top gun',
+    'the cuckoos nest',
+    'back to the furure',
+    'frozen',
+    'dumb and dumber',
+    'spirited away',
+    'aviator',
+    'my neighbour totoro',
+    'karate kid',
+    'days of thunder',
+    '300',
+    'gladiator',
+    'grease',
+    'kung pao: enter the fist'
 
 ]
 
