@@ -1,31 +1,43 @@
-import React from 'react'
+import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { replaceSearchTerm } from "../../../../features/searchTerm";
 
+const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useDispatch();
 
- 
- const SearchBar = ({ onSearch }) => {
- const [searchTerm, setSearchTerm] = useState("");
-  
-   return (
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      console.log('enter pressed'); 
+      handleSave();
+      setSearchTerm("");
+    }
+  };
+
+  const handleSave = () => {
+    dispatch(replaceSearchTerm(searchTerm));
+  };
+
+  return (
     <section className="d-block">
-    <form>
-          <input
-           
-            onChange={event => {setSearchTerm(event.target.value.toLowerCase())}}
-            className="search-input"
-            placeholder="Search movies"
-            name="search"
-            value={searchTerm}
-          />
+      <form>
+        <input
+          onChange={(event) => {
+            setSearchTerm(event.target.value.toLowerCase());
+          }}
+          className="search-input"
+          placeholder="Search movies"
+          name="search"
+          value={searchTerm}
+          onKeyPress={handleKeyPress}
+        />
+      </form>
+    </section>
+  );
+};
 
-             
-    </form>
-  </section>
-   )
-   }
-
- export default SearchBar
-
+export default SearchBar;
 
 /*  )
 

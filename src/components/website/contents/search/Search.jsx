@@ -5,7 +5,6 @@ export class Search extends Component {
     render() {
         return (
             <div>
-                <h1>Head component</h1>
                 <SearchPage />
             </div>
              

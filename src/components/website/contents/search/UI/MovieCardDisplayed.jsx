@@ -1,6 +1,6 @@
 import React from 'react'
-import movieDb from '../../../../movieDb';
-import { useDispatch, useSelector } from "react-redux";
+
+import { useSelector } from "react-redux";
 
 const MovieCardDisplayed = () => {
   
