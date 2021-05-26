@@ -34,11 +34,15 @@ const titles = [
     'spirited away',
     'aviator',
     'totoro',
-    'karate kid',
+    'the karate kid',
     'days of thunder',
     '300',
     'gladiator',
-    'grease'
+    'grease',
+    'avatar',
+    'the blues brothers',
+    'godzilla vs. kong',
+    'the eye'
 
 ]
 
