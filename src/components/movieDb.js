@@ -26,6 +26,23 @@ const titles = [
     'secret magic control agency',
     'wandavision',
     'my octopus teacher',
+    'dirty dancing',
+    'top gun',
+    'back to the future',
+    'frozen',
+    'dumb and dumber',
+    'spirited away',
+    'aviator',
+    'totoro',
+    'the karate kid',
+    'days of thunder',
+    '300',
+    'gladiator',
+    'grease',
+    'avatar',
+    'the blues brothers',
+    'godzilla vs. kong',
+    'the eye'
 
 ]
 

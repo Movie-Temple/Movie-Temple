@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react"
-import getMovie from "../../../api";
 import './sideScroller.css';
 import { useHistory } from 'react-router-dom';
 
@@ -9,11 +7,10 @@ import { replaceMovie } from "../../../../features/currentMovie";
 
 
 
-const SideScroller = ({scrollerName}) => {
+const SideScroller = ({scrollerName, genre}) => {
     const history = useHistory();
     const movies = useSelector(state => state.movies);
     const dispatch = useDispatch();
-    console.log(movies);  
   
   
     const handleCLick = (movie) => {
@@ -30,15 +27,14 @@ const SideScroller = ({scrollerName}) => {
             
             <div className='scrollerWrapper'>
                 {movies.map((movie) => {
-                    return (
-                        <div className='scrollerItem' onClick={() => {handleCLick(movie)}}>
+                    return ((movie.Genre.toLowerCase().indexOf(genre) !== -1) ?
+                        <div className='scrollerItem' onClick={() => {handleCLick(movie)}} key={movie.imdbID}>
                             <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
-                            {/* <p className='scrollerTitle'>{movie.Title}</p> */}
+                            {/* <p className='scrollerTitle'>{movie.Genre}</p> */}
                         </div>
+                        : null
                     );
-                    })
-
-                }  
+                })}  
             </div>
              
         </div>
