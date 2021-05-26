@@ -1,12 +1,13 @@
 import {Link} from 'react-router-dom';
 import Logo from '../../../MTLogoPerspTrans.png'
 import '../header/headBar.css';
+import SearchBar from '../../website/contents/search/SearchBar'
 
 const HeadBar = () => {
 
     return (
         <div className='nav'>
-            <p className='nav-search-link'><Link to="/Search">Search</Link></p>
+            <div className='nav-search-link'><Link to="/Search"> <SearchBar/> </Link></div>
             <p className='nav-logo-link'><Link  to="/"><img src={Logo}></img></Link></p>
             <p className='nav-login-link'><Link to="/Account">Account</Link></p>
         </div>

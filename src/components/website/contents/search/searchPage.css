@@ -1,0 +1,6 @@
+.searchBody {
+    background-color: var(--almostBlack);
+    color: var(--turqoise);
+    width: 100vw;
+    padding: 1em;
+}
