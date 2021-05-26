@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import SearchBar from './SearchBar'
 import MovieCardDisplayed from './UI/MovieCardDisplayed'
-import movieDb from '../../../movieDb'
+import { useDispatch, useSelector } from "react-redux";
 
 const SearchPage = () => {
     const [filter, setFilter] = React.useState("");
 
+    const movies = useSelector(state => state.movies);
+     
     const filteredData = React.useMemo(() => { 
-       if (filter == "") return movieDb;
-       return movieDb.filter(
+       if (filter ==="") return movies;
+       return movies.filter(
          (item) =>
-           item.title.toLowerCase().includes(filter) 
+         console.log(item.Title) 
+        //   item.Title.toLowerCase().includes(filter) 
          );
-    }, [movieDb, filter]);
+    }, [movies, filter]);
   
     return (
       <>
         <SearchBar onSearch={(searchTerm) => setFilter(searchTerm)}/>
         <div className="d-flex flex-wrap sp-body">
-          <MovieCardDisplayed movieDb={filteredData} />
+          <MovieCardDisplayed movies={filteredData} />
         </div>
       </>
     );
