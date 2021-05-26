@@ -9,7 +9,7 @@ import WebsiteRoute from './components/website/WebsiteRoute'
 import titles from './components/movieDb';
 import { useState, useEffect } from 'react';
 import getMovie from './components/api'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import {addMovies} from './features/movies';
 
 
