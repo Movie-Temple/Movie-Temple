@@ -30,15 +30,15 @@ const SideScroller = ({scrollerName}) => {
             
             <div className='scrollerWrapper'>
                 {movies.map((movie) => {
-                    return (
+                    console.log(movie.Genre)
+                    return ((movie.Genre.toLowerCase().indexOf('comedy') !== -1) ?
                         <div className='scrollerItem' onClick={() => {handleCLick(movie)}}>
                             <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
-                            {/* <p className='scrollerTitle'>{movie.Title}</p> */}
+                            <p className='scrollerTitle'>{movie.Genre}</p>
                         </div>
+                        : null
                     );
-                    })
-
-                }  
+                })}  
             </div>
              
         </div>
