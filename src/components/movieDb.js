@@ -23,7 +23,7 @@ const titles = [
     'sound of metal',
     'godzilla',
     'soul',
-    'secret magic constrol agency',
+    'secret magic control agency',
     'wandavision',
     'my octopus teacher',
 

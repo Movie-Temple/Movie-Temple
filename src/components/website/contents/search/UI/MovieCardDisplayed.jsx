@@ -1,15 +1,18 @@
 import React from 'react'
-import movieDb from '../../../../movieDb'
+import movieDb from '../../../../movieDb';
+import { useDispatch, useSelector } from "react-redux";
 
-const MovieCardDisplayed = ({ movieDb }) => {
-    return movieDb.map((item) => (
-        <div key={item.id} className="card">
+const MovieCardDisplayed = () => {
+  
+  const movies = useSelector(state => state.movies);
+
+    return movies.map((item) => (
+        <div key={item.imdbID} className="card">
         <div>
           <div variant="top" src={item.img} />
           <div>
-            <div>{item.names}</div>
             <div className="d-flex">
-              <div><b>{movieDb}</b> {item.titles}</div>
+              <div><b>Title:</b> {item.Title}</div>
            
             </div>
           </div>

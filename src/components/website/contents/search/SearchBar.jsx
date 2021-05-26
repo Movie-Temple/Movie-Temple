@@ -1,26 +1,28 @@
 import React from 'react'
+import { useState } from "react";
 
 
  
  const SearchBar = ({ onSearch }) => {
-  const onSub = (e) => {
-    onSearch(e.target.value.toLowerCase());
-  };
+ const [searchTerm, setSearchTerm] = useState("");
+  
    return (
     <section className="d-block">
     <form>
           <input
            
-            onChange={onSub}
+            onChange={event => {setSearchTerm(event.target.value.toLowerCase())}}
             className="search-input"
             placeholder="Search movies"
             name="search"
-           
+            value={searchTerm}
           />
+
+             
     </form>
   </section>
    )
- }
+   }
 
  export default SearchBar
 
