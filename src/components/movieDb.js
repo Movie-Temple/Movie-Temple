@@ -23,24 +23,26 @@ const titles = [
     'sound of metal',
     'godzilla',
     'soul',
-    'secret magic constrol agency',
+    'secret magic control agency',
     'wandavision',
     'my octopus teacher',
     'dirty dancing',
     'top gun',
-    'the cuckoos nest',
-    'back to the furure',
+    'back to the future',
     'frozen',
     'dumb and dumber',
     'spirited away',
     'aviator',
-    'my neighbour totoro',
-    'karate kid',
+    'totoro',
+    'the karate kid',
     'days of thunder',
     '300',
     'gladiator',
     'grease',
-    'kung pao: enter the fist'
+    'avatar',
+    'the blues brothers',
+    'godzilla vs. kong',
+    'the eye'
 
 ]
 
