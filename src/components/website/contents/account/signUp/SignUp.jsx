@@ -1,5 +1,5 @@
-import React, {useLayoutEffect, useRef, useState} from 'react';
-import { Form, Button, Card, Alert } from 'react-bootstrap';
+import React, { useRef, useState} from 'react';
+import {  Alert } from 'react-bootstrap';
 import { useAuth } from '../../../../../contexts/AuthContext';
 import './signUp.css';
 
@@ -11,6 +11,7 @@ export default function SignUp() {
     const { signup } = useAuth();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const signInLink = "https://www.google.com/";
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -25,12 +26,15 @@ export default function SignUp() {
             setError("");
             setLoading(true);
             await signup(emailRef.current.value, passwordRef.current.value)
-            console.log("Heeey2");
+            console.log("Account created");
+            setError("Your account is now created!");
+            
+
         } catch {
             setError("Failed to create an account!");
             console.log(error);
         }
-        setError("Your account is now created!");
+        
         setLoading(false)
     }
 
@@ -55,7 +59,7 @@ export default function SignUp() {
                 </form>
 
                 <button onClick={handleSubmit} disabled={loading} >Sign up</button>
-                <p className='register-signin'>Already have an account? Click here to <a className='register-signin-link' href=''>Sign in</a></p>
+                <p className='register-signin'>Already have an account? Click here to <a className='register-signin-link' href={signInLink}>Sign in</a></p>
             </div>
         </div>
         
