@@ -9,7 +9,7 @@ import { replaceMovie } from "../../../../features/currentMovie";
 
 
 
-const SideScroller = ({scrollerName}) => {
+const SideScroller = ({scrollerName, genre}) => {
     const history = useHistory();
     const movies = useSelector(state => state.movies);
     const dispatch = useDispatch();
@@ -31,10 +31,10 @@ const SideScroller = ({scrollerName}) => {
             <div className='scrollerWrapper'>
                 {movies.map((movie) => {
                     console.log(movie.Genre)
-                    return ((movie.Genre.toLowerCase().indexOf('comedy') !== -1) ?
+                    return ((movie.Genre.toLowerCase().indexOf(genre) !== -1) ?
                         <div className='scrollerItem' onClick={() => {handleCLick(movie)}}>
                             <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
-                            <p className='scrollerTitle'>{movie.Genre}</p>
+                            {/* <p className='scrollerTitle'>{movie.Genre}</p> */}
                         </div>
                         : null
                     );

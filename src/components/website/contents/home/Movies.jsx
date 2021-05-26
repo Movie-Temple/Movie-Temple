@@ -3,12 +3,14 @@ import SideScroller from './SideScroller';
 import movieDb from '../../../movieDb';
 
 const Movies = () => {
+       
+    
 
     return (
         <div className='categories'>
 
-            <SideScroller scrollerName='Comedy' titles={["meet the parents", "mean girls", "pulp fiction", "hot fuzz", "palm springs", "booksmart", "the mask"]}/>
-            <SideScroller scrollerName='Action' titles={['black panther', 'avengers: endgame', 'mission: impossible - fallout', 'mad max: fury road', 'wonder woman', 'dunkirk', 'the dark knight']}/>
+            <SideScroller scrollerName='Comedy' genre={'comedy'}/>
+            <SideScroller scrollerName='Action' genre= {'action'}/>
             <SideScroller scrollerName="Popular" titles={[movieDb[0], movieDb[1], movieDb[2], movieDb[3], movieDb[4], movieDb[5]]}/>
     
             {/* <div className='categories-container'>
