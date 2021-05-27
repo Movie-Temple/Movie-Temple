@@ -14,6 +14,7 @@ export function AuthProvider({ children }) {
     
 
     const [currentUser, setCurrentUser] = useState();
+    const [customerUID, setCustomerUID] = useState();
      
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password);
@@ -22,6 +23,10 @@ export function AuthProvider({ children }) {
     useEffect( () => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user);
+            setCustomerUID(user.uid);
+            console.log(user.uid);
+            console.log(customerUID);
+            console.log(customerUID);
         })
         
         return unsubscribe;
@@ -41,3 +46,4 @@ export function AuthProvider({ children }) {
     );
 
 }
+
