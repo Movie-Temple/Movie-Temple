@@ -2,16 +2,11 @@ import React, { useContext, useState, useEffect } from 'react';
 import 'firebase/auth'
 import { auth } from '../firebase';
 
-import {useDispatch, useSelector} from 'react-redux';
-//import Profile from './profile/Profile';
-//import {signIn} from '../../../../features/currentUser';
+import {useDispatch} from 'react-redux';
+import {setCurrentUserUid} from '../features/currentUser';
 
 
 const AuthContext = React.createContext();
-
-//const dispatch = useDispatch();
-
-//const userIsLoggedIn = useSelector(state => state.userIsLoggedIn);
 
 export function useAuth() {
     return useContext(AuthContext)
@@ -19,24 +14,28 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
 
-    
+    const dispatch = useDispatch();
 
-    const [currentUser, setCurrentUser] = useState();
+    const [currentUser, setCurrentUser] = useState('test');
      
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password);
     }
 
     useEffect( () => {
+
         const unsubscribe = auth.onAuthStateChanged(user => {
-            setCurrentUser(user);
-            //dispatch(signIn())
+            if (user == null) {
+                console.log('no user, authContext')
+            } else {
+                setCurrentUser(user);
+                dispatch(setCurrentUserUid(user.uid));
+                console.log(user)
+            }
         })
         
         return unsubscribe;
     }, [])
-    
-
 
     const value = {
         currentUser,

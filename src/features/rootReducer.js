@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
     movies: moviesReducer,
     currentMovie: currentMovieReducer,
     searchTerm:  searchTermReducer,
-    userIsLoggedIn: currentUserReducer
+    currentUserUid: currentUserReducer
 });
 
 

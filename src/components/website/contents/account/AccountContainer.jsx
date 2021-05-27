@@ -10,18 +10,18 @@ const AccountContainer = () =>  {
 
     const dispatch = useDispatch();
 
-    const userIsLoggedIn = useSelector(state => state.userIsLoggedIn);
+    const currentUserUid = useSelector(state => state.currentUserUid);
     
     
-    console.log('userislogged:', userIsLoggedIn);
+    console.log('userislogged:', currentUserUid);
     
         return (
 
         <div>
-            {userIsLoggedIn ?
+            {currentUserUid ?
             <div>
                 <Profile />
-                <button onClick={() => dispatch(signIn())}>Change state</button>
+                <button >Change state</button>
             </div>
             : 
             <AuthProvider>
@@ -29,7 +29,7 @@ const AccountContainer = () =>  {
 
                     <div className="w-100" style={{ maxWidth: "400px" }}>
                         <SignUp />
-                        <button onClick={() => dispatch(signIn())}>Change state</button>
+                        <button >Change state</button>
                     </div>
 
                 </Container>
