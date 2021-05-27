@@ -1,7 +1,9 @@
-import React, { useRef, useState} from 'react';
-import {  Alert } from 'react-bootstrap';
+import React, { useRef, useState } from 'react';
+import { Alert } from 'react-bootstrap';
 import { useAuth } from '../../../../../contexts/AuthContext';
 import './signUp.css';
+import { db } from '../../../../../firebase';
+import uuid from 'react-uuid'
 
 export default function SignUp() {
 
@@ -12,6 +14,7 @@ export default function SignUp() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const signInLink = "https://www.google.com/";
+    const userUUID = uuid();
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -19,7 +22,7 @@ export default function SignUp() {
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             console.log("Heeey1");
             return setError("Password do not match!");
-            
+
         }
 
         try {
@@ -28,13 +31,33 @@ export default function SignUp() {
             await signup(emailRef.current.value, passwordRef.current.value)
             console.log("Account created");
             setError("Your account is now created!");
-            
+
+            console.log("Clicked !");
+
+            // Add a new document in collection "CUSTOMERS"
+            await db.collection("CUSTOMERS").doc(userUUID).set({
+                name: "Los Angeles",
+                email: emailRef.current.value,
+                uuid: userUUID
+            })
+                .then(() => {
+                    console.log("Document successfully written!");
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });
+
+
+            console.log("Clicked 2!");
+
+
+
 
         } catch {
             setError("Failed to create an account!");
             console.log(error);
         }
-        
+
         setLoading(false)
     }
 
@@ -45,24 +68,24 @@ export default function SignUp() {
                 <h2 className='register-header'>Register</h2>
                 {error && <Alert variant="danger"> {error} </Alert>}
                 <form className='register-form' action=''>
-                    <label for='register-name'>Name</label><br/>
-                    <input type='text' id='register-name' name='register-name' value=''/><br/>
+                    <label for='register-name'>Name</label><br />
+                    <input type='text' id='register-name' name='register-name' value='' /><br />
 
-                    <label for='register-email'>E-mail</label><br/>
-                    <input type='text' id='register-email' name='register-email' ref={emailRef}/><br/>
-                    
-                    <label for='register-password'>Password</label><br/>
-                    <input type='text' id='register-password' name='register-password' ref={passwordRef}/><br/>
-                    
-                    <label for='register-repeat-password'>Repeat Password</label><br/>
-                    <input type='text' id='register-repeat-password' name='register-repeat-password' ref={passwordConfirmRef}/><br/>
+                    <label for='register-email'>E-mail</label><br />
+                    <input type='text' id='register-email' name='register-email' ref={emailRef} /><br />
+
+                    <label for='register-password'>Password</label><br />
+                    <input type='text' id='register-password' name='register-password' ref={passwordRef} /><br />
+
+                    <label for='register-repeat-password'>Repeat Password</label><br />
+                    <input type='text' id='register-repeat-password' name='register-repeat-password' ref={passwordConfirmRef} /><br />
                 </form>
 
                 <button onClick={handleSubmit} disabled={loading} >Sign up</button>
                 <p className='register-signin'>Already have an account? Click here to <a className='register-signin-link' href={signInLink}>Sign in</a></p>
             </div>
         </div>
-        
+
 
         /*<div>
             <Card>
