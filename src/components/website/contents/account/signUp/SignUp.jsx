@@ -3,7 +3,7 @@ import { Alert } from 'react-bootstrap';
 import { useAuth } from '../../../../../contexts/AuthContext';
 import './signUp.css';
 import { db } from '../../../../../firebase';
-import uuid from 'react-uuid'
+import uuid from 'react-uuid';
 
 export default function SignUp() {
 
@@ -22,7 +22,6 @@ export default function SignUp() {
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             console.log("Heeey1");
             return setError("Password do not match!");
-
         }
 
         try {
@@ -31,8 +30,6 @@ export default function SignUp() {
             await signup(emailRef.current.value, passwordRef.current.value)
             console.log("Account created");
             setError("Your account is now created!");
-
-            console.log("Clicked !");
 
             // Add a new document in collection "CUSTOMERS"
             await db.collection("CUSTOMERS").doc(userUUID).set({
@@ -46,12 +43,6 @@ export default function SignUp() {
                 .catch((error) => {
                     console.error("Error writing document: ", error);
                 });
-
-
-            console.log("Clicked 2!");
-
-
-
 
         } catch {
             setError("Failed to create an account!");

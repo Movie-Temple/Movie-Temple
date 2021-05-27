@@ -1,42 +1,59 @@
-
 import SignUp from './signUp/SignUp';
 import { Container } from 'react-bootstrap';
 import {AuthProvider} from '../../../../contexts/AuthContext';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import Profile from './profile/Profile';
-import {signIn} from '../../../../features/currentUser';
+import SignIn from './signIn/SignIn';
 
 const AccountContainer = () =>  {
 
-    const dispatch = useDispatch();
-
     const currentUserUid = useSelector(state => state.currentUserUid);
     
-    
-    console.log('userislogged:', currentUserUid);
-    
-        return (
+    return (
 
+    <div>
+        {currentUserUid ?
+        
         <div>
-            {currentUserUid ?
-            <div>
-                <Profile />
-                <button >Change state</button>
+            <AuthProvider>
+                <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+
+                    <div className="w-100" style={{ maxWidth: "400px" }}>
+                        <Profile />
+                    </div>
+
+                </Container>
+            </AuthProvider>
+        </div>
+        
+        : 
+        
+        <div>
+            <AuthProvider>
+                <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+
+                    <div className="w-100" style={{ maxWidth: "400px" }}>
+                        <SignIn />
+                    </div>
+
+                </Container>
+            </AuthProvider>
             </div>
-            : 
+        }
+        </div>
+
+        )
+}
+/*
             <AuthProvider>
                 <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
 
                     <div className="w-100" style={{ maxWidth: "400px" }}>
                         <SignUp />
-                        <button >Change state</button>
                     </div>
 
                 </Container>
-            </AuthProvider>}
-        </div>
-
-        )
-}
+            </AuthProvider>
+*/
 
 export default AccountContainer;

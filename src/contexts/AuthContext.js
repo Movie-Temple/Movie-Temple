@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
-import 'firebase/auth'
+import 'firebase/auth';
 import { auth } from '../firebase';
-
 import {useDispatch} from 'react-redux';
 import {setCurrentUserUid} from '../features/currentUser';
 
@@ -16,21 +15,29 @@ export function AuthProvider({ children }) {
 
     const dispatch = useDispatch();
 
-    const [currentUser, setCurrentUser] = useState('test');
+    const [currentUser, setCurrentUser] = useState('');
      
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password);
+    }
+
+    function signin(email, password) {
+        return auth.signInWithEmailAndPassword(email, password);
+    }
+
+    function signout() {
+        return auth.signOut();
     }
 
     useEffect( () => {
 
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user == null) {
-                console.log('no user, authContext')
+                console.log('no user, authContext');
+                dispatch(setCurrentUserUid(''));
             } else {
                 setCurrentUser(user);
                 dispatch(setCurrentUserUid(user.uid));
-                console.log(user)
             }
         })
         
@@ -39,7 +46,9 @@ export function AuthProvider({ children }) {
 
     const value = {
         currentUser,
-        signup
+        signup,
+        signin,
+        signout
     };
 
     return (
