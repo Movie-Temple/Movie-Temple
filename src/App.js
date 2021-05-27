@@ -14,6 +14,7 @@ import {addMovies} from './features/movies';
 
 
 
+
 function App() {
   const dispatch = useDispatch();
   const [movies, setMovies] = useState([]);
