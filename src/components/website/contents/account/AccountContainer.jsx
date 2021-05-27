@@ -4,10 +4,18 @@ import {AuthProvider} from '../../../../contexts/AuthContext';
 import {useSelector} from 'react-redux';
 import Profile from './profile/Profile';
 import SignIn from './signIn/SignIn';
+import { useState } from 'react';
 
 const AccountContainer = () =>  {
 
     const currentUserUid = useSelector(state => state.currentUserUid);
+
+    const [showSignIn, setShowSignIn]  = useState(true);
+
+    const toggleShowSignIn = () => {
+        setShowSignIn(!showSignIn);
+        console.log(showSignIn)
+    }
     
     return (
 
@@ -33,7 +41,7 @@ const AccountContainer = () =>  {
                 <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
 
                     <div className="w-100" style={{ maxWidth: "400px" }}>
-                        <SignIn />
+                        {showSignIn ? <SignIn toggleShowSignIn={toggleShowSignIn}/> : <SignUp toggleShowSignIn={toggleShowSignIn}/>}
                     </div>
 
                 </Container>
@@ -44,16 +52,5 @@ const AccountContainer = () =>  {
 
         )
 }
-/*
-            <AuthProvider>
-                <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
-
-                    <div className="w-100" style={{ maxWidth: "400px" }}>
-                        <SignUp />
-                    </div>
-
-                </Container>
-            </AuthProvider>
-*/
 
 export default AccountContainer;

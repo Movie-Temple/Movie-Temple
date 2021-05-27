@@ -9,11 +9,8 @@ import Search from './contents/search/Search';
 import Support from './contents/footerContents/Support';
 import AccountContainer from './contents/account/AccountContainer';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-//import {Link} from 'react-router-dom';
 import Footer from './footer/Footer';
 import MovieDetails from './contents/movieContent/MovieDetails';
-
-
 
 
 const WebsiteRoute = () => {
@@ -25,17 +22,14 @@ const WebsiteRoute = () => {
         </div>
         <Switch>
 
-
             <Route exact path="/Account">
                 <AccountContainer />
             </Route>
 
             <Route exact path="/Search">
                 <Search />
-    
             </Route>
 
-    
             <Route exact path="/AboutUs">
                 <AboutUs />
             </Route>
@@ -43,15 +37,19 @@ const WebsiteRoute = () => {
             <Route exact path="/Support">
                 <Support />
             </Route>
+
             <Route exact path="/Career">
                 <Career />
             </Route>
+
             <Route exact path="/Policy">
                 <Policy />
             </Route>
+
             <Route exact path="/FAQ">
                 <FAQ />
             </Route>
+
             <Route path='/moviedetails'>
                 <MovieDetails />
             </Route>

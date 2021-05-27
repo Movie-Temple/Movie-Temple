@@ -2,14 +2,16 @@ import './signIn.css';
 import React, { useRef, useState } from 'react';
 import { Alert } from 'react-bootstrap';
 import { useAuth } from '../../../../../contexts/AuthContext';
+import { useHistory } from 'react-router';
 
-const SignIn = () => {
+const SignIn = ({toggleShowSignIn}) => {
 
     const emailRef = useRef();
     const passwordRef = useRef();
     const { signin } = useAuth();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const history = useHistory()
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -40,7 +42,7 @@ const SignIn = () => {
                 </form>
 
                 <button onClick={handleSubmit} disabled={loading}>Sign in</button>
-                <p className='login-signup'>Don't have an account? Click here to <a className='login-signup-link' href=''>Sign Up</a></p>
+                <p className='login-signup'>Don't have an account? Click here to <a className='login-signup-link' onClick={toggleShowSignIn}>Sign Up</a></p>
             </div>
         </div>
     )

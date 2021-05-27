@@ -5,7 +5,7 @@ import './signUp.css';
 import { db } from '../../../../../firebase';
 import uuid from 'react-uuid';
 
-export default function SignUp() {
+export default function SignUp({toggleShowSignIn}) {
 
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -73,7 +73,7 @@ export default function SignUp() {
                 </form>
 
                 <button onClick={handleSubmit} disabled={loading} >Sign up</button>
-                <p className='register-signin'>Already have an account? Click here to <a className='register-signin-link' href={signInLink}>Sign in</a></p>
+                <p className='register-signin'>Already have an account? Click here to <a className='register-signin-link' onClick={toggleShowSignIn}>Sign in</a></p>
             </div>
         </div>
 

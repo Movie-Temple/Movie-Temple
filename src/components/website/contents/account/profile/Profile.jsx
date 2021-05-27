@@ -1,5 +1,4 @@
 import './profile.css';
-import { auth } from '../../../../../firebase';
 import { useAuth } from '../../../../../contexts/AuthContext';
 
 const Profile = () => {
@@ -11,7 +10,7 @@ const Profile = () => {
             <div className='profile-headings-container'>
                 <h2 className='profile-heading'>Profile</h2>
 
-                <button onClick={signout}>Sign Out, no function added</button>
+                <button onClick={signout}>Sign Out</button>
 
                 <div className='profile-sub-headings-container'>
                     <h3 className='profile-sub-heading'>History</h3>
