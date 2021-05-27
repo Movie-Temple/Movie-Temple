@@ -7,13 +7,13 @@ import Rented from './Rented';
 import WatchList from './Watchlist';
 import './homeTabs.css';
 
-const Home = props => {
+const Home = () => {
 
         const history = useHistory();
 
-        const { match } = props;
-        const { params } = match;
-        const { page } = params;
+        //const { match } = props;
+        //const { params } = match;
+        //const { page } = params;
 
         const tabNameToIndex = {
             0: "Movies",
@@ -21,12 +21,13 @@ const Home = props => {
             2: "Rented",
             3: "WatchList"
         };
+        /*
         const indexToTabName = {
             Movies: 0,
             Purchased: 1,
             Rented: 2,
             WatchList: 3
-        }; 
+        }; */
 
         const [selectedTab, setSelectedTab] = useState(0);
         const handleChange = (event, newValue) => {

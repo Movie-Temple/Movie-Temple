@@ -2,7 +2,6 @@ import './signIn.css';
 import React, { useRef, useState } from 'react';
 import { Alert } from 'react-bootstrap';
 import { useAuth } from '../../../../../contexts/AuthContext';
-import { useHistory } from 'react-router';
 
 const SignIn = ({toggleShowSignIn}) => {
 
@@ -11,7 +10,6 @@ const SignIn = ({toggleShowSignIn}) => {
     const { signin } = useAuth();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const history = useHistory()
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -42,7 +40,7 @@ const SignIn = ({toggleShowSignIn}) => {
                 </form>
 
                 <button onClick={handleSubmit} disabled={loading}>Sign in</button>
-                <p className='login-signup'>Don't have an account? Click here to <a className='login-signup-link' onClick={toggleShowSignIn}>Sign Up</a></p>
+                <p className='login-signup'>Don't have an account? Click here to <p className='login-signup-link' onClick={toggleShowSignIn}>Sign Up</p></p>
             </div>
         </div>
     )

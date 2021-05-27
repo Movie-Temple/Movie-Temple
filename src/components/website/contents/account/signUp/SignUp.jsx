@@ -13,7 +13,6 @@ export default function SignUp({toggleShowSignIn}) {
     const { signup } = useAuth();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const signInLink = "https://www.google.com/";
     const userUUID = uuid();
 
     async function handleSubmit(e) {
@@ -60,7 +59,7 @@ export default function SignUp({toggleShowSignIn}) {
                 {error && <Alert variant="danger"> {error} </Alert>}
                 <form className='register-form' action=''>
                     <label for='register-name'>Name</label><br />
-                    <input type='text' id='register-name' name='register-name' value='' /><br />
+                    <input type='text' id='register-name' name='register-name' /><br />
 
                     <label for='register-email'>E-mail</label><br />
                     <input type='text' id='register-email' name='register-email' ref={emailRef} /><br />
@@ -73,7 +72,7 @@ export default function SignUp({toggleShowSignIn}) {
                 </form>
 
                 <button onClick={handleSubmit} disabled={loading} >Sign up</button>
-                <p className='register-signin'>Already have an account? Click here to <a className='register-signin-link' onClick={toggleShowSignIn}>Sign in</a></p>
+                <p className='register-signin'>Already have an account? Click here to <p className='register-signin-link' onClick={toggleShowSignIn}>Sign in</p></p>
             </div>
         </div>
 
