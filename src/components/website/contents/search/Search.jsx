@@ -12,7 +12,8 @@ export class Search extends Component {
     }
 }
 
-export default Search
+export default Search;
 
  /* {/*	Loader}
  <img src={ Loader } className={`search-loading ${ loading ? 'show' : 'hide' }`} alt="loader"/> */
+

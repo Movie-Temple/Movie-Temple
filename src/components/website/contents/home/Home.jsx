@@ -11,7 +11,7 @@ const Home = props => {
 
         const history = useHistory();
 
-        const { match, hostory } = props;
+        const { match } = props;
         const { params } = match;
         const { page } = params;
 
