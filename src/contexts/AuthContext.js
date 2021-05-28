@@ -37,20 +37,6 @@ export function AuthProvider({ children }) {
                 dispatch(setCurrentUserUid(''));
             } else {
                 setCurrentUser(user);
-                dispatch(setCurrentUserUid(user.uid));
-
-                db.collection("CUSTOMERS").doc(user.uid).set({
-                    name: "Los Angeles",
-                    email: "emailRef.current.value",
-                    userUID: user.uid
-                })
-                    .then(() => {
-                        console.log("Document successfully written!");
-                    })
-                    .catch((error) => {
-                        console.error("Error writing document: ", error);
-                    });
-
             }
         })
         

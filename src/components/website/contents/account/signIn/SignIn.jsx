@@ -2,6 +2,8 @@ import './signIn.css';
 import React, { useRef, useState } from 'react';
 import { Alert } from 'react-bootstrap';
 import { useAuth } from '../../../../../contexts/AuthContext';
+import { useDispatch } from 'react-redux';
+import { setCurrentUserUid } from '../../../../../features/currentUser';
 
 const SignIn = ({toggleShowSignIn}) => {
 
@@ -10,6 +12,9 @@ const SignIn = ({toggleShowSignIn}) => {
     const { signin } = useAuth();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch()
+
+    const { currentUser } = useAuth();
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -18,6 +23,9 @@ const SignIn = ({toggleShowSignIn}) => {
             setError("");
             setLoading(true);
             await signin(emailRef.current.value, passwordRef.current.value)
+                .then(() => {
+                    dispatch(setCurrentUserUid(currentUser.uid))
+                })
             console.log("Logged in!");
             setError("Logged in!");
         } catch {
