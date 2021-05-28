@@ -10,28 +10,12 @@ const Movies = () => {
     //const userID = useSelector(state => state.currentUserUid);
     const [user, setUser] = useState({purchased: ["tt0067927", "tt0113855"], rented: ["tt5109280", "tt0017136"], watchList: ["tt0133093", "tt0092890"]});
     
-    const getMoviefromID = (id) => {
-        return (
-            movies.filter((movie) => {movie.imdbID === id})
-        )
-    }
-
-    const getPosters = ([idList]) => {
-
-
-        const movieCollection = movies.map((movie) => {
-            return ((movie.imdbID === "any of ids in array") ?
-                movie.Poster
-                : null
-            )
-        })
-    }
 
     
 
     return (
         <div className='categories'>
-            <PersonalScroller scrollerName='Purchased' movies={user.purchased} />
+            <PersonalScroller scrollerName='Purchased' category='rented' />
             <GenreScroller scrollerName='Comedy' genre={'comedy'}/>
             <GenreScroller scrollerName='Action' genre= {'action'}/>
             <GenreScroller scrollerName='Drama' genre= {'drama'}/>
