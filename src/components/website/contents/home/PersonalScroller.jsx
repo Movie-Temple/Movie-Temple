@@ -6,10 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { replaceMovie } from "../../../../features/currentMovie";
 import { useState } from 'react';
 
+import { db } from '../../../../firebase'
 
 
 const PersonalScroller = ({scrollerName, category}) => {
-
+    let uuid = useSelector(state => state.currentUserUid);
+    uuid = 'vSwz4kNz0gPxZbhD8ugqToGLwyx1';
+    db.collection("CUSTOMERS").doc(uuid)
+        .onSnapshot((doc) => {
+        console.log('retrieved data:', doc.data());
+    });
     // const movies = useSelector(state => state.movies);
     // const history = useHistory();
     // const dispatch = useDispatch();
