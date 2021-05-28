@@ -1,11 +1,17 @@
-import './profile.css'
+import './profile.css';
+import { useAuth } from '../../../../../contexts/AuthContext';
 
 const Profile = () => {
+
+    const { signout } = useAuth();
 
     return (
         <div className='profile'>
             <div className='profile-headings-container'>
                 <h2 className='profile-heading'>Profile</h2>
+
+                <button onClick={signout}>Sign Out</button>
+
                 <div className='profile-sub-headings-container'>
                     <h3 className='profile-sub-heading'>History</h3>
                     <h3 className='profile-sub-heading'>Settings</h3>
