@@ -28,16 +28,16 @@
    
 }
 @media (max-width: 800px) {
-    .Register  .cards {
+    .searchBody {
       grid-template-columns: repeat(2, 1fr);
     }
   }
   
   @media (max-width: 500px) {
-    .Register   .cards {
+      .searchItem {
       grid-template-columns: 1fr;
     }
-    .Register    .card img {
+     .searchImg {
       width: 100%;
       height: 300px;
       object-fit: contain;
