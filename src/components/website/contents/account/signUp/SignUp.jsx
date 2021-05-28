@@ -3,16 +3,21 @@ import { Alert } from 'react-bootstrap';
 import { useAuth } from '../../../../../contexts/AuthContext';
 import './signUp.css';
 import { db } from '../../../../../firebase';
-import uuid from 'react-uuid';
+import uuid from 'react-uuid'
 
-export default function SignUp({toggleShowSignIn}) {
+export default function SignUp() {
 
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
     const { signup } = useAuth();
+
+    //const { signoutT } = useAuth();
+
+
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const signInLink = "https://www.google.com/";
     const userUUID = uuid();
 
     async function handleSubmit(e) {
@@ -21,6 +26,7 @@ export default function SignUp({toggleShowSignIn}) {
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             console.log("Heeey1");
             return setError("Password do not match!");
+
         }
 
         try {
@@ -30,6 +36,8 @@ export default function SignUp({toggleShowSignIn}) {
             console.log("Account created");
             setError("Your account is now created!");
 
+            console.log("Clicked !");
+            /*
             // Add a new document in collection "CUSTOMERS"
             await db.collection("CUSTOMERS").doc(userUUID).set({
                 name: "Los Angeles",
@@ -42,6 +50,12 @@ export default function SignUp({toggleShowSignIn}) {
                 .catch((error) => {
                     console.error("Error writing document: ", error);
                 });
+
+
+            console.log("Clicked 2!");
+
+                */
+
 
         } catch {
             setError("Failed to create an account!");
@@ -59,7 +73,7 @@ export default function SignUp({toggleShowSignIn}) {
                 {error && <Alert variant="danger"> {error} </Alert>}
                 <form className='register-form' action=''>
                     <label for='register-name'>Name</label><br />
-                    <input type='text' id='register-name' name='register-name' /><br />
+                    <input type='text' id='register-name' name='register-name' value='' /><br />
 
                     <label for='register-email'>E-mail</label><br />
                     <input type='text' id='register-email' name='register-email' ref={emailRef} /><br />
@@ -72,7 +86,7 @@ export default function SignUp({toggleShowSignIn}) {
                 </form>
 
                 <button onClick={handleSubmit} disabled={loading} >Sign up</button>
-                <p className='register-signin'>Already have an account? Click here to <p className='register-signin-link' onClick={toggleShowSignIn}>Sign in</p></p>
+                <p className='register-signin'>Already have an account? Click here to <a className='register-signin-link' href={signInLink}>Sign in</a></p>
             </div>
         </div>
 

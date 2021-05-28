@@ -3,7 +3,7 @@ import 'firebase/auth';
 import { auth } from '../firebase';
 import {useDispatch} from 'react-redux';
 import {setCurrentUserUid} from '../features/currentUser';
-
+import { db } from '../firebase';
 
 const AuthContext = React.createContext();
 
@@ -38,11 +38,30 @@ export function AuthProvider({ children }) {
             } else {
                 setCurrentUser(user);
                 dispatch(setCurrentUserUid(user.uid));
+
+                db.collection("CUSTOMERS").doc(user.uid).set({
+                    name: "Los Angeles",
+                    email: "emailRef.current.value",
+                    userUID: user.uid
+                })
+                    .then(() => {
+                        console.log("Document successfully written!");
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+
             }
         })
         
         return unsubscribe;
     }, [])
+
+
+    
+    
+
+
 
     const value = {
         currentUser,
