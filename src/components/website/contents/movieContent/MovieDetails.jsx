@@ -14,8 +14,9 @@ const MovieDetails = () => {
         if (currentUserUid) {
             // HERE WE HAVE TO CHECK IF USER HAS ADDED PAYMENT DETAILS
             db.collection("PURCHASED").doc(currentUserUid).set({
+                //MUST CHANGE TO MAP OR ARRAY IN ORDER TO STORE SEVERAL MOVIES
                 movieID: movie.Title,
-                timeStamp: ""
+                timeStamp: new Date()
             })
             .then(() => {
                 console.log("buuuyyy Document successfully written!");
@@ -33,8 +34,9 @@ const MovieDetails = () => {
         if (currentUserUid) {
             // HERE WE HAVE TO CHECK IF USER HAS ADDED PAYMENT DETAILS
             db.collection("RENTED").doc(currentUserUid).set({
+                //MUST CHANGE TO MAP OR ARRAY IN ORDER TO STORE SEVERAL MOVIES
                 movieID: movie.Title,
-                timeStamp: ""
+                timeStamp: new Date()
             })
             .then(() => {
                 console.log("movie rented");
@@ -51,7 +53,8 @@ const MovieDetails = () => {
     const addToWatchlist = () => {
         if (currentUserUid) {
             db.collection("WATCHLIST").doc(currentUserUid).set({
-                movieID: movie.Title
+                //MUST CHANGE TO ARRAY IN ORDER TO STORE SEVERAL MOVIES
+                movieID: [movie.Title]
             })
             .then(() => {
                 console.log("added to watchlist");
