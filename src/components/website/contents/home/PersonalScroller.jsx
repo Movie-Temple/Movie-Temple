@@ -1,4 +1,4 @@
-import './sideScroller.css';
+import './scroller.css';
 import { useHistory } from 'react-router-dom';
 
 //import { Router, Route, Link, Switch } from 'react-router-dom';
@@ -7,11 +7,9 @@ import { replaceMovie } from "../../../../features/currentMovie";
 
 
 
-const SideScroller = ({scrollerName, genre}) => {
+const PersonalScroller = ({scrollerName, movies}) => {
     const history = useHistory();
-    const movies = useSelector(state => state.movies);
     const dispatch = useDispatch();
-  
   
     const handleCLick = (movie) => {
         return (
@@ -20,19 +18,19 @@ const SideScroller = ({scrollerName, genre}) => {
         )
     }
 
+    
 
     return ( 
-        <div className='sideScroller'>
+        <div className='scroller'>
             <h3 className='scrollerName'>{scrollerName}</h3>
             
             <div className='scrollerWrapper'>
                 {movies.map((movie) => {
-                    return ((movie.Genre.toLowerCase().indexOf(genre) !== -1) ?
+                    return (
                         <div className='scrollerItem' onClick={() => {handleCLick(movie)}} key={movie.imdbID}>
                             <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
                             {/* <p className='scrollerTitle'>{movie.Genre}</p> */}
                         </div>
-                        : null
                     );
                 })}  
             </div>
@@ -41,4 +39,4 @@ const SideScroller = ({scrollerName, genre}) => {
     )
 }
 
-export default SideScroller;
+export default PersonalScroller;
