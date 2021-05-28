@@ -24,9 +24,9 @@ const AccountContainer = () =>  {
         
         <div>
             <AuthProvider>
-                <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+                <Container >
 
-                    <div className="w-100" style={{ maxWidth: "400px" }}>
+                    <div >
                         <Profile />
                     </div>
 
@@ -38,9 +38,9 @@ const AccountContainer = () =>  {
         
         <div>
             <AuthProvider>
-                <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+                <Container >
 
-                    <div className="w-100" style={{ maxWidth: "400px" }}>
+                    <div >
                         {showSignIn ? <SignIn toggleShowSignIn={toggleShowSignIn}/> : <SignUp toggleShowSignIn={toggleShowSignIn}/>}
                     </div>
 
@@ -52,5 +52,13 @@ const AccountContainer = () =>  {
 
         )
 }
+
+/*
+bortkommenterad css i containers
+className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }} 
+
+bortkommenterad css i div under container
+className="w-100" style={{ maxWidth: "400px" }}
+*/
 
 export default AccountContainer;
