@@ -1,10 +1,31 @@
-import './movieDetails.css'
-import { useSelector } from 'react-redux'
-
+import './movieDetails.css';
+import { useSelector } from 'react-redux';
+import {db} from '../../../../firebase';
 
 const MovieDetails = () => {
+
+    const currentUserUid = useSelector(state => state.currentUserUid);
+
     const movie = useSelector(state => state.currentMovie);
     // CHANGE BUTTONS ACCORDING TO PROFILE. Already bought? Already rented? Already added to watchlist?
+
+    
+    const buyMovie = () => {
+
+        db.collection("PURCHASED").doc(currentUserUid).set({
+            movieID: movie.Title,
+            timeStamp: ""
+        })
+        .then(() => {
+            console.log("buuuyyy Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("buuuyyy Error writing document: ", error);
+        });
+        
+    }
+
+
 
     if (movie == null) {
         return (
@@ -26,7 +47,7 @@ const MovieDetails = () => {
                     <p className='movie-details-genre'>Genre: {movie.Genre}</p>
                     <div className='movie-details-buttons'>
                         <button className='rent-button'>Rent</button>
-                        <button className='buy-button'>Buy</button>
+                        <button onClick= {buyMovie} className='buy-button'>Buy</button>
                         <button className='watchlist-button'>Add to Watchlist</button>
                     </div>
                 </div>
