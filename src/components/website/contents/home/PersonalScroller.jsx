@@ -10,23 +10,58 @@ import { db } from '../../../../firebase'
 
 
 const PersonalScroller = ({scrollerName, category}) => {
-    let uuid = useSelector(state => state.currentUserUid);
-    uuid = 'vSwz4kNz0gPxZbhD8ugqToGLwyx1';
+    //const uuid = useSelector(state => state.currentUserUid);
+    const uuid = 'vSwz4kNz0gPxZbhD8ugqToGLwyx1';
+    const movies = useSelector(state => state.movies);
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const [selectedMovies, setSelectedMovies] = useState([]);
+    const [user, setUser] = useState();
+
+    
+    //console.log(movies)
+
     db.collection("CUSTOMERS").doc(uuid)
         .onSnapshot((doc) => {
-        console.log('retrieved data:', doc.data());
+            let purchased = doc.data().purchased;
+            console.log(purchased); 
+
+
+            console.log(movies)
+            // Object.keys(purchased).forEach(key => 
+            //     {const match = movies.filter(movie => movie.imdbID === key);
+            //         setSelectedMovies(...selectedMovies, match);
+            //     })
+            //console.log(purchased);
+            // let ids = Object.keys(purchased);
+            // let timestamps = Object.values(purchased);
+            // console.log(ids, timestamps);
+            // for(i = 0 ; i <= ids.length ; i++ ) {
+            //     const obj = {[]}
+            // }
+            
+
+            // const selected = Object.keys(purchased).map(id =>
+            //     movies.filter(movie => movie.imdbID === id)
+            // );
+            // setSelectedMovies(selected);
+            // console.log(selectedMovies);
+            // console.log('retrieved data:', doc.data());
     });
-    // const movies = useSelector(state => state.movies);
-    // const history = useHistory();
-    // const dispatch = useDispatch();
-    // const [selectedMovies, setSelectedMovies] = useState([{Poster: '', Title: 'asdf'}, {Poster: '', Title: 'fdsafs'}]);
-    // const [user, setUser] = useState({purchased: ["tt0067927", "tt0113855"], rented: ["tt5109280", "tt0017136"], watchList: ["tt0133093", "tt0092890"]});
     
-    // const getMoviefromID = (id) => {
-    //     return (
-    //         movies.filter((movie) => movie.imdbID === id)
-    //     )
-    // }
+
+    // db.collection("CUSTOMERS").doc(uuid).collection('rented')
+    // .onSnapshot((snapshot) => {
+    //     snapshot.forEach((doc) => console.log(doc.data()))
+    
+    // });
+
+
+    const getMoviefromID = (id) => {
+        return (
+            movies.filter((movie) => movie.imdbID === id)
+        )
+    }
 
     // switch (category) {
     //     case "rented": {
@@ -37,19 +72,26 @@ const PersonalScroller = ({scrollerName, category}) => {
     //     }
     // }
 
-    // const handleCLick = (movie) => {
-    //     return (
-    //         dispatch(replaceMovie(movie)),
-    //         history.push('/moviedetails')
-    //     )
-    // }
+    const handleCLick = (movie) => {
+        return (
+            dispatch(replaceMovie(movie)),
+            history.push('/moviedetails')
+        )
+    }
 
     return ( 
         <div className='scroller'>
             <h3 className='scrollerName'>{scrollerName}</h3>
             
             <div className='scrollerWrapper'>
-                 
+                {selectedMovies.map((movie) => {
+                    return (
+                <div className='scrollerItem' onClick={() => {handleCLick(movie)}} key={movie.imdbID}>
+                    <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
+                    {/* <p className='scrollerTitle'>{movie.Genre}</p> */}
+                </div>
+                );
+                })} 
             </div>
              
         </div>
@@ -58,11 +100,3 @@ const PersonalScroller = ({scrollerName, category}) => {
 
 export default PersonalScroller;
 
-// {selectedMovies.map((movie) => {
-//     return (
-//         <div className='scrollerItem' onClick={() => {handleCLick(movie)}} key={movie.imdbID}>
-//             <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
-//             {/* <p className='scrollerTitle'>{movie.Genre}</p> */}
-//         </div>
-//     );
-// })} 
