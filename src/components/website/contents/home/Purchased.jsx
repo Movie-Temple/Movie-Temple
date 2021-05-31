@@ -10,7 +10,7 @@ const Purchased = () => {
     const purchasedMovies = useSelector(state => state.purchasedMovies);
     const movies = useSelector((state) => state.movies);
     
-    
+
     console.log(purchasedMovies);
     console.log(movies);
     const lowerCase = purchasedMovies.toLowerCase;
@@ -18,8 +18,8 @@ const Purchased = () => {
     return (
         <div className='purchased'>
             
-            {movies.map((movie) => {
-                    return ( movies ?
+            {purchasedMovies.map((movie) => {
+                    return ( purchasedMovies ?
                         <div className='scrollerItem' key={movie.imdbID}>
                         
                             <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
