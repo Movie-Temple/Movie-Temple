@@ -1,8 +1,16 @@
 import './movieDetails.css';
 import { useSelector } from 'react-redux';
 import {db} from '../../../../firebase';
+import Popup from '../../../popup/Popup'
+import React, { useState } from "react";
 
 const MovieDetails = () => {
+    
+    const [isOpen, setIsOpen] = useState(false);
+ 
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
 
     const currentUserUid = useSelector(state => state.currentUserUid);
 
@@ -86,7 +94,15 @@ const MovieDetails = () => {
                     <p className='movie-details-metascore'>Metascore: {movie.Metascore}</p>
                     <p className='movie-details-genre'>Genre: {movie.Genre}</p>
                     <div className='movie-details-buttons'>
-                        <button onClick={rentMovie} className='rent-button'>Rent</button>
+     
+    {isOpen && <Popup
+      content={<>
+        <b>Confirm Purchase</b>
+        <button onClick={rentMovie} className='rent-button'>Rent</button>
+      </>}
+      handleClose={togglePopup}
+    />}
+                        <button className='rent-button' onClick={togglePopup}>Rent</button>
                         <button onClick={buyMovie} className='buy-button'>Buy</button>
                         <button onClick={addToWatchlist} className='watchlist-button'>Add to Watchlist</button>
                     </div>
@@ -97,3 +113,5 @@ const MovieDetails = () => {
 }
 
 export default MovieDetails;
+
+ /* <button onClick={rentMovie} className='rent-button'>Rent</button> */
