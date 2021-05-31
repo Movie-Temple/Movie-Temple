@@ -7,14 +7,15 @@ import { replaceMovie } from "../../../../features/currentMovie";
 const PersonalScroller = ({scrollerName, category}) => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const content = [];
+    let content = [];
 
-    switch (category) {
-        case "rented":      {content = useSelector(state => state.rentedMovies)}
-        case "purchased":   {content = useSelector(state => state.purchasedMovies)}
-        case "watchList":   {content = useSelector(state => state.watchList)}
-        default:            {[]}
-    }
+    // switch (category) {
+    //     case "rented":      {content = useSelector(state => state.rentedMovies)}
+    //     case "purchased":   {content = useSelector(state => state.purchasedMovies)}
+    //     case "watchList":   {content = useSelector(state => state.watchList)}
+    //     default:            {[]}
+    // }
+    content = useSelector(state => state.purchasedMovies)
 
     const handleCLick = (movie) => {
         return (
