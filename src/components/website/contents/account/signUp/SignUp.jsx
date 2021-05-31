@@ -4,6 +4,8 @@ import { useAuth } from '../../../../../contexts/AuthContext';
 import './signUp.css';
 import { db } from '../../../../../firebase';
 import uuid from 'react-uuid'
+import { useDispatch } from 'react-redux';
+import {setCurrentUserUid} from '../../../../../features/currentUser';
 
 export default function SignUp() {
 
@@ -11,10 +13,16 @@ export default function SignUp() {
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
     const { signup } = useAuth();
+
+    //const { signoutT } = useAuth();
+
+
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const signInLink = "https://www.google.com/";
-    const userUUID = uuid();
+    //const userUUID = uuid();
+
+    const dispatch = useDispatch();
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -29,29 +37,17 @@ export default function SignUp() {
             setError("");
             setLoading(true);
             await signup(emailRef.current.value, passwordRef.current.value)
+                .then((resp) => {
+                    db.collection('CUSTOMERS').doc(resp.user.uid).set({
+                        name: 'Name',
+                        email: emailRef.current.value
+                    })
+                    dispatch(setCurrentUserUid(resp.user.uid))
+                })
             console.log("Account created");
             setError("Your account is now created!");
 
             console.log("Clicked !");
-
-            // Add a new document in collection "CUSTOMERS"
-            await db.collection("CUSTOMERS").doc(userUUID).set({
-                name: "Los Angeles",
-                email: emailRef.current.value,
-                uuid: userUUID
-            })
-                .then(() => {
-                    console.log("Document successfully written!");
-                })
-                .catch((error) => {
-                    console.error("Error writing document: ", error);
-                });
-
-
-            console.log("Clicked 2!");
-
-
-
 
         } catch {
             setError("Failed to create an account!");

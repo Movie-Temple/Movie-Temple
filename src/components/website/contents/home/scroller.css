@@ -12,9 +12,25 @@
 .scrollerWrapper {
     display: flex;
     flex-direction: row;
+    overflow-y: hidden;
     overflow-x: scroll;
+    
     height: 14em;
 }
+.scrollerWrapper::-webkit-scrollbar {
+    display: flex;
+    height: 5px;
+    
+    }
+.scrollerWrapper::-webkit-scrollbar-thumb {
+    background: #fff;
+    border-radius: 10px;
+    
+  
+  
+
+}
+
 
 .scrollerItem {
     width: 10em;

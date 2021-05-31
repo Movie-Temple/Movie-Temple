@@ -44,7 +44,7 @@
 .login .login-signup {
     color: #cfcfcf;
 }
-.login > .login-signup-link {
+.login .login-signup-link {
     color: blue;
 }
 
