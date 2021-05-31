@@ -20,7 +20,7 @@ export default function SignUp() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const signInLink = "https://www.google.com/";
-    const userUUID = uuid();
+    //const userUUID = uuid();
 
     const dispatch = useDispatch();
 
