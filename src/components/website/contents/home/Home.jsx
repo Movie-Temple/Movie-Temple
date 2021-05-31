@@ -15,6 +15,7 @@ const Home = () => {
     const currentUserUid = useSelector(state => state.currentUserUid);
     const dispatch = useDispatch();
     const history = useHistory();
+    const movies = useSelector((state) => state.movies);
 
     //const { match } = props;
     //const { params } = match;
@@ -44,12 +45,23 @@ const Home = () => {
     const getPurchased = () => {
         console.log("get purchased!");
 
-        db.collection("PURCHASED").doc(currentUserUid)
+        db.collection("CUSTOMERS").doc("vSwz4kNz0gPxZbhD8ugqToGLwyx1")
             .onSnapshot((doc) => {
-                console.log("Purchased Tab Current data: ", doc.data().movieID);
-                dispatch(setPurchasedMovies(doc.data().movieID));
-                console.log("Wrote in Firestore for purchased movie");
-                console.log("Purchased Tab Current data: ", doc.data().timeStamp);
+                const result = doc.data().purchased;
+                let moviesToAdd = [];
+                Object.keys(result).forEach(key => {
+                    const movie = movies.filter(movie => movie.imdbID === key)
+                    moviesToAdd.push(movie[0])
+                })
+                dispatch(setPurchasedMovies(moviesToAdd));
+
+
+                console.log(moviesToAdd);
+                console.log(result);
+
+                
+                // console.log("Wrote in Firestore for purchased movie");
+                // console.log("Purchased Tab Current data: ", doc.data().timeStamp);
                 
             });
         
