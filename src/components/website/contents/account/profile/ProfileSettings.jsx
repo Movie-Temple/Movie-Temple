@@ -1,23 +1,29 @@
 //import '../profileSettings.css'
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { db } from '../../../../../firebase';
 
 const ProfileSettings = () => {
 
     const [cardDetails, setCardDetails] = useState('');
+    const [showCardDetails, setShowCardDetails] = useState(false);
     const cardRef = useRef();
     const currentUserUid = useSelector(state => state.currentUserUid);
 
-    const addEditCardDetails = () => {
-        console.log('click')
-        //  toggle input field here...
+    const toggleShowCardDetails = () => {
+        setShowCardDetails(!showCardDetails);
     }
 
-    const save = () => {
+    useEffect(() => {
+        db.collection("CUSTOMERS").doc(currentUserUid)
+            .onSnapshot((doc) => {
+                const result = doc.data().card;
+                setCardDetails(result);
+            });
+    }, []);
 
-        //setCardDetails(cardRef);
+    const save = () => {
 
         if (currentUserUid) {
             db.collection("CUSTOMERS").doc(currentUserUid).set({
@@ -25,6 +31,7 @@ const ProfileSettings = () => {
             }, { merge: true })
             .then(() => {
                 console.log("card details successfully added");
+                setShowCardDetails(false);
             })
             .catch((error) => {
                 console.error("error saving card details: ", error);
@@ -38,8 +45,16 @@ const ProfileSettings = () => {
         <div className='profile-settings'>
             <p>Change password</p>
             <p>Change e-mail</p>
-            <p onClick={addEditCardDetails}>Add/edit payment details</p>
-            <input type='number' id='card-details' name='card-details' ref={cardRef}/><button onClick={save}>Save</button><br/>
+            <p onClick={toggleShowCardDetails}>Add/edit payment details</p>
+            {showCardDetails 
+            ? 
+            <div>
+                <input type='number' id='card-details' name='card-details' ref={cardRef} defaultValue={cardDetails}/>
+                <button onClick={save}>Save</button> 
+            </div>
+            : 
+            ''}
+            <br/>
         </div>
     )
 }
