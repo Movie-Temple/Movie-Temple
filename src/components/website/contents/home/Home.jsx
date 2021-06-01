@@ -8,7 +8,9 @@ import WatchList from './Watchlist';
 import './homeTabs.css';
 import { db } from '../../../../firebase';
 import { useSelector, useDispatch } from 'react-redux';
-import { setPurchasedMovies } from '../../../../features/purchasedMovies'
+import { setPurchasedMovies } from '../../../../features/purchasedMovies';
+import { setRentedMovies } from '../../../../features/rentedMovies';
+import { setWatchlistMovies } from '../../../../features/watchlistMovies';
 
 const Home = () => {
 
@@ -69,6 +71,57 @@ const Home = () => {
     }
 
 
+
+    const getRented = () => {
+        console.log("get rented!");
+
+        db.collection("CUSTOMERS").doc("vSwz4kNz0gPxZbhD8ugqToGLwyx1")
+            .onSnapshot((doc) => {
+                const result = doc.data().rented;
+                let rentedMoviesToAdd = [];
+                Object.keys(result).forEach(key => {
+                    const movie = movies.filter(movie => movie.imdbID === key)
+                    rentedMoviesToAdd.push(movie[0])
+                })
+                dispatch(setRentedMovies(rentedMoviesToAdd));
+
+
+                console.log(rentedMoviesToAdd);
+                console.log(result);
+
+                
+                // console.log("Wrote in Firestore for purchased movie");
+                // console.log("Purchased Tab Current data: ", doc.data().timeStamp);
+                
+            });
+        
+
+    }
+
+    const getWatchlist = () => {
+        console.log("get watchlist!");
+
+        db.collection("CUSTOMERS").doc("vSwz4kNz0gPxZbhD8ugqToGLwyx1")
+            .onSnapshot((doc) => {
+                const result = doc.data().watch;
+                let watchlistToAdd = [];
+                Object.keys(result).forEach(key => {
+                    const movie = movies.filter(movie => movie.imdbID === key)
+                    watchlistToAdd.push(movie[0])
+                })
+                dispatch(setWatchlistMovies(watchlistToAdd));
+
+
+                console.log(watchlistToAdd);
+                console.log(result);
+
+            });
+        
+
+    }
+
+
+
     return (
         <div>
             <AppBar position="static">
@@ -76,8 +129,8 @@ const Home = () => {
                 <Tabs className='tabs' value={selectedTab} onChange={handleChange} variant='fullWidth'>
                     <Tab className={selectedTab === 0 ? 'selectedTab' : ''} label="Movies" />
                     <Tab onClick={getPurchased} className={selectedTab === 1 ? 'selectedTab' : ''} label="Purchased" />
-                    <Tab className={selectedTab === 2 ? 'selectedTab' : ''} label="Rented" />
-                    <Tab className={selectedTab === 3 ? 'selectedTab' : ''} label="Watchlist" />
+                    <Tab onClick={getRented} className={selectedTab === 2 ? 'selectedTab' : ''} label="Rented" />
+                    <Tab onClick={getWatchlist} className={selectedTab === 3 ? 'selectedTab' : ''} label="Watchlist" />
                 </Tabs>
 
             </AppBar>
