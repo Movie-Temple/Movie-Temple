@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ProfileHistory from './ProfileHistory';
 import ProfileSettings from './ProfileSettings';
 import Avatar from '../../../../../../src/UserAvatar.png'
+import { useSelector } from 'react-redux';
 
 const Profile = () => {
 
@@ -15,6 +16,30 @@ const Profile = () => {
         setShowSettings(!showSettings);
         console.log('show settings:', showSettings);
     }
+
+    const currentUserUid = useSelector(state => state.currentUserUid);
+
+    const [userData, setUserData] = useState('');
+
+    /*const getUserData = () => {
+        console.log("get user data");
+
+        db.collection("CUSTOMERS").doc(currentUserUid)
+            .onSnapshot((doc) => {
+                const result = doc.data().purchased;
+                let moviesToAdd = [];
+                Object.keys(result).forEach(key => {
+                    const movie = movies.filter(movie => movie.imdbID === key)
+                    moviesToAdd.push(movie[0])
+                })
+                dispatch(setPurchasedMovies(moviesToAdd));
+
+                console.log(moviesToAdd);
+                console.log(result);
+                // console.log("Wrote in Firestore for purchased movie");
+                // console.log("Purchased Tab Current data: ", doc.data().timeStamp);
+            });
+    }*/
 
     return (
         <div className='profile'>

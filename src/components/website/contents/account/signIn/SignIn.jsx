@@ -48,7 +48,7 @@ const SignIn = ({toggleShowSignIn}) => {
                 </form>
 
                 <button onClick={handleSubmit} disabled={loading}>Sign in</button>
-                <p className='login-signup'>Don't have an account? Click here to <p className='login-signup-link' onClick={toggleShowSignIn}>Sign Up</p></p>
+                <p className='login-signup'>Don't have an account? Click here to <p className='login-signup-link' onClick={toggleShowSignIn}>sign up</p></p>
             </div>
         </div>
     )
