@@ -1,6 +1,13 @@
 .watchlist {
     background: var(--almostBlack);
     color: var(--turqoise);
+    display: grid;
+    align-items: top;
+    color: var(--whiteText);
+    margin: auto;
+    max-width: 1400px;
+    
+    height: 900px;
 }
 
 .watchlist .watchlist-category-header {

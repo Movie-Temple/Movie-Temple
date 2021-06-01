@@ -98,13 +98,16 @@ const MovieDetails = () => {
     {isOpen && <Popup
       content={<>
         <b>Confirm Purchase</b>
-        <button onClick={rentMovie} className='rent-button'>Rent</button>
+        <button onClick={rentMovie} className='rent-button'>Rent </button>
+        <button onClick={buyMovie} className='buy-button'>Buy</button>
+        
       </>}
       handleClose={togglePopup}
     />}
                         <button className='rent-button' onClick={togglePopup}>Rent</button>
-                        <button onClick={buyMovie} className='buy-button'>Buy</button>
+                        <button className='rent-button' onClick={togglePopup}>Buy</button>
                         <button onClick={addToWatchlist} className='watchlist-button'>Add to Watchlist</button>
+                        
                     </div>
                 </div>
             </div>

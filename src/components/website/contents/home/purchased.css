@@ -1,6 +1,14 @@
 .purchased {
     background: var(--almostBlack);
     color: var(--turqoise);
+    display: flex;
+    align-items: top;
+    padding: 20px 20px;
+    color: var(--whiteText);
+    margin: auto;
+    max-width: 1400px;
+    
+    height: 810px;
 }
 
 .purchased .purchased-browser {
