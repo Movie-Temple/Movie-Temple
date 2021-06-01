@@ -9,8 +9,6 @@ const userID = "vSwz4kNz0gPxZbhD8ugqToGLwyx1";
 const rentMovie = ((movieID) => {
     db.collection("CUSTOMERS").doc(userID).get().then((doc) =>{
         if (doc.exists) {
-
-            console.log(doc.data());
             
             const rented = doc.data().rented;
             console.log(rented);
@@ -37,8 +35,6 @@ const rentMovie = ((movieID) => {
 const buyMovie = ((movieID) => {
     db.collection("CUSTOMERS").doc(userID).get().then((doc) =>{
         if (doc.exists) {
-
-            console.log(doc.data());
             
             const purchased = doc.data().purchased;
             console.log(purchased);
@@ -65,8 +61,6 @@ const buyMovie = ((movieID) => {
 const addToWatchlist = ((movieID) => {
     db.collection("CUSTOMERS").doc(userID).get().then((doc) =>{
         if (doc.exists) {
-
-            console.log(doc.data());
             
             const watchlist = doc.data().watchlist;
             console.log(watchlist);
@@ -97,19 +91,5 @@ const timestamp = Date.now()
 const formattedTime = Intl.DateTimeFormat('sv-SE', {dateStyle: 'full', timeStyle: 'short'}).format(timestamp)
 
 
-
-if (currentUserUid) {
-    db.collection("CUSTOMERS").doc(currentUserUid).set({
-        card: cardRef.current.value,
-    }, { merge: true })
-    .then(() => {
-        console.log("card details successfully added");
-    })
-    .catch((error) => {
-        console.error("error saving card details: ", error);
-    }); 
-} else {
-    console.log('no useruid, one have to log in to add card details')
-}
 
 export {rentMovie, buyMovie, addToWatchlist};

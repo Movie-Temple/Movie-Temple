@@ -3,77 +3,25 @@ import { useSelector } from 'react-redux';
 import {db} from '../../../../firebase';
 import Popup from '../../../popup/Popup'
 import React, { useState } from "react";
+import {buyMovie} from '../account/profile/personalMovieLists';
+import {rentMovie} from '../account/profile/personalMovieLists';
+import {addToWatchlist} from '../account/profile/personalMovieLists';
+
 
 const MovieDetails = () => {
     
     const [isOpen, setIsOpen] = useState(false);
  
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  }
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
+    }
 
-    const currentUserUid = useSelector(state => state.currentUserUid);
+    //const currentUserUid = useSelector(state => state.currentUserUid);
 
     const movie = useSelector(state => state.currentMovie);
     // CHANGE BUTTONS ACCORDING TO PROFILE. Already bought? Already rented? Already added to watchlist?
 
-    // BUY MOVIE
-    const buyMovie = () => {
-        if (currentUserUid) {
-            // HERE WE HAVE TO CHECK IF USER HAS ADDED PAYMENT DETAILS
-            db.collection("PURCHASED").doc(currentUserUid).set({
-                //MUST CHANGE TO MAP OR ARRAY IN ORDER TO STORE SEVERAL MOVIES
-                movieID: movie.Title,
-                timeStamp: new Date()
-            })
-            .then(() => {
-                console.log("buuuyyy Document successfully written!");
-            })
-            .catch((error) => {
-                console.error("buuuyyy Error writing document: ", error);
-            }); 
-        } else {
-            console.log('no useruid, one have to log in to buy a movie...')
-        }
-    }
-
-    // RENT A MOVIE
-    const rentMovie = () => {
-        if (currentUserUid) {
-            // HERE WE HAVE TO CHECK IF USER HAS ADDED PAYMENT DETAILS
-            db.collection("RENTED").doc(currentUserUid).set({
-                //MUST CHANGE TO MAP OR ARRAY IN ORDER TO STORE SEVERAL MOVIES
-                movieID: movie.Title,
-                timeStamp: new Date()
-            })
-            .then(() => {
-                console.log("movie rented");
-            })
-            .catch((error) => {
-                console.error("error renting movie", error);
-            }); 
-        } else {
-            console.log('no useruid, one have to log in to rent a movie...')
-        }
-    }
-
-    // ADD TO WATCHLIST
-    const addToWatchlist = () => {
-        if (currentUserUid) {
-            db.collection("WATCHLIST").doc(currentUserUid).set({
-                //MUST CHANGE TO ARRAY IN ORDER TO STORE SEVERAL MOVIES
-                movieID: [movie.Title]
-            })
-            .then(() => {
-                console.log("added to watchlist");
-            })
-            .catch((error) => {
-                console.error("error adding to watchlist ", error);
-            }); 
-        } else {
-            console.log('no useruid, one have to log in to add to watchlist...')
-        }
-    }
+   
 
     if (movie == null) {
         return (
@@ -98,13 +46,13 @@ const MovieDetails = () => {
     {isOpen && <Popup
       content={<>
         <b>Confirm Purchase</b>
-        <button onClick={rentMovie} className='rent-button'>Rent</button>
+        <button onClick={() => rentMovie(movie.imdbID)} className='rent-button'>Rent</button>
       </>}
       handleClose={togglePopup}
     />}
                         <button className='rent-button' onClick={togglePopup}>Rent</button>
-                        <button onClick={buyMovie} className='buy-button'>Buy</button>
-                        <button onClick={addToWatchlist} className='watchlist-button'>Add to Watchlist</button>
+                        <button onClick={() => buyMovie(movie.imdbID)} className='buy-button'>Buy</button>
+                        <button onClick={() => addToWatchlist(movie.imdbID)} className='watchlist-button'>Add to Watchlist</button>
                     </div>
                 </div>
             </div>
