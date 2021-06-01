@@ -6,7 +6,7 @@ import {db} from '../../../../../firebase';
 
 const userID = "vSwz4kNz0gPxZbhD8ugqToGLwyx1";
 
-const rentAMovie = ((movieID) => {
+const rentMovie = ((movieID) => {
     db.collection("CUSTOMERS").doc(userID).get().then((doc) =>{
         if (doc.exists) {
 
@@ -34,10 +34,64 @@ const rentAMovie = ((movieID) => {
     });
 });
 
+const buyMovie = ((movieID) => {
+    db.collection("CUSTOMERS").doc(userID).get().then((doc) =>{
+        if (doc.exists) {
+
+            console.log(doc.data());
+            
+            const purchased = doc.data().purchased;
+            console.log(purchased);
+
+            const timestamp = Date.now();
+            purchased[movieID] = timestamp;
+            console.log(purchased);
+
+            db.collection("CUSTOMERS").doc(userID).update({
+              purchased
+            })
+            .then(() => {
+                console.log('Movie added to purchased in firestore')
+            })
+            
+        } else {
+            console.log("no such document")
+        }
+    }).catch((error) => {
+        console.log("error: ", error)
+    });
+});
+
+const addToWatchlist = ((movieID) => {
+    db.collection("CUSTOMERS").doc(userID).get().then((doc) =>{
+        if (doc.exists) {
+
+            console.log(doc.data());
+            
+            const watchlist = doc.data().watchlist;
+            console.log(watchlist);
+
+            const timestamp = Date.now();
+            watchlist[movieID] = timestamp;
+            console.log(watchlist);
+
+            db.collection("CUSTOMERS").doc(userID).update({
+              watchlist
+            })
+            .then(() => {
+                console.log('Movie added to watchlist in firestore')
+            })
+            
+        } else {
+            console.log("no such document")
+        }
+    }).catch((error) => {
+        console.log("error: ", error)
+    });
+});
 
 
-
-//create a time in a universal system of milliseconds since 1970/01/01:
+//create a timestamp in unix time format:
 const timestamp = Date.now()
 //format timestamp to date and time in Sweden corrected for daylight saving changes (to show date/time on screen):
 const formattedTime = Intl.DateTimeFormat('sv-SE', {dateStyle: 'full', timeStyle: 'short'}).format(timestamp)
@@ -58,4 +112,4 @@ if (currentUserUid) {
     console.log('no useruid, one have to log in to add card details')
 }
 
-export default rentAMovie;
+export {rentMovie, buyMovie, addToWatchlist};
