@@ -1,10 +1,11 @@
 import './profile.css';
 import { useAuth } from '../../../../../contexts/AuthContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProfileHistory from './ProfileHistory';
 import ProfileSettings from './ProfileSettings';
 import Avatar from '../../../../../../src/UserAvatar.png'
 import { useSelector } from 'react-redux';
+import { db } from '../../../../../firebase';
 
 const Profile = () => {
 
@@ -19,34 +20,20 @@ const Profile = () => {
 
     const currentUserUid = useSelector(state => state.currentUserUid);
 
-    const [userData, setUserData] = useState('');
+    const [userName, setUserName] = useState('');
 
-    /*const getUserData = () => {
-        console.log("get user data");
-
+    useEffect(() => {
         db.collection("CUSTOMERS").doc(currentUserUid)
             .onSnapshot((doc) => {
-                const result = doc.data().purchased;
-                let moviesToAdd = [];
-                Object.keys(result).forEach(key => {
-                    const movie = movies.filter(movie => movie.imdbID === key)
-                    moviesToAdd.push(movie[0])
-                })
-                dispatch(setPurchasedMovies(moviesToAdd));
-
-                console.log(moviesToAdd);
-                console.log(result);
-                // console.log("Wrote in Firestore for purchased movie");
-                // console.log("Purchased Tab Current data: ", doc.data().timeStamp);
+                const result = doc.data().name;
+                setUserName(result);
             });
-    }*/
+    }, [])
 
     return (
         <div className='profile'>
             <div className='profile-headings-container'>
                 <h2 className='profile-heading'>Profile</h2>
-
-                
 
                 <div className='profile-sub-headings-container'>
                     <h3 className={showSettings ? 'profile-sub-heading selected' : 'profile-sub-heading'} onClick={toggleShowSettings}>Settings</h3>
@@ -57,14 +44,13 @@ const Profile = () => {
             <div className='profile-container'>
                 <div className='profile-image-name-container'>
                     <img className='profile-image' src={Avatar} alt="profile pic" />
-                    <h4 className='profile-name'>Name</h4>
+                    <h4 className='profile-name'>{userName}</h4>
                     <button onClick={signout}>Sign Out</button>
                 </div>
                 <div className='profile-history-settings-container'>
                     {showSettings ? <ProfileSettings /> : <ProfileHistory />}
                 </div>
             </div>
-
         </div>
     )
 }

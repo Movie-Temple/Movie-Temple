@@ -12,7 +12,7 @@ const SignIn = ({toggleShowSignIn}) => {
     const { signin } = useAuth();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const { currentUser } = useAuth();
 
@@ -24,7 +24,7 @@ const SignIn = ({toggleShowSignIn}) => {
             setLoading(true);
             await signin(emailRef.current.value, passwordRef.current.value)
                 .then(() => {
-                    dispatch(setCurrentUserUid(currentUser.uid))
+                    dispatch(setCurrentUserUid(currentUser.uid));
                 })
             console.log("Logged in!");
             setError("Logged in!");
