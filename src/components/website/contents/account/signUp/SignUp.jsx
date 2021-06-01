@@ -3,24 +3,19 @@ import { Alert } from 'react-bootstrap';
 import { useAuth } from '../../../../../contexts/AuthContext';
 import './signUp.css';
 import { db } from '../../../../../firebase';
-import uuid from 'react-uuid'
 import { useDispatch } from 'react-redux';
 import {setCurrentUserUid} from '../../../../../features/currentUser';
 
-export default function SignUp() {
+export default function SignUp({toggleShowSignIn}) {
 
+    const nameRef = useRef()
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
+
     const { signup } = useAuth();
-
-    //const { signoutT } = useAuth();
-
-
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const signInLink = "https://www.google.com/";
-    //const userUUID = uuid();
 
     const dispatch = useDispatch();
 
@@ -28,9 +23,7 @@ export default function SignUp() {
         e.preventDefault()
 
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-            console.log("Heeey1");
             return setError("Password do not match!");
-
         }
 
         try {
@@ -39,7 +32,7 @@ export default function SignUp() {
             await signup(emailRef.current.value, passwordRef.current.value)
                 .then((resp) => {
                     db.collection('CUSTOMERS').doc(resp.user.uid).set({
-                        name: 'Name',
+                        name: nameRef.current.value,
                         email: emailRef.current.value
                     })
                     dispatch(setCurrentUserUid(resp.user.uid))
@@ -53,7 +46,6 @@ export default function SignUp() {
             setError("Failed to create an account!");
             console.log(error);
         }
-
         setLoading(false)
     }
 
@@ -61,11 +53,12 @@ export default function SignUp() {
 
         <div className='register'>
             <div className='register-container'>
-                <h2 className='register-header'>Register</h2>
+                <h2 className='register-header'>Sign up</h2>
                 {error && <Alert variant="danger"> {error} </Alert>}
                 <form className='register-form' action=''>
+
                     <label for='register-name'>Name</label><br />
-                    <input type='text' id='register-name' name='register-name' value='' /><br />
+                    <input type='text' id='register-name' name='register-name' ref={nameRef} /><br />
 
                     <label for='register-email'>E-mail</label><br />
                     <input type='text' id='register-email' name='register-email' ref={emailRef} /><br />
@@ -78,41 +71,8 @@ export default function SignUp() {
                 </form>
 
                 <button onClick={handleSubmit} disabled={loading} >Sign up</button>
-                <p className='register-signin'>Already have an account? Click here to <a className='register-signin-link' href={signInLink}>Sign in</a></p>
+                <p className='register-signin'>Already have an account? Click here to <p className='register-signin-link' onClick={toggleShowSignIn}>sign in</p></p>
             </div>
         </div>
-
-
-        /*<div>
-            <Card>
-                <Card.Body>
-                    <h2 className="text-center mb-4">Sign Up</h2>
-                    {error && <Alert variant="danger"> {error} </Alert>}
-                    <Form >
-                        <Form.Group id="email">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" ref={emailRef} required />
-                        </Form.Group>
-
-                        <Form.Group id="password">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" ref={passwordRef} required />
-                        </Form.Group>
-
-                        <Form.Group id="password-confirm">
-                            <Form.Label>Password Confirmation</Form.Label>
-                            <Form.Control type="password" ref={passwordConfirmRef} required />
-                        </Form.Group>
-
-                    </Form>
-                    <Button onClick={handleSubmit} disabled={loading} className="w-100" type="submit">Sign Up</Button>
-                </Card.Body>
-            </Card>
-            <div className="w-100 text-center mt-2">
-                    Already have an account? Log In
-            </div>
-        </div>
-        */
     );
-
 }
