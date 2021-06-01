@@ -7,9 +7,7 @@ const Movies = () => {
 
     return (
         <div className='categories'>
-            <PersonalScroller scrollerName='Purchased' category='purchased' />
-            <PersonalScroller scrollerName='Purchased' category='rented' />
-            <PersonalScroller scrollerName='Purchased' category='watchList' />
+            
             <GenreScroller scrollerName='Comedy' genre={'comedy'}/>
             <GenreScroller scrollerName='Action' genre= {'action'}/>
             <GenreScroller scrollerName='Drama' genre= {'drama'}/>
@@ -23,3 +21,7 @@ const Movies = () => {
 }
 
 export default Movies;
+
+/*<PersonalScroller scrollerName='Purchased' category='purchased' />
+            <PersonalScroller scrollerName='Purchased' category='rented' />
+            <PersonalScroller scrollerName='Purchased' category='watchList' /> */

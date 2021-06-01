@@ -8,11 +8,11 @@ const Purchased = () => {
 
     //const currentUserUid = useSelector(state => state.currentUserUid);
     const purchasedMovies = useSelector(state => state.purchasedMovies);
-    const movies = useSelector((state) => state.movies);
+    //const movies = useSelector((state) => state.movies);
     
 
     console.log(purchasedMovies);
-    console.log(movies);
+    //console.log(movies);
     const lowerCase = purchasedMovies.toLowerCase;
 
     return (
@@ -37,7 +37,7 @@ const Purchased = () => {
 
             
         </div>
-    )
+    );
 }
 
 export default Purchased;
