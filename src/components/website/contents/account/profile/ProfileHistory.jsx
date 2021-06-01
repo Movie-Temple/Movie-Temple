@@ -2,6 +2,8 @@
 
 const ProfileHistory = () => {
 
+    
+
     return (
         <div className='profile-history'>
             <table className='profile-history-table'>
