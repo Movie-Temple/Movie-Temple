@@ -17,25 +17,14 @@ const Purchased = () => {
 
     return (
         <div className='purchased'>
-            
             {purchasedMovies.map((movie) => {
                     return ( purchasedMovies ?
                         <div className='scrollerItem' key={movie.imdbID}>
-                        
                             <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
-                            
-                            
                         </div>
                         : null
                     );
                 })}  
-
-
-
-
-            
-
-            
         </div>
     );
 }
