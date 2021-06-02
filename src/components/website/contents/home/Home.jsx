@@ -11,6 +11,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setPurchasedMovies } from '../../../../features/purchasedMovies';
 import { setRentedMovies } from '../../../../features/rentedMovies';
 import { setWatchlistMovies } from '../../../../features/watchlistMovies';
+import SignIn from '../account/signIn/SignIn';
+import { AuthProvider } from '../../../../contexts/AuthContext';
 
 const Home = () => {
 
@@ -121,10 +123,17 @@ const Home = () => {
                 </Tabs>
 
             </AppBar>
+            
+            <AuthProvider>
             {selectedTab === 0 && <Movies />}
+            
+            { currentUserUid ? <div>
             {selectedTab === 1 && <Purchased />}
             {selectedTab === 2 && <Rented />}
             {selectedTab === 3 && <WatchList />}
+            </div> : <div> <SignIn /> </div>}
+            
+            </AuthProvider>
 
         </div>
     )
