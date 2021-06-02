@@ -15,7 +15,6 @@ const Profile = () => {
 
     const toggleShowSettings = () => {
         setShowSettings(!showSettings);
-        console.log('show settings:', showSettings);
     }
 
     const currentUserUid = useSelector(state => state.currentUserUid);
@@ -42,17 +41,22 @@ const Profile = () => {
             </div>
             <hr className='profile-breakline'/>
             <div className='profile-container'>
-                <div className='profile-image-name-container'>
-                    <img className='profile-image' src={Avatar} alt="profile pic" />
-                    <h4 className='profile-name'>{userName}</h4>
-                    <button onClick={signout}>Sign Out</button>
-                </div>
+
                 <div className='profile-history-settings-container'>
                     {showSettings ? <ProfileSettings /> : <ProfileHistory />}
                 </div>
+            </div>
+            <div className='profile-image-name-container'>
+                    {/*<img className='profile-image' src={Avatar} alt="profile pic" />*/}
+                    <h4 className='profile-name'>Signed in as {userName}</h4>
+                    <button className='profile-signout-button' onClick={signout}>Sign Out</button>
             </div>
         </div>
     )
 }
 
 export default Profile;
+
+/*
+
+*/

@@ -14,7 +14,6 @@ const AccountContainer = () =>  {
 
     const toggleShowSignIn = () => {
         setShowSignIn(!showSignIn);
-        console.log(showSignIn)
     }
     
     return (

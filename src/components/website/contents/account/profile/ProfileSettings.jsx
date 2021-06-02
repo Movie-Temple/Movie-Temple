@@ -1,4 +1,4 @@
-//import '../profileSettings.css'
+import '../profile/profileSettings.css';
 
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -43,14 +43,14 @@ const ProfileSettings = () => {
 
     return (
         <div className='profile-settings'>
-            <p>Change password</p>
-            <p>Change e-mail</p>
-            <p onClick={toggleShowCardDetails}>Add/edit payment details</p>
+            <p className='profile-settings-change-password'>Change password</p>
+            <p className='profile-settings-change-email' >Change e-mail</p>
+            <p className='profile-settings-change-card' onClick={toggleShowCardDetails}>Add/edit payment details</p>
             {showCardDetails 
             ? 
             <div>
                 <input type='number' id='card-details' name='card-details' ref={cardRef} defaultValue={cardDetails}/>
-                <button onClick={save}>Save</button> 
+                <button className='profile-settings-save-card-button' onClick={save}>Save</button> 
             </div>
             : 
             ''}
