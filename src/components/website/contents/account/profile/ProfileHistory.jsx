@@ -1,9 +1,43 @@
-//import './profileHistory.css'
+import '../profile/profileHistory.css'
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { db } from '../../../../../firebase';
+
 
 const ProfileHistory = () => {
 
+    const currentUserUid = useSelector(state => state.currentUserUid);
+    const movies = useSelector(state => state.movies);
+    const [rentedData, setRentedData] = useState('');
+
+    const [historyData, setHistoryData] = useState('');
+
+    useEffect(() => {
+        db.collection("CUSTOMERS").doc(currentUserUid)
+            .onSnapshot((doc) => {
+                setRentedData(doc.data().rented)
+            });
+    }, [])
+
+    /*useEffect(() => {
+
+        setHistoryData(rentedData.map( item => 
+            <div className='test' key={item}>Test</div>
+        ));
+    }, [rentedData]);*/
+
+
     return (
         <div className='profile-history'>
+            {historyData}
+            history data
+        </div>
+    )
+}
+
+export default ProfileHistory;
+
+/*
             <table className='profile-history-table'>
                 <tr className='table-header'>
                     <th>Movie</th>
@@ -21,8 +55,4 @@ const ProfileHistory = () => {
                     <td>2021-05-16</td>
                 </tr>
             </table>
-        </div>
-    )
-}
-
-export default ProfileHistory;
+*/

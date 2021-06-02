@@ -11,14 +11,17 @@ import { useState, useEffect } from 'react';
 import getMovie from './components/api'
 import { useDispatch} from 'react-redux';
 import {addMovies} from './features/movies';
-
+import {db} from './firebase'
 
 
 
 function App() {
   const dispatch = useDispatch();
   const [movies, setMovies] = useState([]);
-  
+
+
+
+
 
 
   useEffect(() => {

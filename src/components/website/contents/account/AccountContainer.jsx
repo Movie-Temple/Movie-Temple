@@ -14,7 +14,6 @@ const AccountContainer = () =>  {
 
     const toggleShowSignIn = () => {
         setShowSignIn(!showSignIn);
-        console.log(showSignIn)
     }
     
     return (
@@ -52,13 +51,5 @@ const AccountContainer = () =>  {
 
         )
 }
-
-/*
-bortkommenterad css i containers
-className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }} 
-
-bortkommenterad css i div under container
-className="w-100" style={{ maxWidth: "400px" }}
-*/
 
 export default AccountContainer;

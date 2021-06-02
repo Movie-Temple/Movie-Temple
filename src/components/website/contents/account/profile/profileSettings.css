@@ -6,3 +6,13 @@
     justify-content: center;
     align-items: center;
 }
+
+.profile-settings .profile-settings-save-card-button {
+    padding: 5px 10px;
+    margin: 1em 0;
+    border-radius: 5px;
+    background-color: var(--turqoise);
+    color:  var(--buttonText);
+    font-weight: bold;
+    text-transform: uppercase;
+}
