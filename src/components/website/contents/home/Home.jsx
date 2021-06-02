@@ -45,38 +45,30 @@ const Home = () => {
 
 
     const getPurchased = () => {
-        console.log("get purchased!");
-
-        db.collection("CUSTOMERS").doc("vSwz4kNz0gPxZbhD8ugqToGLwyx1")
+        if (currentUserUid) {
+            db.collection("CUSTOMERS").doc(currentUserUid)
             .onSnapshot((doc) => {
-                const result = doc.data().purchased;
-                let moviesToAdd = [];
-                if (result) {
-                    Object.keys(result).forEach(key => {
-                        const movie = movies.filter(movie => movie.imdbID === key)
-                        moviesToAdd.push(movie[0])
-                    })
-                    dispatch(setPurchasedMovies(moviesToAdd));
-                }
-
-                console.log(moviesToAdd);
-                console.log(result);
-
-                
-                // console.log("Wrote in Firestore for purchased movie");
-                // console.log("Purchased Tab Current data: ", doc.data().timeStamp);
-                
+                    const result = doc.data().purchased;
+                    let moviesToAdd = [];
+                    if (result) {
+                        Object.keys(result).forEach(key => {
+                            const movie = movies.filter(movie => movie.imdbID === key)
+                            moviesToAdd.push(movie[0])
+                        })
+                        dispatch(setPurchasedMovies(moviesToAdd));
+                        console.log("got purchased");
+                    } else {
+                        console.log('nothing there')
+                    }
             });
-        
-
+        }
     }
 
 
 
     const getRented = () => {
-        console.log("get rented!");
-
-        db.collection("CUSTOMERS").doc("vSwz4kNz0gPxZbhD8ugqToGLwyx1")
+        if (currentUserUid) {
+            db.collection("CUSTOMERS").doc(currentUserUid)
             .onSnapshot((doc) => {
                 const result = doc.data().rented;
                 let rentedMoviesToAdd = [];
@@ -86,25 +78,17 @@ const Home = () => {
                         rentedMoviesToAdd.push(movie[0])
                     })
                     dispatch(setRentedMovies(rentedMoviesToAdd));
-                }  
-
-                console.log(rentedMoviesToAdd);
-                console.log(result);
-
-                const timestamp = Object.values(result);
-                console.log(timestamp[0]);
-                const formattedTime = Intl.DateTimeFormat('sv-SE', {dateStyle: 'full', timeStyle: 'short'}).format(timestamp[0])
-                console.log(formattedTime);
-                
+                    console.log("got rented");
+                } else {
+                    console.log('nothing there')
+                }
             });
-        
-
+        }
     }
 
     const getWatchlist = () => {
-        console.log("get watchlist!");
-
-        db.collection("CUSTOMERS").doc("vSwz4kNz0gPxZbhD8ugqToGLwyx1")
+        if (currentUserUid) {
+            db.collection("CUSTOMERS").doc(currentUserUid)
             .onSnapshot((doc) => {
                 const result = doc.data().watch;
                 let watchlistToAdd = [];
@@ -114,16 +98,13 @@ const Home = () => {
                         watchlistToAdd.push(movie[0])
                     })
                     dispatch(setWatchlistMovies(watchlistToAdd));
+                    console.log("got watchlist");
+                } else {
+                    console.log('nothing there')
                 }
-                
-
-
-                console.log(watchlistToAdd);
-                console.log(result);
-
             });
+        }
         
-
     }
 
 
