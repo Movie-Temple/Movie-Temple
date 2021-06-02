@@ -24,6 +24,7 @@ const SignIn = ({toggleShowSignIn}) => {
             setLoading(true);
             await signin(emailRef.current.value, passwordRef.current.value)
                 .then(() => {
+
                     dispatch(setCurrentUserUid(currentUser.uid));
                 })
             console.log("Logged in!");
@@ -34,6 +35,7 @@ const SignIn = ({toggleShowSignIn}) => {
         }
         setLoading(false)
     }
+
 
     return (
         <div className='login'>
