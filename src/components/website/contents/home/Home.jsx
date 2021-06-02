@@ -51,12 +51,13 @@ const Home = () => {
             .onSnapshot((doc) => {
                 const result = doc.data().purchased;
                 let moviesToAdd = [];
-                Object.keys(result).forEach(key => {
-                    const movie = movies.filter(movie => movie.imdbID === key)
-                    moviesToAdd.push(movie[0])
-                })
-                dispatch(setPurchasedMovies(moviesToAdd));
-
+                if (result) {
+                    Object.keys(result).forEach(key => {
+                        const movie = movies.filter(movie => movie.imdbID === key)
+                        moviesToAdd.push(movie[0])
+                    })
+                    dispatch(setPurchasedMovies(moviesToAdd));
+                }
 
                 console.log(moviesToAdd);
                 console.log(result);
@@ -79,19 +80,21 @@ const Home = () => {
             .onSnapshot((doc) => {
                 const result = doc.data().rented;
                 let rentedMoviesToAdd = [];
-                Object.keys(result).forEach(key => {
-                    const movie = movies.filter(movie => movie.imdbID === key)
-                    rentedMoviesToAdd.push(movie[0])
-                })
-                dispatch(setRentedMovies(rentedMoviesToAdd));
-
+                if (result) {
+                    Object.keys(result).forEach(key => {
+                        const movie = movies.filter(movie => movie.imdbID === key)
+                        rentedMoviesToAdd.push(movie[0])
+                    })
+                    dispatch(setRentedMovies(rentedMoviesToAdd));
+                }  
 
                 console.log(rentedMoviesToAdd);
                 console.log(result);
 
-                
-                // console.log("Wrote in Firestore for purchased movie");
-                // console.log("Purchased Tab Current data: ", doc.data().timeStamp);
+                const timestamp = Object.values(result);
+                console.log(timestamp[0]);
+                const formattedTime = Intl.DateTimeFormat('sv-SE', {dateStyle: 'full', timeStyle: 'short'}).format(timestamp[0])
+                console.log(formattedTime);
                 
             });
         
@@ -105,11 +108,14 @@ const Home = () => {
             .onSnapshot((doc) => {
                 const result = doc.data().watch;
                 let watchlistToAdd = [];
-                Object.keys(result).forEach(key => {
-                    const movie = movies.filter(movie => movie.imdbID === key)
-                    watchlistToAdd.push(movie[0])
-                })
-                dispatch(setWatchlistMovies(watchlistToAdd));
+                if (result) {
+                    Object.keys(result).forEach(key => {
+                        const movie = movies.filter(movie => movie.imdbID === key)
+                        watchlistToAdd.push(movie[0])
+                    })
+                    dispatch(setWatchlistMovies(watchlistToAdd));
+                }
+                
 
 
                 console.log(watchlistToAdd);
