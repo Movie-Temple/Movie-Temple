@@ -46,13 +46,17 @@ const MovieDetails = () => {
     {isOpen && <Popup
       content={<>
         <b>Confirm Purchase</b>
+
         <button onClick={() => rentMovie(movie.imdbID)} className='rent-button'>Rent</button>
+
       </>}
       handleClose={togglePopup}
     />}
                         <button className='rent-button' onClick={togglePopup}>Rent</button>
+
                         <button onClick={() => buyMovie(movie.imdbID)} className='buy-button'>Buy</button>
                         <button onClick={() => addToWatchlist(movie.imdbID)} className='watchlist-button'>Add to Watchlist</button>
+
                     </div>
                 </div>
             </div>

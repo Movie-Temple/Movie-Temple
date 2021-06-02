@@ -1,5 +1,13 @@
 .rented {
     color: #08F6AF;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    color: var(--whiteText);
+    margin: auto;
+    max-width: 1400px;
+    
+    height: 810px;
 }
 
 .rented .rented-browser {
