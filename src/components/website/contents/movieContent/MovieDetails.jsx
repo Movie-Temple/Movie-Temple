@@ -23,61 +23,21 @@ const MovieDetails = () => {
    
 
     const rentMovie = ((movieID) => {
-        db.collection("CUSTOMERS").doc(userID).get().then((doc) =>{
-            if (doc.exists) {
-                const rented = doc.data().rented;
-                const timestamp = Date.now();
-                rented[movieID] = timestamp;
-                db.collection("CUSTOMERS").doc(userID).update({
-                  rented
-                })
-                .then(() => {
-                })
-            } else {
-                console.log("no such document")
-            }
-            }).catch((error) => {
-            console.log("error: ", error)
-        })
+        let rented = {};
+        rented[movieID] = Date.now();
+        db.collection('CUSTOMERS').doc(userID).set({rented}, {merge: true})
     });
     
     const buyMovie = ((movieID) => {
-        db.collection("CUSTOMERS").doc(userID).get().then((doc) =>{
-            if (doc.exists) {
-                const purchased = doc.data().purchased;
-                const timestamp = Date.now();
-                purchased[movieID] = timestamp;
-                db.collection("CUSTOMERS").doc(userID).update({
-                  purchased
-                })
-                .then(() => {
-                    console.log('Movie added to purchased in firestore')
-                })
-            } else {
-                console.log("no such document")
-            }
-            }).catch((error) => {
-            console.log("error: ", error)
-        })
+        let purchased = {};
+        purchased[movieID] = Date.now();
+        db.collection('CUSTOMERS').doc(userID).set({purchased}, {merge: true})
     });
     
     const addToWatchlist = ((movieID) => {
-        db.collection("CUSTOMERS").doc(userID).get().then((doc) =>{
-            if (doc.exists) {
-                const watchlist = doc.data().watchlist;
-                const timestamp = Date.now();
-                watchlist[movieID] = timestamp;
-                db.collection("CUSTOMERS").doc(userID).update({
-                  watchlist
-                })
-                .then(() => {
-                })
-            } else {
-                console.log("no such document")
-            }
-            }).catch((error) => {
-            console.log("error: ", error)
-        })
+        let watchlist = {};
+        watchlist[movieID] = Date.now();
+        db.collection('CUSTOMERS').doc(userID).set({watchlist}, {merge: true})
     });
 
 
