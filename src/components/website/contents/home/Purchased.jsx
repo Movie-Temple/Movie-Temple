@@ -13,7 +13,7 @@ const Purchased = () => {
 
     console.log(purchasedMovies);
     //console.log(movies);
-    const lowerCase = purchasedMovies.toLowerCase;
+    //const lowerCase = purchasedMovies.toLowerCase;
 
     return (
         <div className='purchased'>
