@@ -60,3 +60,8 @@
     color: var(--buttonText);
     font-weight: bold;
 }
+
+.movie-details .movie-details-buttons .disabled {
+    background-color: #09815f;
+
+}
