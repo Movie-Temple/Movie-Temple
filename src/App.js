@@ -9,21 +9,20 @@ import WebsiteRoute from './components/website/WebsiteRoute'
 import titles from './components/movieDb';
 import { useState, useEffect } from 'react';
 import getMovie from './components/api'
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import {addMovies} from './features/movies';
 import {db} from './firebase'
+import { setPurchasedMovies } from './features/purchasedMovies';
+import { setRentedMovies } from './features/rentedMovies';
+import { setWatchlistMovies } from './features/watchlistMovies';
 
 
 
 function App() {
   const dispatch = useDispatch();
   const [movies, setMovies] = useState([]);
-
-
-
-
-
-
+  const currentUserUid = useSelector(state => state.currentUserUid);
+  
   useEffect(() => {
     const fetchAll = async () => setMovies(
       await Promise.all(titles.map(getMovie))
@@ -37,6 +36,60 @@ function App() {
     dispatch(addMovies(movies))
     
   }, [movies, dispatch])
+
+
+  const getMovieLists = () => {
+    if (currentUserUid) {
+        db.collection("CUSTOMERS").doc(currentUserUid)
+        .onSnapshot((doc) => {
+                const purchased = doc.data().purchased;
+                const rented = doc.data().rented;
+                const watchlist = doc.data().watchlist;
+                let purchasedToAdd = [];
+                let rentedToAdd = [];
+                let watchlistToAdd = [];
+
+                if (purchased) {
+                    Object.keys(purchased).forEach(key => {
+                        const movie = movies.filter(movie => movie.imdbID === key)
+                        purchasedToAdd.push(movie[0])
+                    })
+                    dispatch(setPurchasedMovies(purchasedToAdd));
+                    console.log("got purchased from fb");
+                } else {
+                    console.log('nothing purchased')
+                }
+
+                if (rented) {
+                    Object.keys(rented).forEach(key => {
+                        const movie = movies.filter(movie => movie.imdbID === key)
+                        rentedToAdd.push(movie[0])
+                    })
+                    dispatch(setRentedMovies(rentedToAdd));
+                    console.log("got rented from fb");
+                } else {
+                    console.log('nothing rented')
+                }
+
+                if (watchlist) {
+                    Object.keys(watchlist).forEach(key => {
+                        const movie = movies.filter(movie => movie.imdbID === key)
+                        watchlistToAdd.push(movie[0])
+                    })
+                    dispatch(setWatchlistMovies(watchlistToAdd));
+                    console.log("got watchlist from fb");
+                } else {
+                    console.log('nothing in watchlist')
+                }
+        });
+    }
+}
+
+if (currentUserUid) {
+    getMovieLists();
+} else {
+    console.log('not logged in, not getting personal lists')
+}
 
   return (
   

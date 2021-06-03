@@ -1,6 +1,6 @@
 import './movies.css';
 import GenreScroller from './GenreScroller';
-import PersonalScroller from './PersonalScroller';
+//import PersonalScroller from './PersonalScroller';
 
 const Movies = () => {
     

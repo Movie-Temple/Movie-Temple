@@ -3,7 +3,7 @@ import 'firebase/auth';
 import { auth } from '../firebase';
 import {useDispatch} from 'react-redux';
 import {setCurrentUserUid} from '../features/currentUser';
-import { db } from '../firebase';
+//import { db } from '../firebase';
 
 const AuthContext = React.createContext();
 
