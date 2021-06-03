@@ -23,21 +23,33 @@ const MovieDetails = () => {
    
 
     const rentMovie = ((movieID) => {
-        let rented = {};
-        rented[movieID] = Date.now();
-        db.collection('CUSTOMERS').doc(userID).set({rented}, {merge: true})
+        if (userID) {
+            let rented = {};
+            rented[movieID] = Date.now();
+            db.collection('CUSTOMERS').doc(userID).set({rented}, {merge: true})
+        } else {
+            console.log('not logged in')
+        }
     });
     
     const buyMovie = ((movieID) => {
-        let purchased = {};
-        purchased[movieID] = Date.now();
-        db.collection('CUSTOMERS').doc(userID).set({purchased}, {merge: true})
+        if (userID) {
+            let purchased = {};
+            purchased[movieID] = Date.now();
+            db.collection('CUSTOMERS').doc(userID).set({purchased}, {merge: true})
+        } else {
+            console.log('not logged in')
+        }
     });
     
     const addToWatchlist = ((movieID) => {
-        let watchlist = {};
-        watchlist[movieID] = Date.now();
-        db.collection('CUSTOMERS').doc(userID).set({watchlist}, {merge: true})
+        if (userID) {
+            let watchlist = {};
+            watchlist[movieID] = Date.now();
+            db.collection('CUSTOMERS').doc(userID).set({watchlist}, {merge: true})
+        } else {
+            console.log('not logged in')
+        }
     });
 
 
