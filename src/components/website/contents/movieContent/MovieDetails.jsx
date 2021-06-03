@@ -9,18 +9,19 @@ const MovieDetails = () => {
     
     const userID = useSelector(state => state.currentUserUid);
 
-    const [isOpen, setIsOpen] = useState(false);
- 
-    const togglePopup = () => {
-        setIsOpen(!isOpen);
+    //rent popup
+    const [rentIsOpen, setRentIsOpen] = useState(false);
+    const toggleRentPopup = () => {
+        setRentIsOpen(!rentIsOpen);
     }
 
-    //const currentUserUid = useSelector(state => state.currentUserUid);
+    //buy popup
+    const [buyIsOpen, setBuyIsOpen] = useState(false);
+    const toggleBuyPopup = () => {
+        setBuyIsOpen(!buyIsOpen);
+    }
 
     const movie = useSelector(state => state.currentMovie);
-    // CHANGE BUTTONS ACCORDING TO PROFILE. Already bought? Already rented? Already added to watchlist?
-
-   
 
     const rentMovie = ((movieID) => {
         if (userID) {
@@ -52,10 +53,6 @@ const MovieDetails = () => {
         }
     });
 
-
-
-
-
     if (movie == null) {
         return (
             <div className='movie-details'>Something went wrong. Nothing to show..</div>
@@ -76,18 +73,28 @@ const MovieDetails = () => {
                     <p className='movie-details-genre'>Genre: {movie.Genre}</p>
                     <div className='movie-details-buttons'>
      
-    {isOpen && <Popup
-      content={<>
+    {rentIsOpen && <Popup
+        content={<>
         <b>Confirm Purchase</b>
 
         <button onClick={() => rentMovie(movie.imdbID)} className='rent-button'>Rent</button>
 
-      </>}
-      handleClose={togglePopup}
+        </>}
+        handleClose={toggleRentPopup}
     />}
-                        <button className='rent-button' onClick={togglePopup}>Rent</button>
 
-                        <button onClick={() => buyMovie(movie.imdbID)} className='buy-button'>Buy</button>
+    {buyIsOpen && <Popup
+        content={<>
+        <b>Confirm Purchase</b>
+
+        <button onClick={() => buyMovie(movie.imdbID)} className='buy-button'>Buy</button>
+
+        </>}
+        handleClose={toggleBuyPopup}
+    />}
+                        <button className='rent-button' onClick={toggleRentPopup}>Rent</button>
+                        <button className='buy-button' onClick={toggleBuyPopup}>Buy</button>
+
                         <button onClick={() => addToWatchlist(movie.imdbID)} className='watchlist-button'>Add to Watchlist</button>
 
                     </div>
@@ -98,5 +105,3 @@ const MovieDetails = () => {
 }
 
 export default MovieDetails;
-
- /* <button onClick={rentMovie} className='rent-button'>Rent</button> */
