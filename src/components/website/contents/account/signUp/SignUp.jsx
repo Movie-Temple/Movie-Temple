@@ -25,6 +25,10 @@ export default function SignUp({toggleShowSignIn}) {
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return setError("Password do not match!");
         }
+        
+        if (nameRef.current.value === '') {
+            return setError('Enter your name');
+        }
 
         try {
             setError("");
@@ -33,15 +37,12 @@ export default function SignUp({toggleShowSignIn}) {
                 .then((resp) => {
                     db.collection('CUSTOMERS').doc(resp.user.uid).set({
                         name: nameRef.current.value,
-                        email: emailRef.current.value
+                        email: emailRef.current.value,
+                        card: ''
                     })
                     dispatch(setCurrentUserUid(resp.user.uid))
                 })
-            console.log("Account created");
             setError("Your account is now created!");
-
-            console.log("Clicked !");
-
         } catch {
             setError("Failed to create an account!");
             console.log(error);
