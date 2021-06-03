@@ -42,5 +42,8 @@
 .scrollerImg {
     width: 7em;
     height: 170px;
+    border: 1px solid white; /* Change as you want or remove */
+    object-fit: cover;
+    justify-self: center;
     
 }
