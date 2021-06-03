@@ -1,58 +1,37 @@
 import '../profile/profileHistory.css'
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { db } from '../../../../../firebase';
 
 
 const ProfileHistory = () => {
 
-    const currentUserUid = useSelector(state => state.currentUserUid);
-    const movies = useSelector(state => state.movies);
     const [rentedData, setRentedData] = useState('');
+    const [purchasedData, setPurchasedData] = useState();
 
-    const [historyData, setHistoryData] = useState('');
+    const rentedMovies = useSelector(state => state.rentedMovies)
+    const purchasedMovies = useSelector(state => state.purchasedMovies)
 
     useEffect(() => {
-        db.collection("CUSTOMERS").doc(currentUserUid)
-            .onSnapshot((doc) => {
-                setRentedData(doc.data().rented)
-            });
-    }, [])
-
-    /*useEffect(() => {
-
-        setHistoryData(rentedData.map( item => 
-            <div className='test' key={item}>Test</div>
+        setPurchasedData(purchasedMovies.map(movie => 
+            <li key={movie.imdbID} className='profile-history-listitem'>
+                Purchased: {movie.Title}
+            </li>
         ));
-    }, [rentedData]);*/
-
+        setRentedData(rentedMovies.map(movie => 
+            <li key={movie.imdbID} className='profile-history-listitem'>
+                Rented: {movie.Title}
+            </li>
+        ));
+    }, []);
 
     return (
         <div className='profile-history'>
-            {historyData}
-            history data
+            <ul className='profile-history-list'>
+                {purchasedData}
+                {rentedData}
+            </ul>
         </div>
     )
 }
 
 export default ProfileHistory;
-
-/*
-            <table className='profile-history-table'>
-                <tr className='table-header'>
-                    <th>Movie</th>
-                    <th>Event</th>
-                    <th>Date</th>
-                </tr>
-                <tr>
-                    <td>Movie1</td>
-                    <td>Purchased</td>
-                    <td>2021-05-16</td>
-                </tr>
-                <tr>
-                    <td>Movie2</td>
-                    <td>Rented</td>
-                    <td>2021-05-16</td>
-                </tr>
-            </table>
-*/
