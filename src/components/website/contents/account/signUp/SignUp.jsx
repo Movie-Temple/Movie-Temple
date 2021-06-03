@@ -25,6 +25,10 @@ export default function SignUp({toggleShowSignIn}) {
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return setError("Password do not match!");
         }
+        
+        if (nameRef.current.value === '') {
+            return setError('Enter your name');
+        }
 
         try {
             setError("");
@@ -37,11 +41,7 @@ export default function SignUp({toggleShowSignIn}) {
                     })
                     dispatch(setCurrentUserUid(resp.user.uid))
                 })
-            console.log("Account created");
             setError("Your account is now created!");
-
-            console.log("Clicked !");
-
         } catch {
             setError("Failed to create an account!");
             console.log(error);
