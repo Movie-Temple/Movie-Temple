@@ -37,7 +37,8 @@ export default function SignUp({toggleShowSignIn}) {
                 .then((resp) => {
                     db.collection('CUSTOMERS').doc(resp.user.uid).set({
                         name: nameRef.current.value,
-                        email: emailRef.current.value
+                        email: emailRef.current.value,
+                        card: ''
                     })
                     dispatch(setCurrentUserUid(resp.user.uid))
                 })
