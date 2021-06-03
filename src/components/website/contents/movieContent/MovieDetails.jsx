@@ -2,16 +2,38 @@ import './movieDetails.css';
 import { useSelector } from 'react-redux';
 import {db} from '../../../../firebase';
 import Popup from '../../../popup/Popup'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 const MovieDetails = () => {
     
+    const movie = useSelector(state => state.currentMovie);
     const userID = useSelector(state => state.currentUserUid);
+    const rentedMovies = useSelector(state => state.rentedMovies);
+    const purchasedMovies = useSelector(state => state.purchasedMovies);
+    const watchlistMovies = useSelector(state => state.watchlistMovies);
+
+    const foundInRented = rentedMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
+    const foundInPurchased = purchasedMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
+
+    if(foundInRented || foundInPurchased) {
+        console.log('got it!')
+    } else {
+        console.log('not here...')
+    }
+
+    const foundInWatchlist = watchlistMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
+
+    if(foundInWatchlist) {
+        console.log('got it in watchlist!')
+    } else {
+        console.log('not in watchlist...')
+    }
 
     //rent popup
     const [rentIsOpen, setRentIsOpen] = useState(false);
     const toggleRentPopup = () => {
+        console.log('rent!')
         setRentIsOpen(!rentIsOpen);
     }
 
@@ -20,8 +42,6 @@ const MovieDetails = () => {
     const toggleBuyPopup = () => {
         setBuyIsOpen(!buyIsOpen);
     }
-
-    const movie = useSelector(state => state.currentMovie);
 
     const rentMovie = ((movieID) => {
         if (userID) {
@@ -92,8 +112,8 @@ const MovieDetails = () => {
         </>}
         handleClose={toggleBuyPopup}
     />}
-                        <button className='rent-button' onClick={toggleRentPopup}>Rent</button>
-                        <button className='buy-button' onClick={toggleBuyPopup}>Buy</button>
+                        <button disabled={foundInRented} className={foundInRented ? 'rent-button disabled' : 'rent-button'} onClick={toggleRentPopup}>{foundInRented ? 'Already rented' : 'Rent'}</button>
+                        <button disabled={foundInPurchased} className={foundInPurchased ? 'buy-button disabled' : 'buy-button'} onClick={toggleBuyPopup}>{foundInPurchased ? 'Already bought' : 'Buy'}</button>
 
                         <button onClick={() => addToWatchlist(movie.imdbID)} className='watchlist-button'>Add to Watchlist</button>
 
