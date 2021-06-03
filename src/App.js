@@ -15,7 +15,7 @@ import {db} from './firebase'
 import { setPurchasedMovies } from './features/purchasedMovies';
 import { setRentedMovies } from './features/rentedMovies';
 import { setWatchlistMovies } from './features/watchlistMovies';
-
+import { setBankCard } from './features/bankCard';
 
 
 function App() {
@@ -45,6 +45,7 @@ function App() {
                 const purchased = doc.data().purchased;
                 const rented = doc.data().rented;
                 const watchlist = doc.data().watchlist;
+                const bankCard = doc.data().bankCard;
                 let purchasedToAdd = [];
                 let rentedToAdd = [];
                 let watchlistToAdd = [];
@@ -80,6 +81,11 @@ function App() {
                     console.log("got watchlist from fb");
                 } else {
                     console.log('nothing in watchlist')
+                }
+
+                if (bankCard) {
+                  dispatch(setBankCard(bankCard));
+                  console.log('yayaya bank card!!');
                 }
         });
     }
