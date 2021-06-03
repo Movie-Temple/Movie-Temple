@@ -29,6 +29,7 @@ whatever {
   position: relative;
   display: flex;
   flex-direction: column;
+  padding-bottom: 40px;
   
 }
 @media (max-width: 700px) {
