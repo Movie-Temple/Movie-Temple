@@ -85,7 +85,7 @@ function App() {
 
                 if (bankCard) {
                   dispatch(setBankCard(bankCard));
-                  console.log('yayaya bank card!!');
+                  console.log('yayaya bank');
                 }
         });
     }

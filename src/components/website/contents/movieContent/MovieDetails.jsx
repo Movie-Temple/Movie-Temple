@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import {db} from '../../../../firebase';
 import Popup from '../../../popup/Popup'
 import React, { useState } from "react";
-
+import MovieComments from './MovieComments';
 
 const MovieDetails = () => {
     
@@ -22,6 +22,13 @@ const MovieDetails = () => {
     }
 
     const movie = useSelector(state => state.currentMovie);
+
+    // Toggle comments
+    const [showingComments, setShowingComments] = useState(false);
+    const toggleComments = () => {
+        setShowingComments(!showingComments);
+        console.log("showing comments?");
+    }
 
     const rentMovie = ((movieID) => {
         if (userID) {
@@ -96,7 +103,11 @@ const MovieDetails = () => {
                         <button className='buy-button' onClick={toggleBuyPopup}>Buy</button>
 
                         <button onClick={() => addToWatchlist(movie.imdbID)} className='watchlist-button'>Add to Watchlist</button>
+                        <button onClick={() => toggleComments()}>View Comments</button>
+                    </div>
 
+                    <div>
+                        {showingComments ? <MovieComments /> : null}
                     </div>
                 </div>
             </div>
