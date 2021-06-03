@@ -1,7 +1,12 @@
 .career {
-    color: #08F6AF;
+    color: var(--turqoise);
+    margin-top: 20%;
+    
+    
 }
 
 .career p {
-    color: #cfcfcf;
+    color: var(--whiteText);
+    margin-top: 5%;
+   
 }

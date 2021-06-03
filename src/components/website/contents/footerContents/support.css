@@ -1,7 +1,9 @@
 .support {
-    color: #08F6AF;
+    color: var(--turqoise);
+    margin-top: 10%;
 }
 
 .support p {
-    color: #cfcfcf;
+    color: var(--whiteText);
+    margin-top: 5%;
 }
