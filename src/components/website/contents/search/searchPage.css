@@ -12,21 +12,16 @@
 }
 .searchItem {
     grid-column: 1fr;
-   
     padding: 10px;
-
 }
 .searchImg {
-    
     border: 1px solid white;
     width: 60%;
     height: 300px;
     object-fit: cover;
-    
     justify-self: center;
- 
-   
 }
+
 @media (max-width: 800px) {
     .searchBody {
       grid-template-columns: repeat(2, 1fr);

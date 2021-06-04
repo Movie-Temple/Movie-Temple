@@ -20,8 +20,8 @@ const Watchlist = () => {
         <div className='watchlist'>
             {watchlistMovies.map((movie) => {
                     return ( watchlistMovies ?
-                        <div className='scrollerItem' key={movie.imdbID} onClick={() => {handleClick(movie)}}>
-                            <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
+                        <div className='watchlist-scrollerItem' key={movie.imdbID} onClick={() => {handleClick(movie)}}>
+                            <img className='watchlist-scrollerImg' src={movie.Poster} alt={movie.Title} />
                         </div>
                         : null
                     );

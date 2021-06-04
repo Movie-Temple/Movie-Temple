@@ -1,27 +1,34 @@
 import './purchased.css'
 import { useSelector } from 'react-redux';
-
-
-
+import PlayMovie from '../playMovie/PlayMovie';
+import { useState } from 'react';
 
 const Purchased = () => {
 
-    //const currentUserUid = useSelector(state => state.currentUserUid);
     const purchasedMovies = useSelector(state => state.purchasedMovies);
-    //const movies = useSelector((state) => state.movies);
-    
 
-    console.log(purchasedMovies);
-    //console.log(movies);
-    //const lowerCase = purchasedMovies.toLowerCase;
+    // play movie
+    const [playMovieIsOpen, setPlayMovieIsOpen] = useState(false);
+    const toggleplayMovieIsOpen = () => {
+        setPlayMovieIsOpen(!playMovieIsOpen);
+    }
 
     return (
         <div className='purchased'>
             {purchasedMovies.map((movie) => {
                     return ( purchasedMovies ?
-                        <div className='scrollerItem' key={movie.imdbID}>
-                            <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
+                        <div>
+                            <div className='purchased-scrollerItem' key={movie.imdbID}>
+                            <img className='purchased-scrollerImg' src={movie.Poster} alt={movie.Title} />
+                            </div>
+                            <button className='purchased-play-button' onClick={toggleplayMovieIsOpen}>Play</button>
+                            
+                            {playMovieIsOpen && <PlayMovie
+                                handleClose={toggleplayMovieIsOpen}
+                            />}
+
                         </div>
+
                         : null
                     );
                 })}  
