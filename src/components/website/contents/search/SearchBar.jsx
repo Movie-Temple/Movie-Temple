@@ -1,15 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import { replaceSearchTerm } from "../../../../features/searchTerm";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      console.log('enter pressed'); 
       handleSave();
       setSearchTerm("");
     }
@@ -17,6 +18,7 @@ const SearchBar = () => {
 
   const handleSave = () => {
     dispatch(replaceSearchTerm(searchTerm));
+    history.push('/Search');
   };
 
   return (
@@ -38,18 +40,3 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
-
-/*  )
-
-      let items = []
-  
-      if (query !== "" ) {
-        items = result.data.filter(movie => movie.t.toLowerCase().includes(query.toLowerCase())
-        ||
-        movie.i.toLowerCase().includes(query.toLowerCase()))
-   
-      } else {
-       items = result.data
-   
-      } 
-      */
