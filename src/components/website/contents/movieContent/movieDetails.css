@@ -7,7 +7,7 @@
     margin: auto;
    
     padding: 10px;
-    height: 30%;
+   
 
 }
 
@@ -43,7 +43,7 @@
     margin-left: 20px;
 }
 .movie-details .movie-details-information p {
-    margin-left: 20px;
+    margin: 0 10px;
 }
 
 .movie-details .movie-details-subhead {

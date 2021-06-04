@@ -28,7 +28,7 @@ const Footer = () => {
 
     return (
         <div className="footer">
-            <p className='footer-element' onClick={clickAboutUs} >About us</p>
+            <p className='footer-element' onClick={clickAboutUs} >About</p>
             <p className='footer-element' onClick={clickSupport}>Support</p>
             <p className='footer-element' onClick={clickCareer}>Career</p>
             <p className='footer-element' onClick={clickPolicy}>Policy</p>
