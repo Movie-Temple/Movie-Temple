@@ -32,11 +32,9 @@ const MovieDetails = () => {
     const toggleComments = () => {
         setShowingComments(!showingComments);
         console.log("showing comments?");
-        
-            //getComments();
-        
     }
 
+    // Loading comments
     useEffect( () => {
         db.collection("COMMENTS").doc("aa")
         .onSnapshot((doc) => {
@@ -44,44 +42,22 @@ const MovieDetails = () => {
             const comments = doc.data().comments;
             let commentList = [];
             Object.keys(comments).forEach(key => {
-                //const movie = movies.filter(movie => movie.imdbID === key)
+            
                 commentList.push(comments[key])
-                console.log(comments); // working
-                console.log();
+                
             })
             
             dispatch(addComments(commentList));
             console.log("got comments from fb");
-            console.log(commentList); // working
-            //console.log(currentMovieComments);
-
+            //console.log(commentList); 
+            
         });
          console.log(movieComments);
      }, [])
 
 
 
-    /*const getComments = () =>{
-        
-        db.collection("COMMENTS").doc("aa")
-        .onSnapshot((doc) => {
-            
-            const comments = doc.data().comments;
-            let commentList = [];
-            Object.keys(comments).forEach(key => {
-                //const movie = movies.filter(movie => movie.imdbID === key)
-                commentList.push(comments[key])
-                console.log(comments); // working
-                console.log();
-            })
-            
-            dispatch(addComments(commentList));
-            console.log("got comments from fb");
-            console.log(commentList); // working
-            //console.log(currentMovieComments);
-
-        });
-    };*/
+    
 
     const rentMovie = ((movieID) => {
         if (userID) {
