@@ -5,9 +5,11 @@ import Popup from '../../../popup/Popup'
 import React, { useState } from "react";
 import MovieComments from './MovieComments';
 import { addComments } from '../../../../features/currentMovieComments';
+import { useEffect } from 'react';
 
 const MovieDetails = () => {
     
+    const movieComments = useSelector(state => state.movieComments);
     const userID = useSelector(state => state.currentUserUid);
     const dispatch = useDispatch();
 
@@ -31,11 +33,35 @@ const MovieDetails = () => {
         setShowingComments(!showingComments);
         console.log("showing comments?");
         
-            getComments();
+            //getComments();
         
     }
 
-    const getComments = () =>{
+    useEffect( () => {
+        db.collection("COMMENTS").doc("aa")
+        .onSnapshot((doc) => {
+            
+            const comments = doc.data().comments;
+            let commentList = [];
+            Object.keys(comments).forEach(key => {
+                //const movie = movies.filter(movie => movie.imdbID === key)
+                commentList.push(comments[key])
+                console.log(comments); // working
+                console.log();
+            })
+            
+            dispatch(addComments(commentList));
+            console.log("got comments from fb");
+            console.log(commentList); // working
+            //console.log(currentMovieComments);
+
+        });
+         console.log(movieComments);
+     }, [])
+
+
+
+    /*const getComments = () =>{
         
         db.collection("COMMENTS").doc("aa")
         .onSnapshot((doc) => {
@@ -55,7 +81,7 @@ const MovieDetails = () => {
             //console.log(currentMovieComments);
 
         });
-    };
+    };*/
 
     const rentMovie = ((movieID) => {
         if (userID) {
