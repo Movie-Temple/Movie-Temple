@@ -1,17 +1,18 @@
-
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
-const addMovies = createAction('add movies');
+
+
+const addComments = createAction('add comments');
 
 const initialState = [];
 
 
 
 const reducer = createReducer(initialState, {
-    [addMovies] : (state, action) => (
+    [addComments] : (state, action) => (
         action.payload
     )
 });
 
 
-export {addMovies, reducer};
+export {addComments, reducer};

@@ -1,47 +1,54 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { db } from '../../../../firebase';
+import { useSelector, useDispatch } from 'react-redux';
+//import { db } from '../../../../firebase';
+//import { addComments } from '../../../../features/currentMovieComments';
+import uuid from 'react-uuid'
 
 const MovieComments = () => {
     
-    const movie = useSelector(state => state.currentMovie);
-    const commentList = [];
+    //const movie = useSelector(state => state.currentMovie);
+    const dispatch = useDispatch();
+    const movieComments = useSelector(state => state.movieComments);
+    //const listItems = movieComments.map((d) => <li key={d.key}>{d.key} </li>);
+   
 
-    useEffect( () => {
-        db.collection("COMMENTS").doc("aa")
+
+    //useEffect( () => {
+       /* db.collection("COMMENTS").doc("aa")
         .onSnapshot((doc) => {
-            const comment = doc.data().comments;
-            Object.keys(comment).forEach(key => {
+            
+            const comments = doc.data().comments;
+            let commentList = [];
+            Object.keys(comments).forEach(key => {
                 //const movie = movies.filter(movie => movie.imdbID === key)
-                
-                commentList.push(key);
-                console.log(key);
-                console.log(comment);
+                commentList.push(key[0])
             })
             
+            dispatch(addComments(commentList));
             console.log("got comments from fb");
+            console.log(commentList);
+            //console.log(currentMovieComments);
+
             
 
-            /*if (purchased) {
-                    Object.keys(purchased).forEach(key => {
-                        const movie = movies.filter(movie => movie.imdbID === key)
-                        purchasedToAdd.push(movie[0])
-                    })
-                    dispatch(setPurchasedMovies(purchasedToAdd));
-                    console.log("got purchased from fb");
-                } else {
-                    console.log('nothing purchased')
-                } */
-
-        });
-        
-    }, [])
+        });*/
+        console.log(movieComments);
+    //}, [])
 
     return (
-        <div className='categories'>
-            
+        <div className='sss'>
             <h1>Commentssss</h1>
-            <h1>{commentList}</h1>
+            
+            {movieComments.map((movie) => {
+                    return ( movieComments ?
+                        <div className='hee' key={uuid()}>
+                            <p>- {movie}</p>
+                        </div>
+                        : null
+                    );
+                })}  
+            
+            
             
         </div>
     )
@@ -49,3 +56,7 @@ const MovieComments = () => {
 }
 
 export default MovieComments;
+
+/*
+<h1>{movieComments[0]}</h1> 
+*/

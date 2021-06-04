@@ -1,13 +1,15 @@
 import './movieDetails.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {db} from '../../../../firebase';
 import Popup from '../../../popup/Popup'
 import React, { useState } from "react";
 import MovieComments from './MovieComments';
+import { addComments } from '../../../../features/currentMovieComments';
 
 const MovieDetails = () => {
     
     const userID = useSelector(state => state.currentUserUid);
+    const dispatch = useDispatch();
 
     //rent popup
     const [rentIsOpen, setRentIsOpen] = useState(false);
@@ -28,7 +30,32 @@ const MovieDetails = () => {
     const toggleComments = () => {
         setShowingComments(!showingComments);
         console.log("showing comments?");
+        
+            getComments();
+        
     }
+
+    const getComments = () =>{
+        
+        db.collection("COMMENTS").doc("aa")
+        .onSnapshot((doc) => {
+            
+            const comments = doc.data().comments;
+            let commentList = [];
+            Object.keys(comments).forEach(key => {
+                //const movie = movies.filter(movie => movie.imdbID === key)
+                commentList.push(comments[key])
+                console.log(comments); // working
+                console.log();
+            })
+            
+            dispatch(addComments(commentList));
+            console.log("got comments from fb");
+            console.log(commentList); // working
+            //console.log(currentMovieComments);
+
+        });
+    };
 
     const rentMovie = ((movieID) => {
         if (userID) {
@@ -105,7 +132,7 @@ const MovieDetails = () => {
                         <button onClick={() => addToWatchlist(movie.imdbID)} className='watchlist-button'>Add to Watchlist</button>
                         <button onClick={() => toggleComments()}>View Comments</button>
                     </div>
-
+                        
                     <div>
                         {showingComments ? <MovieComments /> : null}
                     </div>
