@@ -1,20 +1,33 @@
 import './rented.css';
 import { useSelector } from 'react-redux';
+import PlayMovie from '../playMovie/PlayMovie';
+import { useState } from 'react';
 
 const Rented = () => {
 
     const rentedMovies = useSelector(state => state.rentedMovies);
-    //const movies = useSelector((state) => state.movies);
+
+    // play movie
+    const [playMovieIsOpen, setPlayMovieIsOpen] = useState(false);
+    const toggleplayMovieIsOpen = () => {
+        setPlayMovieIsOpen(!playMovieIsOpen);
+    }
 
     return (
         <div className='rented'>
             
             {rentedMovies.map((movie) => {
                     return ( rentedMovies ?
-                        <div className='scrollerItem' key={movie.imdbID}>
-                        
-                            <img className='scrollerImg' src={movie.Poster} alt={movie.Title} />
-                            
+                        <div className='rented-scrollerItem' key={movie.imdbID}>
+                            <div>
+                                <img className='rented-scrollerImg' src={movie.Poster} alt={movie.Title} />
+                                <button className='rented-play-button' onClick={toggleplayMovieIsOpen}>Play</button>
+                                <p>Remaining time: XX:XX</p>
+                            </div>
+
+                            {playMovieIsOpen && <PlayMovie
+                                handleClose={toggleplayMovieIsOpen}
+                            />}
                             
                         </div>
                         : null
@@ -23,22 +36,6 @@ const Rented = () => {
 
         </div>
     );
-    
 }
 
 export default Rented;
-
-/*
-return (
-        <div className='rented'>
-            <div className='rented-browser'>
-                RENTED COMPONENT.
-                <br/>Component for side scroll goes here instead of image placeholders
-                <img className='rented-image' src="" alt="" />
-                <img className='rented-image' src="" alt="" />
-                <img className='rented-image' src="" alt="" />
-                <img className='rented-image' src="" alt="" />
-            </div> 
-        </div>
-    )
-*/

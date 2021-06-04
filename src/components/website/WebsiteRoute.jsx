@@ -12,7 +12,6 @@ import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import Footer from './footer/Footer';
 import MovieDetails from './contents/movieContent/MovieDetails';
 
-
 const WebsiteRoute = () => {
   return (
 
@@ -53,6 +52,7 @@ const WebsiteRoute = () => {
             <Route path='/moviedetails'>
                 <MovieDetails />
             </Route>
+            
     
             <Redirect exact from="/" to="/Home/Categories" />
 
