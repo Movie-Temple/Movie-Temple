@@ -7,7 +7,7 @@ const HeadBar = () => {
 
     return (
         <div className='nav'>
-            <div className='nav-search-link'><Link to="/Search"> <SearchBar/> </Link></div>
+            <div className='nav-search-link'><SearchBar/></div>
             <p className='nav-logo-link'><Link  to="/"><img src={Logo} alt='Logo'></img></Link></p>
             <p className='nav-login-link'><Link to="/Account">Account</Link></p>
         </div>
@@ -15,16 +15,3 @@ const HeadBar = () => {
 }
 
 export default HeadBar;
-
-/* can be deleted? Elmirs code? /Emelie
-    const {toggle} = this.state;    
-    
-    state = {
-        toggle: false
-    }
-
-    menuToggle = () =>{
-        this.setState({toggle: !this.state.toggle})
-    }
-
-*/
