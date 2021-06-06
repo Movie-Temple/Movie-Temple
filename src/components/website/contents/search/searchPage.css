@@ -12,21 +12,16 @@
 }
 .searchItem {
     grid-column: 1fr;
-   
     padding: 10px;
-
 }
 .searchImg {
-    
     border: 1px solid white;
     width: 60%;
     height: 300px;
     object-fit: cover;
-    
     justify-self: center;
- 
-   
 }
+
 
 .button {
 	display: inline-block;
@@ -125,8 +120,6 @@
 .expandright:focus {
 	padding: 0 0 0 16px;
 }
-
-
 
 
 
