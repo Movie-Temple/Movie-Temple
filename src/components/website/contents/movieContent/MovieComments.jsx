@@ -5,7 +5,9 @@ import uuid from 'react-uuid'
 const MovieComments = () => {
     
     const movieComments = useSelector(state => state.movieComments);
- 
+    const leaveComments = () => {
+        console.log("adding comments!");
+    };
 
     return (
         <div className='sss'>
@@ -23,12 +25,14 @@ const MovieComments = () => {
                         </div>
                         : <p>No comments at the moment! Leave one?</p>}
 
+                        
+
                     </div>
                     );
                 })}  
             
             
-            
+                <button onClick={leaveComments} >Leave Comments</button>
         </div>
     )
 
