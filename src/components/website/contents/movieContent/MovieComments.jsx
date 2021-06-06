@@ -14,6 +14,7 @@ const MovieComments = () => {
         comments[uuid()] = commentRef.current.value;
         db.collection('COMMENTS').doc(movie.imdbID).set({comments}, {merge: true})
         console.log("comment added!");
+        commentRef.current.value = "";
     };
 
 
