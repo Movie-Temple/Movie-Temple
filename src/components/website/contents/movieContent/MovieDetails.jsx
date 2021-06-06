@@ -12,6 +12,7 @@ const MovieDetails = () => {
     const movieComments = useSelector(state => state.movieComments);
     const userID = useSelector(state => state.currentUserUid);
     const dispatch = useDispatch();
+    const movie = useSelector(state => state.currentMovie);
 
     //rent popup
     const [rentIsOpen, setRentIsOpen] = useState(false);
@@ -25,8 +26,6 @@ const MovieDetails = () => {
         setBuyIsOpen(!buyIsOpen);
     }
 
-    const movie = useSelector(state => state.currentMovie);
-
     // Toggle comments
     const [showingComments, setShowingComments] = useState(false);
     const toggleComments = () => {
@@ -36,7 +35,7 @@ const MovieDetails = () => {
 
     // Loading comments
     useEffect( () => {
-        db.collection("COMMENTS").doc("aa")
+        db.collection("COMMENTS").doc(movie.imdbID)
         .onSnapshot((doc) => {
             
             const comments = doc.data().comments;

@@ -1,17 +1,19 @@
 import { useSelector} from 'react-redux';
 import { db } from '../../../../firebase';
 import uuid from 'react-uuid'
+import { useRef } from 'react';
 
 const MovieComments = () => {
     
     const movieComments = useSelector(state => state.movieComments);
     const movie = useSelector(state => state.currentMovie);
+    const commentRef = useRef();
 
     const leaveComments = () => {
         let comments = {};
-        comments[uuid()] = "new comments";
+        comments[uuid()] = commentRef.current.value;
         db.collection('COMMENTS').doc(movie.imdbID).set({comments}, {merge: true})
-        console.log("adding comments!");
+        console.log("comment added!");
     };
 
 
@@ -38,7 +40,7 @@ const MovieComments = () => {
                     );
                 })}  
             
-                
+                <input type='text' id='comment' name='comment' ref={commentRef} /><br />
                 <button onClick={leaveComments} >Leave Comments</button>
         </div>
     )
