@@ -22,18 +22,23 @@ const SearchBar = () => {
   };
 
   return (
-    <section className="d-block">
+    <section className="search-container">
       <form>
         <input
           onChange={(event) => {
             setSearchTerm(event.target.value.toLowerCase());
           }}
-          className="search-input"
+          className="search"
+          id="searchleft"
           placeholder="Search movies"
-          name="search"
+          name="q"
           value={searchTerm}
-          onKeyPress={handleKeyPress}
-        />
+          onKeyPress={handleKeyPress} />
+          <label class="button searchbutton" 
+          for="searchleft">
+            <span class="mglass">&#9906;
+          </span></label>
+          
       </form>
     </section>
   );
