@@ -1,12 +1,18 @@
 import './movieDetails.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {db} from '../../../../firebase';
 import Popup from '../../../popup/Popup'
 import React, { useState } from "react";
-
+import MovieComments from './MovieComments';
+import { addComments } from '../../../../features/currentMovieComments';
+import { useEffect } from 'react';
 
 const MovieDetails = () => {
     
+
+    const movieComments = useSelector(state => state.movieComments);
+    const dispatch = useDispatch();
+
     const movie = useSelector(state => state.currentMovie);
     const userID = useSelector(state => state.currentUserUid);
     const rentedMovies = useSelector(state => state.rentedMovies);
@@ -17,6 +23,7 @@ const MovieDetails = () => {
     const foundInRented = rentedMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
     const foundInPurchased = purchasedMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
     const foundInWatchlist = watchlistMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
+
 
     //rent popup
     const [rentIsOpen, setRentIsOpen] = useState(false);
@@ -30,6 +37,40 @@ const MovieDetails = () => {
     const toggleBuyPopup = () => {
         setBuyIsOpen(!buyIsOpen);
     }
+
+
+    // Toggle comments
+    const [showingComments, setShowingComments] = useState(false);
+    const toggleComments = () => {
+        setShowingComments(!showingComments);
+        console.log("showing comments?");
+    }
+
+    // Loading comments
+    useEffect( () => {
+        db.collection("COMMENTS").doc(movie.imdbID)
+        .onSnapshot((doc) => {
+            
+            const comments = doc.data().comments;
+            let commentList = [];
+            Object.keys(comments).forEach(key => {
+            
+                commentList.push(comments[key])
+                
+            })
+            
+            dispatch(addComments(commentList));
+            console.log("got comments from fb");
+            //console.log(commentList); 
+            
+        });
+         console.log(movieComments);
+     }, [])
+
+
+
+    
+
 
     const rentMovie = ((movieID) => {
         if (userID) {
@@ -85,6 +126,7 @@ const MovieDetails = () => {
                     <p className='movie-details-genre'>Genre: {movie.Genre}</p>
                     <div className='movie-details-buttons'>
      
+
                         {rentIsOpen && <Popup
                             content={<>
                             <b>Confirm Purchase</b>
@@ -116,6 +158,10 @@ const MovieDetails = () => {
                             onClick={() => changeWatchlist(movie.imdbID)} 
                             className='watchlist-button'>{foundInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
                         </button>
+                    </div>
+                        
+                    <div>
+                        {showingComments ? <MovieComments /> : null}
 
                     </div>
                 </div>

@@ -6,20 +6,14 @@ import Purchased from './Purchased';
 import Rented from './Rented';
 import WatchList from './Watchlist';
 import './homeTabs.css';
-//import { db } from '../../../../firebase';
 import { useSelector} from 'react-redux';
-//import { setPurchasedMovies } from '../../../../features/purchasedMovies';
-//import { setRentedMovies } from '../../../../features/rentedMovies';
-//import { setWatchlistMovies } from '../../../../features/watchlistMovies';
 import SignIn from '../account/signIn/SignIn';
 import { AuthProvider } from '../../../../contexts/AuthContext';
 
 const Home = () => {
 
     const currentUserUid = useSelector(state => state.currentUserUid);
-    //const dispatch = useDispatch();
     const history = useHistory();
-    //const movies = useSelector((state) => state.movies);
 
     //const { match } = props;
     //const { params } = match;
@@ -46,73 +40,6 @@ const Home = () => {
     };
 
 
-    
-
-
-    // const getPurchased = () => {
-    //     if (currentUserUid) {
-    //         db.collection("CUSTOMERS").doc(currentUserUid)
-    //         .onSnapshot((doc) => {
-    //                 const result = doc.data().purchased;
-    //                 let moviesToAdd = [];
-    //                 if (result) {
-    //                     Object.keys(result).forEach(key => {
-    //                         const movie = movies.filter(movie => movie.imdbID === key)
-    //                         moviesToAdd.push(movie[0])
-    //                     })
-    //                     dispatch(setPurchasedMovies(moviesToAdd));
-    //                     console.log("got purchased");
-    //                 } else {
-    //                     console.log('nothing there')
-    //                 }
-    //         });
-    //     }
-    // }
-
-
-
-    // const getRented = () => {
-    //     if (currentUserUid) {
-    //         db.collection("CUSTOMERS").doc(currentUserUid)
-    //         .onSnapshot((doc) => {
-    //             const result = doc.data().rented;
-    //             let rentedMoviesToAdd = [];
-    //             if (result) {
-    //                 Object.keys(result).forEach(key => {
-    //                     const movie = movies.filter(movie => movie.imdbID === key)
-    //                     rentedMoviesToAdd.push(movie[0])
-    //                 })
-    //                 dispatch(setRentedMovies(rentedMoviesToAdd));
-    //                 console.log("got rented");
-    //             } else {
-    //                 console.log('nothing there')
-    //             }
-    //         });
-    //     }
-    // }
-
-    // const getWatchlist = () => {
-    //     if (currentUserUid) {
-    //         db.collection("CUSTOMERS").doc(currentUserUid)
-    //         .onSnapshot((doc) => {
-    //             const result = doc.data().watch;
-    //             let watchlistToAdd = [];
-    //             if (result) {
-    //                 Object.keys(result).forEach(key => {
-    //                     const movie = movies.filter(movie => movie.imdbID === key)
-    //                     watchlistToAdd.push(movie[0])
-    //                 })
-    //                 dispatch(setWatchlistMovies(watchlistToAdd));
-    //                 console.log("got watchlist");
-    //             } else {
-    //                 console.log('nothing there')
-    //             }
-    //         });
-    //     }
-        
-    // }
-
-
 
     return (
         <div>
@@ -128,6 +55,7 @@ const Home = () => {
             </AppBar>
             
             <AuthProvider>
+            
             {selectedTab === 0 && <Movies />}
             
             { currentUserUid ? <div>
