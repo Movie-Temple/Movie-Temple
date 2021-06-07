@@ -15,31 +15,18 @@ const Home = () => {
     const currentUserUid = useSelector(state => state.currentUserUid);
     const history = useHistory();
 
-    //const { match } = props;
-    //const { params } = match;
-    //const { page } = params;
-
     const tabNameToIndex = {
         0: "Movies",
         1: "Purchased",
         2: "Rented",
         3: "WatchList"
     };
-    /*
-    const indexToTabName = {
-        Movies: 0,
-        Purchased: 1,
-        Rented: 2,
-        WatchList: 3
-    }; */
 
     const [selectedTab, setSelectedTab] = useState(0);
     const handleChange = (event, newValue) => {
         history.push(`/Home/${tabNameToIndex[newValue]}`);
         setSelectedTab(newValue);
     };
-
-
 
     return (
         <div>
@@ -56,13 +43,22 @@ const Home = () => {
             
             <AuthProvider>
             
-            {selectedTab === 0 && <Movies />}
+                
             
-            { currentUserUid ? <div>
-            {selectedTab === 1 && <Purchased />}
-            {selectedTab === 2 && <Rented />}
-            {selectedTab === 3 && <WatchList />}
-            </div> : <div> <SignIn /> </div>}
+                { currentUserUid ? 
+                <div>
+                    {selectedTab === 0 && <Movies />}
+                    {selectedTab === 1 && <Purchased />}
+                    {selectedTab === 2 && <Rented />}
+                    {selectedTab === 3 && <WatchList />}
+                </div> 
+                : 
+                <div>
+                    {selectedTab === 0 && <Movies />}
+                    {selectedTab === 1 && <SignIn />}
+                    {selectedTab === 2 && <SignIn />}
+                    {selectedTab === 3 && <SignIn />}
+                </div>}
             
             </AuthProvider>
 
