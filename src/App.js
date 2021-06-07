@@ -64,7 +64,10 @@ function App() {
                 if (rented) {
                     Object.keys(rented).forEach(key => {
                         const movie = movies.filter(movie => movie.imdbID === key)
-                        rentedToAdd.push(movie[0])
+                        console.log(rented[key])
+                        if (rented[key] + 172800000 > Date.now()) {
+                          rentedToAdd.push(movie[0])
+                        }
                     })
                     dispatch(setRentedMovies(rentedToAdd));
                     console.log("got rented from fb");
