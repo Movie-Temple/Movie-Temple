@@ -19,7 +19,7 @@ const Purchased = () => {
                     return ( purchasedMovies ?
                         <div>
                             <div className='purchased-scrollerItem' key={movie.imdbID}>
-                            <img className='purchased-scrollerImg' src={movie.Poster} alt={movie.Title} />
+                                <img className='purchased-scrollerImg' src={movie.Poster} alt={movie.Title} />
                             </div>
                             <button className='purchased-play-button' onClick={toggleplayMovieIsOpen}>Play</button>
                             

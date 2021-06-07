@@ -15,15 +15,16 @@ const Rented = () => {
 
     return (
         <div className='rented'>
-            
             {rentedMovies.map((movie) => {
                     return ( rentedMovies ?
-                        <div className='rented-scrollerItem' key={movie.imdbID}>
-                            <div>
+                        <div >
+                            <div className='rented-scrollerItem' key={movie.imdbID}>
                                 <img className='rented-scrollerImg' src={movie.Poster} alt={movie.Title} />
-                                <button className='rented-play-button' onClick={toggleplayMovieIsOpen}>Play</button>
-                                <p>Remaining time: XX:XX</p>
                             </div>
+                                
+                            <button className='rented-play-button' onClick={toggleplayMovieIsOpen}>Play</button>
+                            <p>Remaining time: XX:XX</p>
+
 
                             {playMovieIsOpen && <PlayMovie
                                 handleClose={toggleplayMovieIsOpen}
