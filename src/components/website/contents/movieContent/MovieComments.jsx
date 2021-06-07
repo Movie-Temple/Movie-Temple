@@ -12,13 +12,15 @@ const MovieComments = () => {
     const commentRef = useRef();
     const ratingRef = useRef();
     const [haveRated, setHaveRated] = useState(false);
+    const [haveCommented, setHaveCommented] = useState(false);
 
     const leaveComments = () => {
         let comments = {};
         comments[uuid()] = commentRef.current.value;
+        setHaveCommented(true);
         db.collection("COMMENTS").doc(movie.imdbID).set({comments}, {merge: true})
-        console.log("comment added!");
-        commentRef.current.value = "";
+        
+        commentRef.current.value = "You've commented!";
     };
 
     const leaveRating = () => {
@@ -30,13 +32,6 @@ const MovieComments = () => {
             
         })
         ratingRef.current.value = "You've rated!";
-        
-            
-        //.then(() => {
-           // console.log("Document successfully updated!");
-            
-
-        //});
         
     };
 
@@ -71,7 +66,7 @@ const MovieComments = () => {
                 })}  
             
                 <input type='text' id='comment' name='comment' ref={commentRef} /><br />
-                <button onClick={leaveComments} >Leave Comment</button>
+                <button onClick={leaveComments} disabled={haveCommented}>Leave Comment</button>
         </div>
     )
 
