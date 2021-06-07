@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import MovieComments from './MovieComments';
 import { addComments } from '../../../../features/currentMovieComments';
 import { useEffect } from 'react';
+import { addRating } from '../../../../features/rating';
 
 const MovieDetails = () => {
     
@@ -52,6 +53,13 @@ const MovieDetails = () => {
         .onSnapshot((doc) => {
             
             const comments = doc.data().comments;
+            const rating = doc.data().rating;
+            const total = doc.data().total;
+            
+            let ratingList = [rating, total];
+            dispatch(addRating(ratingList));
+            console.log(ratingList);
+
             let commentList = [];
             Object.keys(comments).forEach(key => {
             
@@ -64,7 +72,7 @@ const MovieDetails = () => {
             //console.log(commentList); 
             
         });
-         console.log(movieComments);
+         
      }, [])
 
 
@@ -158,6 +166,7 @@ const MovieDetails = () => {
                             onClick={() => changeWatchlist(movie.imdbID)} 
                             className='watchlist-button'>{foundInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
                         </button>
+                        <button onClick={() => toggleComments()}>View Comments</button>
                     </div>
                         
                     <div>
