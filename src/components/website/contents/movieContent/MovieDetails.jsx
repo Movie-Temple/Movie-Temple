@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import MovieComments from './MovieComments';
 import { addComments } from '../../../../features/currentMovieComments';
 import { useEffect } from 'react';
+import { addRating } from '../../../../features/rating';
 
 const MovieDetails = () => {
     
@@ -56,7 +57,7 @@ const MovieDetails = () => {
             const total = doc.data().total;
             
             let ratingList = [rating, total];
-            dispatch(addComments(ratingList));
+            dispatch(addRating(ratingList));
             console.log(ratingList);
 
             let commentList = [];
