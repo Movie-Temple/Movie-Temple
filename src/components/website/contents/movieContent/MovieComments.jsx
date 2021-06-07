@@ -1,7 +1,7 @@
 import { useSelector} from 'react-redux';
 import { db } from '../../../../firebase';
 import uuid from 'react-uuid'
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const MovieComments = () => {
     
@@ -11,6 +11,7 @@ const MovieComments = () => {
     const movie = useSelector(state => state.currentMovie);
     const commentRef = useRef();
     const ratingRef = useRef();
+    const [haveRated, setHaveRated] = useState(false);
 
     const leaveComments = () => {
         let comments = {};
@@ -21,13 +22,21 @@ const MovieComments = () => {
     };
 
     const leaveRating = () => {
+        setHaveRated(true);
+        
         db.collection("COMMENTS").doc(movie.imdbID).update({
             "rating": rating[0] + Number(ratingRef.current.value),
             "total": rating[1] + 1
+            
         })
-        .then(() => {
-            console.log("Document successfully updated!");
-        });
+        ratingRef.current.value = "You've rated!";
+        
+            
+        //.then(() => {
+           // console.log("Document successfully updated!");
+            
+
+        //});
         
     };
 
@@ -38,7 +47,7 @@ const MovieComments = () => {
             <h1>Ratings: {ratingScore} <span role="img" aria-label="star">⭐</span> ({rating[1]} voted)</h1>
             
             <input type='text' id='rating' name='rating' placeholder="0-10" ref={ratingRef} /><br />
-            <button onClick={leaveRating} >Leave Rating</button>
+            <button onClick={leaveRating} disabled={haveRated}>Leave Rating</button>
             
             <h1>Comments</h1> 
             
