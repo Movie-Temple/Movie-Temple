@@ -1,16 +1,12 @@
 .faq {
     color: var(--turqoise);
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .faq p {
     width: 80%;
-    margin-left: 10%;
-    color: #cfcfcf;
-    margin-top: 5%;
-    padding: 20px 20px;
-    margin-bottom: 30px;
-    text-align: center, left;
+    margin: 3em 10% 0 10%;
+    color: var(--whiteText);
     
     
 }
