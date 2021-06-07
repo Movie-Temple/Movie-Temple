@@ -1,15 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import { replaceSearchTerm } from "../../../../features/searchTerm";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      console.log('enter pressed'); 
       handleSave();
       setSearchTerm("");
     }
@@ -17,39 +18,30 @@ const SearchBar = () => {
 
   const handleSave = () => {
     dispatch(replaceSearchTerm(searchTerm));
+    history.push('/Search');
   };
 
   return (
-    <section className="d-block">
+    <section className="search-container">
       <form>
         <input
           onChange={(event) => {
             setSearchTerm(event.target.value.toLowerCase());
           }}
-          className="search-input"
+          className="search"
+          id="searchleft"
           placeholder="Search movies"
-          name="search"
+          name="q"
           value={searchTerm}
-          onKeyPress={handleKeyPress}
-        />
+          onKeyPress={handleKeyPress} />
+          <label class="button searchbutton" 
+          for="searchleft">
+            <span class="mglass">&#9906;
+          </span></label>
+          
       </form>
     </section>
   );
 };
 
 export default SearchBar;
-
-/*  )
-
-      let items = []
-  
-      if (query !== "" ) {
-        items = result.data.filter(movie => movie.t.toLowerCase().includes(query.toLowerCase())
-        ||
-        movie.i.toLowerCase().includes(query.toLowerCase()))
-   
-      } else {
-       items = result.data
-   
-      } 
-      */

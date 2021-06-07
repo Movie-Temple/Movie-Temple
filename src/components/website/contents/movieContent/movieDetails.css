@@ -1,13 +1,13 @@
 .movie-details {
     background-color: var(--almostBlack);
     display: flex;
-    justify-content: center;
+   
     align-items: top;
     color: var(--whiteText);
     margin: auto;
-    max-width: 1400px;
-    
-    height: 900px;
+   
+    padding: 10px;
+   
 
 }
 
@@ -16,27 +16,34 @@
     object-fit: cover;
     width: 400px;
     height: 500px;
+    
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
     .movie-details {
         flex-direction: column;
     }
     .movie-details .movie-details-image {
-        width: 60%;
+        width: 50%;
+        height: 20%;
+        align-self: center;
+        margin-bottom: 15px;
+       
+
     }
+    
 }
 
 .movie-details .movie-details-information {
-    text-align: left;
-    margin-left: 20px;
+    justify-content: center;
+   text-align: start;
 }
 .movie-details .movie-details-information h2 {
     color: var(--turqoise);
     margin-left: 20px;
 }
 .movie-details .movie-details-information p {
-    margin-left: 20px;
+    margin: 0 10px;
 }
 
 .movie-details .movie-details-subhead {
@@ -49,6 +56,7 @@
     flex-direction: column;
     margin-top: 40px;
     align-items: center;
+   
 }
 
 .movie-details .movie-details-buttons button {
@@ -60,3 +68,9 @@
     color: var(--buttonText);
     font-weight: bold;
 }
+
+.movie-details .movie-details-buttons .disabled {
+    background-color: #09815f;
+
+}
+

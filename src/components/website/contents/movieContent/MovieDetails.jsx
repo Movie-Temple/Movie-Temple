@@ -9,14 +9,26 @@ import { useEffect } from 'react';
 
 const MovieDetails = () => {
     
+
     const movieComments = useSelector(state => state.movieComments);
-    const userID = useSelector(state => state.currentUserUid);
     const dispatch = useDispatch();
+
     const movie = useSelector(state => state.currentMovie);
+    const userID = useSelector(state => state.currentUserUid);
+    const rentedMovies = useSelector(state => state.rentedMovies);
+    const purchasedMovies = useSelector(state => state.purchasedMovies);
+    const watchlistMovies = useSelector(state => state.watchlistMovies);
+
+    //checks if movie already exists in rented, purchased or watchlist. Sets buttons accoringly.
+    const foundInRented = rentedMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
+    const foundInPurchased = purchasedMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
+    const foundInWatchlist = watchlistMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
+
 
     //rent popup
     const [rentIsOpen, setRentIsOpen] = useState(false);
     const toggleRentPopup = () => {
+        console.log('rent!')
         setRentIsOpen(!rentIsOpen);
     }
 
@@ -25,6 +37,7 @@ const MovieDetails = () => {
     const toggleBuyPopup = () => {
         setBuyIsOpen(!buyIsOpen);
     }
+
 
     // Toggle comments
     const [showingComments, setShowingComments] = useState(false);
@@ -58,6 +71,7 @@ const MovieDetails = () => {
 
     
 
+
     const rentMovie = ((movieID) => {
         if (userID) {
             let rented = {};
@@ -78,13 +92,17 @@ const MovieDetails = () => {
         }
     });
     
-    const addToWatchlist = ((movieID) => {
-        if (userID) {
-            let watchlist = {};
-            watchlist[movieID] = Date.now();
-            db.collection('CUSTOMERS').doc(userID).set({watchlist}, {merge: true})
+    const changeWatchlist = ((movieID) => {
+        if(foundInWatchlist) {
+            console.log('remove from watchlist! no functionality yet..')
         } else {
-            console.log('not logged in')
+            if (userID) {
+                let watchlist = {};
+                watchlist[movieID] = Date.now();
+                db.collection('CUSTOMERS').doc(userID).set({watchlist}, {merge: true})
+            } else {
+                console.log('not logged in')
+            }
         }
     });
 
@@ -108,34 +126,43 @@ const MovieDetails = () => {
                     <p className='movie-details-genre'>Genre: {movie.Genre}</p>
                     <div className='movie-details-buttons'>
      
-    {rentIsOpen && <Popup
-        content={<>
-        <b>Confirm Purchase</b>
 
-        <button onClick={() => rentMovie(movie.imdbID)} className='rent-button'>Rent</button>
+                        {rentIsOpen && <Popup
+                            content={<>
+                            <b>Confirm Purchase</b>
+                                <button onClick={() => rentMovie(movie.imdbID)} className='rent-button'>Rent</button>
+                            </>}
+                            handleClose={toggleRentPopup}
+                        />}
 
-        </>}
-        handleClose={toggleRentPopup}
-    />}
+                        {buyIsOpen && <Popup
+                            content={<>
+                            <b>Confirm Purchase</b>
+                                <button onClick={() => buyMovie(movie.imdbID)} className='buy-button'>Buy</button>
+                            </>}
+                            handleClose={toggleBuyPopup}
+                        />}
+                        <button 
+                            disabled={foundInRented} 
+                            className={foundInRented ? 'rent-button disabled' : 'rent-button'} 
+                            onClick={toggleRentPopup}>{foundInRented ? 'Already rented' : 'Rent'}
+                        </button>
 
-    {buyIsOpen && <Popup
-        content={<>
-        <b>Confirm Purchase</b>
+                        <button 
+                            disabled={foundInPurchased} 
+                            className={foundInPurchased ? 'buy-button disabled' : 'buy-button'} 
+                            onClick={toggleBuyPopup}>{foundInPurchased ? 'Already bought' : 'Buy'}
+                        </button>
 
-        <button onClick={() => buyMovie(movie.imdbID)} className='buy-button'>Buy</button>
-
-        </>}
-        handleClose={toggleBuyPopup}
-    />}
-                        <button className='rent-button' onClick={toggleRentPopup}>Rent</button>
-                        <button className='buy-button' onClick={toggleBuyPopup}>Buy</button>
-
-                        <button onClick={() => addToWatchlist(movie.imdbID)} className='watchlist-button'>Add to Watchlist</button>
-                        <button onClick={() => toggleComments()}>View Comments</button>
+                        <button 
+                            onClick={() => changeWatchlist(movie.imdbID)} 
+                            className='watchlist-button'>{foundInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+                        </button>
                     </div>
                         
                     <div>
                         {showingComments ? <MovieComments /> : null}
+
                     </div>
                 </div>
             </div>

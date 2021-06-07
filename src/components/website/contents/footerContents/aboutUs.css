@@ -1,9 +1,11 @@
 .about-us {
-    color: #08F6AF;
+    color: var(--turqoise);
+    margin-top: 10%;
 }
 
 .about-us p {
     width: 80%;
     margin-left: 10%;
     color: #cfcfcf;
+    margin-top: 5%;
 }

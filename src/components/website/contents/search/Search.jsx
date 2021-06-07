@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import SearchPage from '../search/SearchPage'
 
-export class Search extends Component {
-    render() {
-        return (
-            <div>
-                <SearchPage />
-            </div>
-             
-        )
-    }
+const Search = () => {
+
+    return (
+        <div>
+            <SearchPage />
+        </div>
+    )
 }
 
 export default Search;

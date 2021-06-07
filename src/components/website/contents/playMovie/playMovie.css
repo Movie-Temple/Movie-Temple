@@ -1,0 +1,30 @@
+.play-movie {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: var(--almostBlack);
+    color: var(--turqoise);
+}
+
+.play-movie-text {
+    margin-top: 50px;
+}
+
+.play-close-icon {
+    content: 'X';
+    cursor: pointer;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    background: var(--turqoise);
+    color: var(--almostBlack);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid #999;
+    font-size: 20px;
+  }

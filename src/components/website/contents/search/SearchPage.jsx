@@ -33,21 +33,17 @@ const SearchPage = () => {
     <>
       
       <div className="searchBody">
-                {movies.map((movie) => {
-                    return ((movie.Title.toLowerCase().indexOf(searchTerm) !== -1) ?
+          {movies.map((movie) => {
+              return ((movie.Title.toLowerCase().indexOf(searchTerm) !== -1) ?
+              
+                  <div className='searchItem' onClick={() => {handleCLick(movie)}} key={movie.imdbID}>
+                      <img className='searchImg' src={movie.Poster} alt={movie.Title} />
+                      {/* <p className='scrollerTitle'>{movie.Genre}</p> */}
+                  </div>
 
-                        <div className='searchItem' onClick={() => {handleCLick(movie)}} key={movie.imdbID}>
-                            <img className='searchImg' src={movie.Poster} alt={movie.Title} />
-                            {/* <p className='scrollerTitle'>{movie.Genre}</p> */}
-                        </div>
-
-                        : null
-                    );
-                })}  
-            </div> 
-
-
-
+                  : null);
+            })}  
+      </div> 
     </>
   );
 };
