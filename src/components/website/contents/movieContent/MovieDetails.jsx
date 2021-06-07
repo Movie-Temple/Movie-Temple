@@ -52,6 +52,13 @@ const MovieDetails = () => {
         .onSnapshot((doc) => {
             
             const comments = doc.data().comments;
+            const rating = doc.data().rating;
+            const total = doc.data().total;
+            
+            let ratingList = [rating, total];
+            dispatch(addComments(ratingList));
+            console.log(ratingList);
+
             let commentList = [];
             Object.keys(comments).forEach(key => {
             
@@ -64,7 +71,7 @@ const MovieDetails = () => {
             //console.log(commentList); 
             
         });
-         console.log(movieComments);
+         
      }, [])
 
 

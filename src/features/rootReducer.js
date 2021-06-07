@@ -8,6 +8,7 @@ import { reducer as rentedMoviesReducer } from './rentedMovies';
 import { reducer as watchlistMoviesReducer } from './watchlistMovies';
 import { reducer as bankCardReducer } from './bankCard';
 import { reducer as currentMovieCommentsReducer } from './currentMovieComments';
+import { reducer as ratingReducer } from './rating';
 
 const rootReducer = combineReducers({
     movies: moviesReducer,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     rentedMovies: rentedMoviesReducer,
     watchlistMovies: watchlistMoviesReducer,
     bankCard: bankCardReducer,
-    movieComments: currentMovieCommentsReducer
+    movieComments: currentMovieCommentsReducer,
+    rating: ratingReducer
 });
 
 
