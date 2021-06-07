@@ -158,6 +158,7 @@ const MovieDetails = () => {
                             onClick={() => changeWatchlist(movie.imdbID)} 
                             className='watchlist-button'>{foundInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
                         </button>
+                        <button onClick={() => toggleComments()}>View Comments</button>
                     </div>
                         
                     <div>
