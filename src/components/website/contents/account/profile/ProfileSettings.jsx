@@ -11,28 +11,29 @@ const ProfileSettings = () => {
     const [showCardDetails, setShowCardDetails] = useState(false);
     const cardRef = useRef();
     const currentUserUid = useSelector(state => state.currentUserUid);
+    const bankCard = useSelector(state => state.bankCard);
 
     const toggleShowCardDetails = () => {
         setShowCardDetails(!showCardDetails);
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (currentUserUid) {
             db.collection("CUSTOMERS").doc(currentUserUid)
             .onSnapshot((doc) => {
-                const result = doc.data().card;
+                const result = doc.data().bankCard;
                 if (result) {
                     setCardDetails(result);
                 }
             });
         }
-    }, []);
+    }, []); */
 
     const save = () => {
 
         if (currentUserUid) {
             db.collection("CUSTOMERS").doc(currentUserUid).set({
-                card: cardRef.current.value,
+                bankCard: cardRef.current.value,
             }, { merge: true })
             .then(() => {
                 console.log("card details successfully added");
@@ -54,7 +55,7 @@ const ProfileSettings = () => {
             {showCardDetails 
             ? 
             <div>
-                <input type='number' id='card-details' name='card-details' ref={cardRef} defaultValue={cardDetails}/>
+                <input type='number' id='card-details' name='card-details' placeholder={bankCard} ref={cardRef} defaultValue={cardDetails}/>
                 <button className='profile-settings-save-card-button' onClick={save}>Save</button> 
             </div>
             : 
