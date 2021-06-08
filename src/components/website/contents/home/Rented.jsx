@@ -27,7 +27,7 @@ const Rented = () => {
             
             {rentedMovies.map((movie) => {
                 const timeLeft = () => {
-                    let sum = movie.rentalExpiry - Date.now();
+                    let sum = movie.rentExpires - Date.now();
                     let hours = Math.floor(sum / 3600000);
                     return (
                         hours

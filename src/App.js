@@ -69,8 +69,8 @@ function App() {
                   Object.keys(rented).forEach(key => {
                     const movie = tempMovies.find(movie => movie.imdbID === key)
                     movie.rented = rented[key];
-                    movie.rentalExpiry = rented[key] + 172800000;
-                    if (movie.rentalExpiry > Date.now()) {
+                    movie.rentExpires = rented[key] + 172800000;
+                    if (movie.rentExpires > Date.now()) {
                       rentedToAdd.push(movie)
                     }
                   })
