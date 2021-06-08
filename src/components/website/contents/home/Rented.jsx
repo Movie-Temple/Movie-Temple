@@ -27,9 +27,10 @@ const Rented = () => {
             
             {rentedMovies.map((movie) => {
                 const timeLeft = () => {
-                    
+                    let sum = movie.rentalExpiry - Date.now();
+                    let hours = Math.floor(sum / 3600000);
                     return (
-                        movie.rentalExpiry - Date.now()
+                        hours
                     )
                 }
                     return ( rentedMovies ?
@@ -37,7 +38,7 @@ const Rented = () => {
                             <div>
                                 <img className='rented-scrollerImg' src={movie.Poster} alt={movie.Title} />
                                 <button className='rented-play-button' onClick={toggleplayMovieIsOpen}>Play</button>
-                                <p>Remaining time: {timeLeft()}</p>
+                                <p>Remaining time: {timeLeft()} hours</p>
                             </div>
 
                             {playMovieIsOpen && <PlayMovie
