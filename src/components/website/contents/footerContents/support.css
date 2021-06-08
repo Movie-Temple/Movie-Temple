@@ -1,9 +1,10 @@
 .support {
     color: var(--turqoise);
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .support p {
+    width: 80%;
+    margin: 3em 10% 0 10%;
     color: var(--whiteText);
-    margin-top: 5%;
 }
