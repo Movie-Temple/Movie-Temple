@@ -1,28 +1,52 @@
 import { useSelector} from 'react-redux';
 import { db } from '../../../../firebase';
 import uuid from 'react-uuid'
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const MovieComments = () => {
     
     const movieComments = useSelector(state => state.movieComments);
+    const rating = useSelector(state => state.rating);
+    const ratingScore = parseFloat(rating[0]/rating[1]).toFixed(2);
     const movie = useSelector(state => state.currentMovie);
     const commentRef = useRef();
+    const ratingRef = useRef();
+    const [haveRated, setHaveRated] = useState(false);
+    const [haveCommented, setHaveCommented] = useState(false);
 
     const leaveComments = () => {
         let comments = {};
         comments[uuid()] = commentRef.current.value;
-        db.collection('COMMENTS').doc(movie.imdbID).set({comments}, {merge: true})
-        console.log("comment added!");
-        commentRef.current.value = "";
+        setHaveCommented(true);
+        db.collection("COMMENTS").doc(movie.imdbID).set({comments}, {merge: true})
+        
+        commentRef.current.value = "You've commented!";
     };
 
+    const leaveRating = () => {
+        setHaveRated(true);
+        
+        db.collection("COMMENTS").doc(movie.imdbID).update({
+            "rating": rating[0] + Number(ratingRef.current.value),
+            "total": rating[1] + 1
+            
+        })
+        ratingRef.current.value = "You've rated!";
+        
+    };
 
 
     return (
         <div className='sss'>
+
+            <h1>Ratings: {ratingScore} <span role="img" aria-label="star">⭐</span> ({rating[1]} voted)</h1>
+            
+            <input type='text' id='rating' name='rating' placeholder="0-10" ref={ratingRef} /><br />
+            <button onClick={leaveRating} disabled={haveRated}>Leave Rating</button>
+            
             <h1>Comments</h1> 
             
+
             {movieComments.map((movie) => {
                     return ( <div>
                          
@@ -42,7 +66,7 @@ const MovieComments = () => {
                 })}  
             
                 <input type='text' id='comment' name='comment' ref={commentRef} /><br />
-                <button onClick={leaveComments} >Leave Comments</button>
+                <button onClick={leaveComments} disabled={haveCommented}>Leave Comment</button>
         </div>
     )
 
