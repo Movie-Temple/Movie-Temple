@@ -1,18 +1,19 @@
 import './movieDetails.css';
 import { useSelector, useDispatch } from 'react-redux';
-import {db} from '../../../../firebase';
+import { db } from '../../../../firebase';
 import Popup from '../../../popup/Popup'
 import React, { useState } from "react";
 import MovieComments from './MovieComments';
 import { addComments } from '../../../../features/currentMovieComments';
 import { useEffect } from 'react';
 import { addRating } from '../../../../features/rating';
+import firebase from 'firebase/app';
 
 const MovieDetails = () => {
 
     // state to change text in popup to confirm purchase when rent or buy movie
     const [confirmedPurchase, setConfirmedPurchase] = useState(false);
-    
+
     const movieComments = useSelector(state => state.movieComments);
     const dispatch = useDispatch();
 
@@ -49,61 +50,69 @@ const MovieDetails = () => {
     }
 
     // Loading comments
-    useEffect( () => {
+    useEffect(() => {
         db.collection("COMMENTS").doc(movie.imdbID)
-        .onSnapshot((doc) => {
-            
-            const comments = doc.data().comments;
-            const rating = doc.data().rating;
-            const total = doc.data().total;
-            
-            let ratingList = [rating, total];
-            dispatch(addRating(ratingList));
-            console.log(ratingList);
+            .onSnapshot((doc) => {
 
-            let commentList = [];
-            Object.keys(comments).forEach(key => {
-            
-                commentList.push(comments[key])
-                
-            })
-            
-            dispatch(addComments(commentList));
-            console.log("got comments from fb");
-        });
-         
-     }, [])
+                const comments = doc.data().comments;
+                const rating = doc.data().rating;
+                const total = doc.data().total;
+
+                let ratingList = [rating, total];
+                dispatch(addRating(ratingList));
+                console.log(ratingList);
+
+                let commentList = [];
+                Object.keys(comments).forEach(key => {
+
+                    commentList.push(comments[key])
+
+                })
+
+                dispatch(addComments(commentList));
+                console.log("got comments from fb");
+            });
+
+    }, [])
 
     const rentMovie = ((movieID) => {
         if (userID) {
             let rented = {};
             rented[movieID] = Date.now();
-            db.collection('CUSTOMERS').doc(userID).set({rented}, {merge: true});
+            db.collection('CUSTOMERS').doc(userID).set({ rented }, { merge: true });
             setConfirmedPurchase(true);
         } else {
             console.log('not logged in')
         }
     });
-    
+
     const buyMovie = ((movieID) => {
         if (userID) {
             let purchased = {};
             purchased[movieID] = Date.now();
-            db.collection('CUSTOMERS').doc(userID).set({purchased}, {merge: true})
+            db.collection('CUSTOMERS').doc(userID).set({ purchased }, { merge: true })
             setConfirmedPurchase(true);
         } else {
             console.log('not logged in')
         }
     });
-    
+
     const changeWatchlist = ((movieID) => {
-        if(foundInWatchlist) {
-            console.log('remove from watchlist! no functionality yet..')
+        if (foundInWatchlist) {
+            if (userID) {
+                db.collection("CUSTOMERS")
+                .doc(userID)
+                .set({
+                    watchlist: {
+                        [movieID]: firebase.firestore.FieldValue.delete()
+                    }
+                }, { merge: true });
+            }
         } else {
             if (userID) {
                 let watchlist = {};
                 watchlist[movieID] = Date.now();
-                db.collection('CUSTOMERS').doc(userID).set({watchlist}, {merge: true})
+                db.collection('CUSTOMERS').doc(userID).set({ watchlist }, { merge: true })
             } else {
                 console.log('not logged in')
             }
@@ -119,7 +128,7 @@ const MovieDetails = () => {
         return (
             <div className='movie-details'>
                 <img className='movie-details-image' src={movie.Poster} alt="Poster" />
-                
+
                 <div className='movie-details-information'>
                     <h2 className='movie-details-title'>{movie.Title}</h2>
                     <p className='movie-details-description'>{movie.Plot}</p>
@@ -129,56 +138,56 @@ const MovieDetails = () => {
                     <p className='movie-details-metascore'>Metascore: {movie.Metascore}</p>
                     <p className='movie-details-genre'>Genre: {movie.Genre}</p>
                     <div className='movie-details-buttons'>
-     
+
 
                         {rentIsOpen && <Popup
                             content={
-                            confirmedPurchase ?
-                            <>
-                                <b>Purchase completed!</b>
-                            </>
-                            :
-                            <>
-                                <b>Confirm Purchase</b>
-                                <button onClick={() => rentMovie(movie.imdbID)} className='rent-button'>Rent</button>
-                            </>
+                                confirmedPurchase ?
+                                    <>
+                                        <b>Purchase completed!</b>
+                                    </>
+                                    :
+                                    <>
+                                        <b>Confirm Purchase</b>
+                                        <button onClick={() => rentMovie(movie.imdbID)} className='rent-button'>Rent</button>
+                                    </>
                             }
                             handleClose={toggleRentPopup}
                         />}
 
                         {buyIsOpen && <Popup
                             content={
-                            confirmedPurchase ?
-                            <>
-                                <b>Purchase completed!</b>
-                            </>
-                            :
-                            <>
-                                <b>Confirm Purchase</b>
-                                <button onClick={() => buyMovie(movie.imdbID)} className='buy-button'>Buy</button>
-                            </>
+                                confirmedPurchase ?
+                                    <>
+                                        <b>Purchase completed!</b>
+                                    </>
+                                    :
+                                    <>
+                                        <b>Confirm Purchase</b>
+                                        <button onClick={() => buyMovie(movie.imdbID)} className='buy-button'>Buy</button>
+                                    </>
                             }
                             handleClose={toggleBuyPopup}
                         />}
-                        <button 
-                            disabled={foundInRented} 
-                            className={foundInRented ? 'rent-button disabled' : 'rent-button'} 
+                        <button
+                            disabled={foundInRented}
+                            className={foundInRented ? 'rent-button disabled' : 'rent-button'}
                             onClick={toggleRentPopup}>{foundInRented ? 'Already rented' : 'Rent'}
                         </button>
 
-                        <button 
-                            disabled={foundInPurchased} 
-                            className={foundInPurchased ? 'buy-button disabled' : 'buy-button'} 
+                        <button
+                            disabled={foundInPurchased}
+                            className={foundInPurchased ? 'buy-button disabled' : 'buy-button'}
                             onClick={toggleBuyPopup}>{foundInPurchased ? 'Already bought' : 'Buy'}
                         </button>
 
-                        <button 
-                            onClick={() => changeWatchlist(movie.imdbID)} 
+                        <button
+                            onClick={() => changeWatchlist(movie.imdbID)}
                             className='watchlist-button'>{foundInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
                         </button>
                         <button onClick={() => toggleComments()}>View Comments</button>
                     </div>
-                        
+
                     <div>
                         {showingComments ? <MovieComments /> : null}
 
