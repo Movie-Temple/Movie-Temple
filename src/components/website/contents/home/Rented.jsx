@@ -38,7 +38,7 @@ const Rented = () => {
                             <div>
                                 <img className='rented-scrollerImg' src={movie.Poster} alt={movie.Title} />
                                 <button className='rented-play-button' onClick={toggleplayMovieIsOpen}>Play</button>
-                                <p>Remaining time: {timeLeft()} hours</p>
+                                <p>{timeLeft()} hours left</p>
                             </div>
 
                             {playMovieIsOpen && <PlayMovie

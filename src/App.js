@@ -51,6 +51,7 @@ function App() {
                 let purchasedToAdd = [];
                 let rentedToAdd = [];
                 let watchlistToAdd = [];
+                let tempMovies = movies.map(movie => ({...movie}));
 
                 if (purchased) {
                     Object.keys(purchased).forEach(key => {
@@ -64,21 +65,16 @@ function App() {
                 }
 
                 if (rented) {
-                  let tempMovies = movies.map(movie => ({...movie}));
                   console.log(tempMovies);
                   Object.keys(rented).forEach(key => {
                     const movie = tempMovies.find(movie => movie.imdbID === key)
-                    console.log(movie);
-
-
+                    movie.rented = rented[key];
                     movie.rentalExpiry = rented[key] + 172800000;
-                    console.log(movie)
                     if (movie.rentalExpiry > Date.now()) {
                       rentedToAdd.push(movie)
                     }
                   })
                   dispatch(setRentedMovies(rentedToAdd));
-                  console.log("got rentals from fb");
                 } else {
                     console.log('no rentals')
                 }
