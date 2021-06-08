@@ -38,6 +38,8 @@ function App() {
   }, [movies, dispatch])
 
 
+  
+
   const getMovieLists = () => {
     if (currentUserUid) {
         db.collection("CUSTOMERS").doc(currentUserUid)
