@@ -11,6 +11,7 @@ async function getMovie(title) {
     try {
         let response = await fetch(infoUrl);
         let data = await response.json();
+        data["rentalExpiry"] = 0;
         return data;
 
     }

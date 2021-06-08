@@ -62,15 +62,20 @@ function App() {
                 }
 
                 if (rented) {
-                    Object.keys(rented).forEach(key => {
-                        const movie = movies.filter(movie => movie.imdbID === key)
-                        console.log(rented[key])
-                        if (rented[key] + 172800000 > Date.now()) {
-                          rentedToAdd.push(movie[0])
-                        }
-                    })
-                    dispatch(setRentedMovies(rentedToAdd));
-                    console.log("got rented from fb");
+                  let tempMovies = movies.map(movie => ({...movie}));
+                  Object.keys(rented).forEach(key => {
+                    const movie = tempMovies.find(movie => movie.imdbID === key)
+                    console.log(movie);
+
+
+                    movie.rentalExpiry = rented[key] + 172800000;
+                    console.log(rented[key])
+                    if (movie.rentalExpiry > Date.now()) {
+                      rentedToAdd.push(movie[0])
+                    }
+                  })
+                  dispatch(setRentedMovies(rentedToAdd));
+                  console.log("got rented from fb");
                 } else {
                     console.log('nothing rented')
                 }
