@@ -51,45 +51,41 @@ function App() {
                 let purchasedToAdd = [];
                 let rentedToAdd = [];
                 let watchlistToAdd = [];
+                let tempMovies = movies.map(movie => ({...movie}));
 
                 if (purchased) {
                     Object.keys(purchased).forEach(key => {
-                        const movie = movies.filter(movie => movie.imdbID === key)
-                        purchasedToAdd.push(movie[0])
+                        const movie = tempMovies.find(movie => movie.imdbID === key)
+                        movie.purchased = purchased[key];
+                        purchasedToAdd.push(movie)
                     })
                     dispatch(setPurchasedMovies(purchasedToAdd));
-                    console.log("got purchased from fb");
                 } else {
                     console.log('nothing purchased')
                 }
 
                 if (rented) {
-                  let tempMovies = movies.map(movie => ({...movie}));
                   console.log(tempMovies);
                   Object.keys(rented).forEach(key => {
                     const movie = tempMovies.find(movie => movie.imdbID === key)
-                    console.log(movie);
-
-
-                    movie.rentalExpiry = rented[key] + 172800000;
-                    console.log(movie)
-                    if (movie.rentalExpiry > Date.now()) {
+                    movie.rented = rented[key];
+                    movie.rentExpires = rented[key] + 172800000;
+                    if (movie.rentExpires > Date.now()) {
                       rentedToAdd.push(movie)
                     }
                   })
                   dispatch(setRentedMovies(rentedToAdd));
-                  console.log("got rentals from fb");
                 } else {
                     console.log('no rentals')
                 }
 
                 if (watchlist) {
                     Object.keys(watchlist).forEach(key => {
-                        const movie = movies.filter(movie => movie.imdbID === key)
-                        watchlistToAdd.push(movie[0])
+                        const movie = tempMovies.find(movie => movie.imdbID === key)
+                        movie.addedToWatchlist = watchlist[key];
+                        watchlistToAdd.push(movie)
                     })
                     dispatch(setWatchlistMovies(watchlistToAdd));
-                    console.log("got watchlist from fb");
                 } else {
                     console.log('nothing in watchlist')
                 }
