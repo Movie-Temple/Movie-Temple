@@ -14,6 +14,7 @@ async function getMovie(title) {
         data['rented'] = 0;
         data["rentalExpiry"] = 0;
         data['purchased'] = 0;
+        data['addedToWatchlist'] = 0;
         return data;
 
     }

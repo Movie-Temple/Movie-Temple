@@ -55,11 +55,11 @@ function App() {
 
                 if (purchased) {
                     Object.keys(purchased).forEach(key => {
-                        const movie = movies.filter(movie => movie.imdbID === key)
-                        purchasedToAdd.push(movie[0])
+                        const movie = tempMovies.find(movie => movie.imdbID === key)
+                        movie.purchased = purchased[key];
+                        purchasedToAdd.push(movie)
                     })
                     dispatch(setPurchasedMovies(purchasedToAdd));
-                    console.log("got purchased from fb");
                 } else {
                     console.log('nothing purchased')
                 }
@@ -81,11 +81,11 @@ function App() {
 
                 if (watchlist) {
                     Object.keys(watchlist).forEach(key => {
-                        const movie = movies.filter(movie => movie.imdbID === key)
-                        watchlistToAdd.push(movie[0])
+                        const movie = tempMovies.find(movie => movie.imdbID === key)
+                        movie.addedToWatchlist = watchlist[key];
+                        watchlistToAdd.push(movie)
                     })
                     dispatch(setWatchlistMovies(watchlistToAdd));
-                    console.log("got watchlist from fb");
                 } else {
                     console.log('nothing in watchlist')
                 }

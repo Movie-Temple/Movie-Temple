@@ -14,7 +14,7 @@ const ProfileHistory = () => {
     useEffect(() => {
         setPurchasedData(purchasedMovies.map(movie => 
             <li key={movie.imdbID} className='profile-history-listitem'>
-                Purchased: {movie.Title}
+                {movie.Title}: purchased {new Date(movie.purchased).toLocaleDateString('sv-SE')}
             </li>
         ));
         setRentedData(rentedMovies.map(movie => 
