@@ -8,6 +8,7 @@ import WatchList from './Watchlist';
 import './homeTabs.css';
 import { useSelector} from 'react-redux';
 import SignIn from '../account/signIn/SignIn';
+import SignUp from '../account/signUp/SignUp';
 import { AuthProvider } from '../../../../contexts/AuthContext';
 
 const Home = () => {
@@ -15,9 +16,16 @@ const Home = () => {
     const currentUserUid = useSelector(state => state.currentUserUid);
     const history = useHistory();
 
-    //const { match } = props;
-    //const { params } = match;
-    //const { page } = params;
+    //try to sign in/out toggle
+    const [showSignIn, setShowSignIn]  = useState(true);
+    const toggleShowSignIn = () => {
+        setShowSignIn(!showSignIn);
+    }
+
+    //try to history push
+    const linkToAccount = () => {
+        history.push("/Account");
+    }
 
     const tabNameToIndex = {
         0: "Movies",
@@ -25,13 +33,6 @@ const Home = () => {
         2: "Rented",
         3: "WatchList"
     };
-    /*
-    const indexToTabName = {
-        Movies: 0,
-        Purchased: 1,
-        Rented: 2,
-        WatchList: 3
-    }; */
 
     const [selectedTab, setSelectedTab] = useState(0);
     const handleChange = (event, newValue) => {
@@ -56,14 +57,21 @@ const Home = () => {
             
             <AuthProvider>
             
-            {selectedTab === 0 && <Movies />}
-            
-            { currentUserUid ? <div>
-            {selectedTab === 1 && <Purchased />}
-            {selectedTab === 2 && <Rented />}
-            {selectedTab === 3 && <WatchList />}
-            </div> : <div> <SignIn /> </div>}
-            
+            { currentUserUid ? 
+                <div>
+                    {selectedTab === 0 && <Movies />}
+                    {selectedTab === 1 && <Purchased />}
+                    {selectedTab === 2 && <Rented />}
+                    {selectedTab === 3 && <WatchList />}
+                </div> 
+                : 
+                <div>
+                    {selectedTab === 0 && <Movies />}
+                    {selectedTab === 1 && <SignIn linkToAccount={linkToAccount}/>}
+                    {selectedTab === 2 && <SignIn linkToAccount={linkToAccount}/>}
+                    {selectedTab === 3 && <SignIn linkToAccount={linkToAccount}/>}
+                </div>}
+
             </AuthProvider>
 
         </div>
@@ -71,3 +79,16 @@ const Home = () => {
 }
 
 export default Home;
+
+/* 
+    const [showSignIn, setShowSignIn]  = useState(true);
+
+    const toggleShowSignIn = () => {
+        setShowSignIn(!showSignIn);
+    }
+
+toggleShowSignIn={toggleShowSignIn} 
+
+{showSignIn ? <SignIn toggleShowSignIn={toggleShowSignIn}/> : <SignUp toggleShowSignIn={toggleShowSignIn}/>}
+
+*/
