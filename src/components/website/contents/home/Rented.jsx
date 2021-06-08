@@ -27,7 +27,7 @@ const Rented = () => {
             
             {rentedMovies.map((movie) => {
                 const timeLeft = () => {
-
+                    
                     return (
                         movie.rentalExpiry - Date.now()
                     )

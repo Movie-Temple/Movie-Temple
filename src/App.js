@@ -63,21 +63,22 @@ function App() {
 
                 if (rented) {
                   let tempMovies = movies.map(movie => ({...movie}));
+                  console.log(tempMovies);
                   Object.keys(rented).forEach(key => {
                     const movie = tempMovies.find(movie => movie.imdbID === key)
                     console.log(movie);
 
 
                     movie.rentalExpiry = rented[key] + 172800000;
-                    console.log(rented[key])
+                    console.log(movie)
                     if (movie.rentalExpiry > Date.now()) {
-                      rentedToAdd.push(movie[0])
+                      rentedToAdd.push(movie)
                     }
                   })
                   dispatch(setRentedMovies(rentedToAdd));
-                  console.log("got rented from fb");
+                  console.log("got rentals from fb");
                 } else {
-                    console.log('nothing rented')
+                    console.log('no rentals')
                 }
 
                 if (watchlist) {
