@@ -24,9 +24,9 @@ const AccountContainer = () =>  {
 
     useEffect(() => {
         if (userID) {
-            getRented();
-            getPurchased();
-            getWatchlist();
+            // getRented();
+            // getPurchased();
+            // getWatchlist();
         }
     }, [userID])
 
