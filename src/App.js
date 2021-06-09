@@ -59,8 +59,6 @@ function App() {
                 }
 
                 if (rented) {
-
-                  console.log(tempMovies);
                   Object.keys(rented).forEach(key => {
                     const movie = tempMovies.find(movie => movie.imdbID === key)
                     movie.rented = rented[key];
@@ -96,7 +94,7 @@ function App() {
 if (currentUserUid) {
     getMovieLists();
 } else {
-    console.log('not logged in, not getting personal lists')
+    //console.log('not logged in, not getting personal lists')
 }
 
   return (
