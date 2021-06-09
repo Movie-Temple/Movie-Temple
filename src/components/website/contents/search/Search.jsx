@@ -1,5 +1,5 @@
-import React from 'react'
-import SearchPage from '../search/SearchPage'
+import React from 'react';
+import SearchPage from '../search/SearchPage';
 
 const Search = () => {
 
@@ -11,7 +11,3 @@ const Search = () => {
 }
 
 export default Search;
-
- /* {/*	Loader}
- <img src={ Loader } className={`search-loading ${ loading ? 'show' : 'hide' }`} alt="loader"/> */
-

@@ -39,8 +39,6 @@ const ProfileSettings = () => {
 
     return (
         <div className='profile-settings'>
-            <p className='profile-settings-change-password'>Change password</p>
-            <p className='profile-settings-change-email' >Change e-mail</p>
             <p className='profile-settings-change-card' onClick={toggleShowCardDetails}>Add/edit payment details</p>
             {showCardDetails 
             ? 

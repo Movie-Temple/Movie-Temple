@@ -27,11 +27,9 @@ const Profile = () => {
             setUserName(result);
         });
 
-
     return (
         <div className='profile'>
             <div className='profile-headings-container'>
-                <h2 className='profile-heading'>Profile</h2>
 
                 <div className='profile-sub-headings-container'>
                     <h3 className={showSettings ? 'profile-sub-heading selected' : 'profile-sub-heading'} onClick={toggleShowSettings}>Settings</h3>
