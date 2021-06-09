@@ -22,7 +22,7 @@ const ProfileHistory = () => {
                 {movie.Title}: rented {new Date(movie.rented).toLocaleDateString('sv-SE')}
             </li>
         ));
-    }, []);
+    }, [purchasedMovies, rentedMovies]);
 
     return (
         <div className='profile-history'>

@@ -14,7 +14,7 @@ const MovieDetails = () => {
     // state to change text in popup to confirm purchase when rent or buy movie
     const [confirmedPurchase, setConfirmedPurchase] = useState(false);
 
-    const movieComments = useSelector(state => state.movieComments);
+    //const movieComments = useSelector(state => state.movieComments);
     const dispatch = useDispatch();
 
     const movie = useSelector(state => state.currentMovie);

@@ -27,7 +27,7 @@ const Profile = () => {
                 const result = doc.data().name;
                 setUserName(result);
             });
-    }, [])
+    }, [currentUserUid])
 
     return (
         <div className='profile'>
