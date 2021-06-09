@@ -64,3 +64,7 @@
     background-color: #09815f;
 }
 
+.details-confirm-button {
+    max-width: 90% !important;
+}
+

@@ -140,7 +140,7 @@ const MovieDetails = () => {
                                     :
                                     <>
                                         <b>Confirm Purchase</b>
-                                        <button onClick={() => rentMovie(movie.imdbID)} className='rent-button'>Rent</button>
+                                        <button className='details-confirm-button' onClick={() => rentMovie(movie.imdbID)}>Rent</button>
                                     </>
                             }
                             handleClose={toggleRentPopup}
@@ -155,7 +155,7 @@ const MovieDetails = () => {
                                     :
                                     <>
                                         <b>Confirm Purchase</b>
-                                        <button onClick={() => buyMovie(movie.imdbID)} className='buy-button'>Buy</button>
+                                        <button className='details-confirm-button' onClick={() => buyMovie(movie.imdbID)}>Buy</button>
                                     </>
                             }
                             handleClose={toggleBuyPopup}
