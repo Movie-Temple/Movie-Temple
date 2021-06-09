@@ -163,13 +163,13 @@ const MovieDetails = () => {
                         <button
                             disabled={foundInRented}
                             className={foundInRented ? 'rent-button disabled' : 'rent-button'}
-                            onClick={toggleRentPopup}>{foundInRented ? 'Already rented' : 'Rent'}
+                            onClick={toggleRentPopup}>{foundInRented ? 'Already rented' : 'Rent: 39 kr'}
                         </button>
 
                         <button
                             disabled={foundInPurchased}
                             className={foundInPurchased ? 'buy-button disabled' : 'buy-button'}
-                            onClick={toggleBuyPopup}>{foundInPurchased ? 'Already bought' : 'Buy'}
+                            onClick={toggleBuyPopup}>{foundInPurchased ? 'Already bought' : 'Buy: 99 kr'}
                         </button>
 
                         <button

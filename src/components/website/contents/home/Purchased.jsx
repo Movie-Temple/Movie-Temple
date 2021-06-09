@@ -17,7 +17,7 @@ const Purchased = () => {
         <div className='purchased'>
             {purchasedMovies.map((movie) => {
                     return ( purchasedMovies ?
-                        <div>
+                        <div key={movie.imdbID}>
                             <div className='purchased-scrollerItem' key={movie.imdbID}>
                             <img className='purchased-scrollerImg' src={movie.Poster} alt={movie.Title} />
                             </div>
