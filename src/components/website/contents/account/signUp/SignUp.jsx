@@ -75,7 +75,7 @@ export default function SignUp({toggleShowSignIn}) {
                 </form>
 
                 <button onClick={handleSubmit} disabled={loading} >Sign up</button>
-                <p className='register-signin'>Already have an account? Click here to <p className='register-signin-link' onClick={toggleShowSignIn}>sign in</p></p>
+                <div className='register-signin'>Already have an account? Click here to <p className='register-signin-link' onClick={toggleShowSignIn}>sign in</p></div>
             </div>
         </div>
     );
