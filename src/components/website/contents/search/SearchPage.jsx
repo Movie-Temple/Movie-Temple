@@ -5,8 +5,6 @@ import { replaceMovie } from "../../../../features/currentMovie";
 import './searchPage.css'
 
 const SearchPage = () => {
-  //const [filter, setFilter] = React.useState("");
-
   const movies = useSelector((state) => state.movies);
   const searchTerm = useSelector(state => state.searchTerm);
   const dispatch = useDispatch();
@@ -31,16 +29,12 @@ const SearchPage = () => {
 
   return (
     <>
-      
       <div className="searchBody">
           {movies.map((movie) => {
               return ((movie.Title.toLowerCase().indexOf(searchTerm) !== -1) ?
-              
                   <div className='searchItem' onClick={() => {handleCLick(movie)}} key={movie.imdbID}>
                       <img className='searchImg' src={movie.Poster} alt={movie.Title} />
-                      {/* <p className='scrollerTitle'>{movie.Genre}</p> */}
                   </div>
-
                   : null);
             })}  
       </div> 

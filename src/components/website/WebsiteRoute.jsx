@@ -16,11 +16,12 @@ const WebsiteRoute = () => {
   return (
 
     <Router>
+        
         <div>
             <HeadBar />
         </div>
-        <Switch>
 
+        <Switch>
             <Route exact path="/Account">
                 <AccountContainer />
             </Route>
@@ -49,7 +50,7 @@ const WebsiteRoute = () => {
                 <FAQ />
             </Route>
 
-            <Route path='/moviedetails'>
+            <Route exact path='/moviedetails'>
                 <MovieDetails />
             </Route>
             
@@ -58,6 +59,7 @@ const WebsiteRoute = () => {
 
             <Route exact path="/Home/:page?" render={props => <Home {...props} />} />
             </Switch>
+
             <div>
                 <Footer />
             </div>

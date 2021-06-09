@@ -7,9 +7,17 @@ const HeadBar = () => {
 
     return (
         <div className='nav'>
-            <div className='nav-search-link'><SearchBar/></div>
-            <p className='nav-logo-link'><Link  to="/"><img src={Logo} alt='Logo'></img></Link></p>
-            <p className='nav-login-link'><Link to="/Account">Account</Link></p>
+            <div className='nav-search-link'>
+                <SearchBar/>
+            </div>
+            <div className='nav-logo-link'>
+                <Link  to="/">
+                    <img src={Logo} alt='Logo'></img>
+                </Link>
+            </div>
+            <div className='nav-login-link'>
+                <Link to="/Account">Account</Link>
+            </div>
         </div>
     )
 }

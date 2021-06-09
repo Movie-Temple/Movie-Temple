@@ -1,40 +1,31 @@
 import '../profile/profileSettings.css';
 
-import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { db } from '../../../../../firebase';
-import { current } from 'immer';
+import { setBankCard } from '../../../../../features/bankCard';
 
 const ProfileSettings = () => {
 
-    const [cardDetails, setCardDetails] = useState('');
+    const dispatch = useDispatch();
     const [showCardDetails, setShowCardDetails] = useState(false);
     const cardRef = useRef();
     const currentUserUid = useSelector(state => state.currentUserUid);
+    const bankCard = useSelector(state => state.bankCard);
 
     const toggleShowCardDetails = () => {
         setShowCardDetails(!showCardDetails);
     }
 
-    useEffect(() => {
-        if (currentUserUid) {
-            db.collection("CUSTOMERS").doc(currentUserUid)
-            .onSnapshot((doc) => {
-                const result = doc.data().card;
-                if (result) {
-                    setCardDetails(result);
-                }
-            });
-        }
-    }, []);
 
     const save = () => {
 
         if (currentUserUid) {
             db.collection("CUSTOMERS").doc(currentUserUid).set({
-                card: cardRef.current.value,
+                bankCard: cardRef.current.value,
             }, { merge: true })
             .then(() => {
+                dispatch(setBankCard(cardRef.current.value))
                 console.log("card details successfully added");
                 setShowCardDetails(false);
             })
@@ -54,7 +45,7 @@ const ProfileSettings = () => {
             {showCardDetails 
             ? 
             <div>
-                <input type='number' id='card-details' name='card-details' ref={cardRef} defaultValue={cardDetails}/>
+                <input id='card-details' name='card-details' placeholder={bankCard} ref={cardRef} />
                 <button className='profile-settings-save-card-button' onClick={save}>Save</button> 
             </div>
             : 

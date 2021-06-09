@@ -34,11 +34,9 @@ const SearchBar = () => {
           name="q"
           value={searchTerm}
           onKeyPress={handleKeyPress} />
-          <label class="button searchbutton" 
-          for="searchleft">
-            <span class="mglass">&#9906;
-          </span></label>
-          
+        <label className="button searchbutton" htmlFor="searchleft">
+          <span className="mglass">&#9906;</span>
+        </label>
       </form>
     </section>
   );

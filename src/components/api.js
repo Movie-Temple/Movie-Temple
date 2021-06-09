@@ -11,6 +11,10 @@ async function getMovie(title) {
     try {
         let response = await fetch(infoUrl);
         let data = await response.json();
+        data['rented'] = 0;
+        data["rentExpires"] = 0;
+        data['purchased'] = 0;
+        data['addedToWatchlist'] = 0;
         return data;
 
     }

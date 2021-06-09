@@ -1,11 +1,5 @@
 import './App.css';
 import WebsiteRoute from './components/website/WebsiteRoute'
-
-//import ApiTemplates from './components/ApiTemplates'
-//import Navbar from './components/navigation/Navbar';
-//import './components/navigation/navbar.css';
-//import ApiTemplates from './components/ApiTemplates';
-//import SideScroller from './components/SideScroller';
 import titles from './components/movieDb';
 import { useState, useEffect } from 'react';
 import getMovie from './components/api'
@@ -38,6 +32,8 @@ function App() {
   }, [movies, dispatch])
 
 
+  
+
   const getMovieLists = () => {
     if (currentUserUid) {
         db.collection("CUSTOMERS").doc(currentUserUid)
@@ -49,11 +45,13 @@ function App() {
                 let purchasedToAdd = [];
                 let rentedToAdd = [];
                 let watchlistToAdd = [];
+                let tempMovies = movies.map(movie => ({...movie}));
 
                 if (purchased) {
                     Object.keys(purchased).forEach(key => {
-                        const movie = movies.filter(movie => movie.imdbID === key)
-                        purchasedToAdd.push(movie[0])
+                        const movie = tempMovies.find(movie => movie.imdbID === key)
+                        movie.purchased = purchased[key];
+                        purchasedToAdd.push(movie)
                     })
                     dispatch(setPurchasedMovies(purchasedToAdd));
                 } else {
@@ -61,22 +59,27 @@ function App() {
                 }
 
                 if (rented) {
-                    Object.keys(rented).forEach(key => {
-                        const movie = movies.filter(movie => movie.imdbID === key)
-                        console.log(rented[key])
-                        if (rented[key] + 172800000 > Date.now()) {
-                          rentedToAdd.push(movie[0])
-                        }
-                    })
-                    dispatch(setRentedMovies(rentedToAdd));
+
+                  console.log(tempMovies);
+                  Object.keys(rented).forEach(key => {
+                    const movie = tempMovies.find(movie => movie.imdbID === key)
+                    movie.rented = rented[key];
+                    movie.rentExpires = rented[key] + 172800000;
+                    if (movie.rentExpires > Date.now()) {
+                      rentedToAdd.push(movie)
+                    }
+                  })
+                  dispatch(setRentedMovies(rentedToAdd));
+
                 } else {
-                    console.log('nothing rented')
+                    console.log('no rentals')
                 }
 
                 if (watchlist) {
                     Object.keys(watchlist).forEach(key => {
-                        const movie = movies.filter(movie => movie.imdbID === key)
-                        watchlistToAdd.push(movie[0])
+                        const movie = tempMovies.find(movie => movie.imdbID === key)
+                        movie.addedToWatchlist = watchlist[key];
+                        watchlistToAdd.push(movie)
                     })
                     dispatch(setWatchlistMovies(watchlistToAdd));
                 } else {

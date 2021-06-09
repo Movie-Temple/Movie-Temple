@@ -143,6 +143,7 @@
     .search:focus {
       width: 163px; /* Bar width+1px */
       padding: 0 16px 0 0;
-    }
+
+	}
   }
 

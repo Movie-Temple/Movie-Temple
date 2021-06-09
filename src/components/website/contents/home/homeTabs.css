@@ -3,4 +3,19 @@
     color: var(--turqoise);
 }
 
+.PrivateTabIndicator-colorSecondary-3 {
+
+    background-color: violet;
+}
+
+
+
+  
+  
+  @media (max-width: 400px) {
+  .MuiTab-wrapper {
+    max-width: 300px;
+  }
+  }
+
 
