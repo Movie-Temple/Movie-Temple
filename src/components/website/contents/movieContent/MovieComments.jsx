@@ -40,10 +40,23 @@ const MovieComments = () => {
         ratingRef.current.value = "You've rated!";
     };
 
+    const getRatingText = () => {
+        if (rating[1] > 0) {
+            return (
+                <span>Rating: {ratingScore} <span role="img" aria-label="star">⭐</span>({rating[1]} voted)</span>
+            )
+        } else {
+            return (
+                <span>No votes yet!</span>
+            )
+        }
+
+    }
+
     return (
         <div className='movie-comments'>
 
-            <h2>Ratings: {ratingScore} <span role="img" aria-label="star">⭐</span> ({rating[1]} voted)</h2>
+            <h2>{getRatingText()} </h2>
             
             <input type='text' id='rating' name='rating' placeholder="0-10" ref={ratingRef} />
             <button className='movie-comment-button' onClick={leaveRating} disabled={haveRated || !currentUserUid}>Rate!</button>
