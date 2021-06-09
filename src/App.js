@@ -56,7 +56,6 @@ function App() {
                         purchasedToAdd.push(movie[0])
                     })
                     dispatch(setPurchasedMovies(purchasedToAdd));
-                    console.log("got purchased from fb");
                 } else {
                     console.log('nothing purchased')
                 }
@@ -70,7 +69,6 @@ function App() {
                         }
                     })
                     dispatch(setRentedMovies(rentedToAdd));
-                    console.log("got rented from fb");
                 } else {
                     console.log('nothing rented')
                 }
@@ -81,14 +79,12 @@ function App() {
                         watchlistToAdd.push(movie[0])
                     })
                     dispatch(setWatchlistMovies(watchlistToAdd));
-                    console.log("got watchlist from fb");
                 } else {
                     console.log('nothing in watchlist')
                 }
 
                 if (bankCard) {
                   dispatch(setBankCard(bankCard));
-                  console.log('yayaya bank');
                 }
         });
     }

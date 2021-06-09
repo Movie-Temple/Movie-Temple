@@ -10,7 +10,7 @@ const MovieComments = () => {
     const rating = useSelector(state => state.rating);
     const movie = useSelector(state => state.currentMovie);
 
-    //test for disable buttons
+    // used to disable buttons if not signed in
     const currentUserUid = useSelector(state => state.currentUserUid);
 
     const ratingScore = parseFloat(rating[0]/rating[1]).toFixed(2);
@@ -56,7 +56,7 @@ const MovieComments = () => {
                             {movieComments ?
 
                             <div className='movie-comments-comments' key={uuid()}>
-                                <li>{movie}</li>
+                                <p>{movie}</p>
                             </div>
                             :
                             <div className='movie-comments-comments' key={uuid()}>

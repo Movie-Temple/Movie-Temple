@@ -49,24 +49,19 @@ const MovieDetails = () => {
     useEffect( () => {
         db.collection("COMMENTS").doc(movie.imdbID)
         .onSnapshot((doc) => {
-            
             const comments = doc.data().comments;
             const rating = doc.data().rating;
             const total = doc.data().total;
             
             let ratingList = [rating, total];
             dispatch(addRating(ratingList));
-            console.log(ratingList);
 
             let commentList = [];
             Object.keys(comments).forEach(key => {
-            
                 commentList.push(comments[key])
-                
             })
             
             dispatch(addComments(commentList));
-            console.log("got comments from fb");
         });
          
      }, [])
@@ -172,7 +167,7 @@ const MovieDetails = () => {
                             onClick={() => changeWatchlist(movie.imdbID)} 
                             className='watchlist-button'>{foundInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
                         </button>
-                        <button onClick={() => toggleComments()}>View Comments</button>
+                        <button onClick={() => toggleComments()}>{showingComments ? 'Hide Comments' : 'View Comments'}</button>
                     </div>
                         
                     <div className='movie-details-comment-section'>
