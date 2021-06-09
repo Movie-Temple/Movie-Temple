@@ -43,9 +43,9 @@ const SignIn = ({toggleShowSignIn}) => {
                 <h2 className='login-header'>Sign in</h2>
                 {error && <Alert variant="danger"> {error} </Alert>}
                 <form className='login-form' action=''>
-                    <label for='login-email'>E-mail</label><br/>
+                    <label htmlFor='login-email'>E-mail</label><br/>
                     <input type='text' id='login-email' name='login-email' ref={emailRef}/><br/>
-                    <label for='login-password'>Password</label><br/>
+                    <label htmlFor='login-password'>Password</label><br/>
                     <input type='text' id='login-password' name='login-password' ref={passwordRef}/><br/>
                 </form>
 

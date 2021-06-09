@@ -5,7 +5,7 @@ import { useState } from 'react';
 //import {db} from '../../../../firebase'
 
 const Rented = () => {
-    const userID = useSelector(state => state.currentUserUid);
+    //const userID = useSelector(state => state.currentUserUid);
     const rentedMovies = useSelector(state => state.rentedMovies);
     // let rentalExpires = 0
 

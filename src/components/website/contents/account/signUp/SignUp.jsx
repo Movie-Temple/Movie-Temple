@@ -61,16 +61,16 @@ export default function SignUp({toggleShowSignIn}) {
                 {error && <Alert variant="danger"> {error} </Alert>}
                 <form className='register-form' action=''>
 
-                    <label for='register-name'>Name</label><br />
+                    <label htmlFor='register-name'>Name</label><br />
                     <input type='text' id='register-name' name='register-name' ref={nameRef} /><br />
 
-                    <label for='register-email'>E-mail</label><br />
+                    <label htmlFor='register-email'>E-mail</label><br />
                     <input type='text' id='register-email' name='register-email' ref={emailRef} /><br />
 
-                    <label for='register-password'>Password</label><br />
+                    <label htmlFor='register-password'>Password</label><br />
                     <input type='text' id='register-password' name='register-password' ref={passwordRef} /><br />
 
-                    <label for='register-repeat-password'>Repeat Password</label><br />
+                    <label htmlFor='register-repeat-password'>Repeat Password</label><br />
                     <input type='text' id='register-repeat-password' name='register-repeat-password' ref={passwordConfirmRef} /><br />
                 </form>
 
