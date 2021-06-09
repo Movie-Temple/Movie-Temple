@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import Logo from '../../../MTLogoPerspTrans.png'
+import Logo from '../../../MTLogoTurqPerspTrans.png'
 import '../header/headBar.css';
 import SearchBar from '../../website/contents/search/SearchBar'
 
