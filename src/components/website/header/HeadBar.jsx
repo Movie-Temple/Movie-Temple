@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
-import Logo from '../../../MTLogoPerspTrans.png'
+import Logo from '../../../MTLogoPerspTrans.png';
 import '../header/headBar.css';
 import SearchBar from '../../website/contents/search/SearchBar'
-
+import userIcon from '../../images/user.png';
 const HeadBar = () => {
 
     return (
@@ -16,7 +16,7 @@ const HeadBar = () => {
                 </Link>
             </div>
             <div className='nav-login-link'>
-                <Link to="/Account">Account</Link>
+                <Link to="/Account"> <img src={userIcon} alt='User Icon'></img></Link>
             </div>
         </div>
     )
