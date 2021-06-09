@@ -11,7 +11,7 @@ const ProfileHistory = () => {
     const rentedMovies = useSelector(state => state.rentedMovies)
     const purchasedMovies = useSelector(state => state.purchasedMovies)
 
-    useEffect(() => {
+    /*useEffect(() => {
         setPurchasedData(purchasedMovies.map(movie => 
             <li key={movie.imdbID} className='profile-history-listitem'>
                 {movie.Title}: purchased {new Date(movie.purchased).toLocaleDateString('sv-SE')}
@@ -22,7 +22,7 @@ const ProfileHistory = () => {
                 {movie.Title}: rented {new Date(movie.rented).toLocaleDateString('sv-SE')}
             </li>
         ));
-    }, [purchasedMovies, rentedMovies]);
+    }, [purchasedMovies, rentedMovies]);*/
 
     return (
         <div className='profile-history'>

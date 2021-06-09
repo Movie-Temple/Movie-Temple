@@ -1,9 +1,8 @@
 import './profile.css';
 import { useAuth } from '../../../../../contexts/AuthContext';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ProfileHistory from './ProfileHistory';
 import ProfileSettings from './ProfileSettings';
-//import Avatar from '../../../../../../src/UserAvatar.png'
 import { useSelector } from 'react-redux';
 import { db } from '../../../../../firebase';
 
@@ -21,13 +20,13 @@ const Profile = () => {
 
     const [userName, setUserName] = useState('');
 
-    useEffect(() => {
-        db.collection("CUSTOMERS").doc(currentUserUid)
-            .onSnapshot((doc) => {
-                const result = doc.data().name;
-                setUserName(result);
-            });
-    }, [currentUserUid])
+
+    db.collection("CUSTOMERS").doc(currentUserUid)
+        .onSnapshot((doc) => {
+            const result = doc.data().name;
+            setUserName(result);
+        });
+
 
     return (
         <div className='profile'>

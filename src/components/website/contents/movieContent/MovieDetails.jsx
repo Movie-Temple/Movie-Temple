@@ -5,7 +5,6 @@ import Popup from '../../../popup/Popup'
 import React, { useState } from "react";
 import MovieComments from './MovieComments';
 import { addComments } from '../../../../features/currentMovieComments';
-import { useEffect } from 'react';
 import { addRating } from '../../../../features/rating';
 import firebase from 'firebase/app';
 
@@ -47,7 +46,7 @@ const MovieDetails = () => {
     }
 
     // Loading comments
-    useEffect(() => {
+    //useEffect(() => {
         db.collection("COMMENTS").doc(movie.imdbID)
         .onSnapshot((doc) => {
             const comments = doc.data().comments;
@@ -65,7 +64,7 @@ const MovieDetails = () => {
             dispatch(addComments(commentList));
         });
          
-     }, [])
+     //}, [])
 
 
     const rentMovie = ((movieID) => {
