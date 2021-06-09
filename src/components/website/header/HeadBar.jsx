@@ -12,11 +12,11 @@ const HeadBar = () => {
             </div>
             <div className='nav-logo-link'>
                 <Link  to="/">
-                    <img src={Logo} alt='Logo'></img>
+                    <img className='home-icon-img' src={Logo} alt='Logo'></img>
                 </Link>
             </div>
             <div className='nav-login-link'>
-                <Link to="/Account"> <img src={userIcon} alt='User Icon'></img></Link>
+                <Link to="/Account"> <img className='login-icon-img' src={userIcon} alt='User Icon'></img></Link>
             </div>
         </div>
     )
