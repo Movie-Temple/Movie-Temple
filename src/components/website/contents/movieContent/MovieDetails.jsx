@@ -27,7 +27,6 @@ const MovieDetails = () => {
     const foundInPurchased = purchasedMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
     const foundInWatchlist = watchlistMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
 
-
     //rent popup
     const [rentIsOpen, setRentIsOpen] = useState(false);
     const toggleRentPopup = () => {
@@ -40,12 +39,10 @@ const MovieDetails = () => {
         setBuyIsOpen(!buyIsOpen);
     }
 
-
     // Toggle comments
     const [showingComments, setShowingComments] = useState(false);
     const toggleComments = () => {
         setShowingComments(!showingComments);
-        console.log("showing comments?");
     }
 
     // Loading comments
@@ -114,7 +111,6 @@ const MovieDetails = () => {
         return (
             <div className='movie-details'>Something went wrong. Nothing to show..</div>
         )
-
     } else {
         return (
             <div className='movie-details'>
@@ -179,9 +175,8 @@ const MovieDetails = () => {
                         <button onClick={() => toggleComments()}>View Comments</button>
                     </div>
                         
-                    <div>
+                    <div className='movie-details-comment-section'>
                         {showingComments ? <MovieComments /> : null}
-
                     </div>
                 </div>
             </div>
