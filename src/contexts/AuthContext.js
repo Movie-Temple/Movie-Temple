@@ -30,10 +30,8 @@ export function AuthProvider({ children }) {
     }
 
     useEffect( () => {
-
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user == null) {
-                console.log('no user, authContext');
                 dispatch(setCurrentUserUid(''));
             } else {
                 setCurrentUser(user);
@@ -41,7 +39,7 @@ export function AuthProvider({ children }) {
         })
         
         return unsubscribe;
-    }, [])
+    }, [dispatch]);
 
     const value = {
         currentUser,
