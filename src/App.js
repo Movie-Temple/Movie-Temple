@@ -59,6 +59,7 @@ function App() {
                 }
 
                 if (rented) {
+
                   console.log(tempMovies);
                   Object.keys(rented).forEach(key => {
                     const movie = tempMovies.find(movie => movie.imdbID === key)
@@ -69,6 +70,7 @@ function App() {
                     }
                   })
                   dispatch(setRentedMovies(rentedToAdd));
+
                 } else {
                     console.log('no rentals')
                 }
@@ -86,7 +88,6 @@ function App() {
 
                 if (bankCard) {
                   dispatch(setBankCard(bankCard));
-                  console.log('yayaya bank');
                 }
         });
     }

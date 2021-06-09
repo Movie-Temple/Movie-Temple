@@ -28,7 +28,6 @@ const MovieDetails = () => {
     const foundInPurchased = purchasedMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
     const foundInWatchlist = watchlistMovies.find(findmovie => findmovie.imdbID === movie.imdbID);
 
-
     //rent popup
     const [rentIsOpen, setRentIsOpen] = useState(false);
     const toggleRentPopup = () => {
@@ -41,39 +40,33 @@ const MovieDetails = () => {
         setBuyIsOpen(!buyIsOpen);
     }
 
-
     // Toggle comments
     const [showingComments, setShowingComments] = useState(false);
     const toggleComments = () => {
         setShowingComments(!showingComments);
-        console.log("showing comments?");
     }
 
     // Loading comments
     useEffect(() => {
         db.collection("COMMENTS").doc(movie.imdbID)
-            .onSnapshot((doc) => {
+        .onSnapshot((doc) => {
+            const comments = doc.data().comments;
+            const rating = doc.data().rating;
+            const total = doc.data().total;
+            
+            let ratingList = [rating, total];
+            dispatch(addRating(ratingList));
 
-                const comments = doc.data().comments;
-                const rating = doc.data().rating;
-                const total = doc.data().total;
+            let commentList = [];
+            Object.keys(comments).forEach(key => {
+                commentList.push(comments[key])
+            })
+            
+            dispatch(addComments(commentList));
+        });
+         
+     }, [])
 
-                let ratingList = [rating, total];
-                dispatch(addRating(ratingList));
-                console.log(ratingList);
-
-                let commentList = [];
-                Object.keys(comments).forEach(key => {
-
-                    commentList.push(comments[key])
-
-                })
-
-                dispatch(addComments(commentList));
-                console.log("got comments from fb");
-            });
-
-    }, [])
 
     const rentMovie = ((movieID) => {
         if (userID) {
@@ -123,7 +116,6 @@ const MovieDetails = () => {
         return (
             <div className='movie-details'>Something went wrong. Nothing to show..</div>
         )
-
     } else {
         return (
             <div className='movie-details'>
@@ -185,12 +177,13 @@ const MovieDetails = () => {
                             onClick={() => changeWatchlist(movie.imdbID)}
                             className='watchlist-button'>{foundInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
                         </button>
-                        <button onClick={() => toggleComments()}>View Comments</button>
+                        <button onClick={() => toggleComments()}>{showingComments ? 'Hide Comments' : 'View Comments'}</button>
                     </div>
 
-                    <div>
-                        {showingComments ? <MovieComments /> : null}
+                        
+                    <div className='movie-details-comment-section'>
 
+                        {showingComments ? <MovieComments /> : null}
                     </div>
                 </div>
             </div>
