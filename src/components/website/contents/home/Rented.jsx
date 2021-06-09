@@ -1,25 +1,27 @@
 import './rented.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PlayMovie from '../playMovie/PlayMovie';
 import { useState } from 'react';
-//import {db} from '../../../../firebase'
+import { useHistory } from 'react-router';
+import { replaceMovie } from '../../../../features/currentMovie';
 
 const Rented = () => {
-    //const userID = useSelector(state => state.currentUserUid);
+    const dispatch = useDispatch();
+    const history = useHistory();
     const rentedMovies = useSelector(state => state.rentedMovies);
-    // let rentalExpires = 0
-
-    // db.collection("CUSTOMERS").doc(userID).get().then((doc) => {
-    //     if (doc) {
-    //         console.log(doc.data().rented[])
-    //     }
-        
-    // })
+    
 
     // play movie
     const [playMovieIsOpen, setPlayMovieIsOpen] = useState(false);
     const toggleplayMovieIsOpen = () => {
         setPlayMovieIsOpen(!playMovieIsOpen);
+    }
+
+    const onPosterClick = (movie) => {
+        return (
+            dispatch(replaceMovie(movie)),
+            history.push('/moviedetails')
+        )
     }
 
     return (
@@ -36,7 +38,7 @@ const Rented = () => {
                     return ( rentedMovies ?
                         <div className='rented-scrollerItem' key={movie.imdbID}>
                             <div>
-                                <img className='rented-scrollerImg' src={movie.Poster} alt={movie.Title} />
+                                <img className='rented-scrollerImg' onClick={() => {onPosterClick(movie)}} src={movie.Poster} alt={movie.Title} />
                                 <button className='rented-play-button' onClick={toggleplayMovieIsOpen}>Play</button>
                                 <p>{timeLeft()} hours left</p>
                             </div>
