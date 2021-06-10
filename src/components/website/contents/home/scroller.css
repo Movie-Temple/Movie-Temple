@@ -8,6 +8,7 @@
 .scrollerName {
     width: fit-content;
     height: 1em;
+    margin-left: 15px;
 }
 
 .scrollerWrapper {
@@ -15,23 +16,29 @@
     flex-direction: row;
     overflow-y: hidden;
     overflow-x: scroll;
-    height: 14em;
+    height: 16em;
+    margin-left: 30px;
+    padding-top: 10px;
+    margin-bottom: 5px;
 }
 
 .scrollerWrapper::-webkit-scrollbar {
     display: flex;
     height: 5px;
+    
 }
 
 .scrollerWrapper::-webkit-scrollbar-thumb {
     background: #fff;
     border-radius: 10px;
+  
 }
 
 .scrollerItem {
     width: 10em;
     height: 13em;
     margin-right: 3em;
+    padding-top: 10px;
 }
 
 .scrollerImg {
