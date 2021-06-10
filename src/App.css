@@ -7,18 +7,9 @@
   --buttonText: #3C3C3C;
 }
 
-/*
-HOW TO USE THE COLOR VARIABLES:
-
-whatever {
-  background: var(--almostBlack);
-  background: var(--darkGrey);
-  color: var(--turqoise);
-  color: var(--whiteText);
-  color: var(--buttonText);
+button {
+  border: 0;
 }
-*/
-
 
 
 .App {

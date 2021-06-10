@@ -1,3 +1,10 @@
+.sideScroller {
+
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+
 .scroller {
     background-color: var(--almostBlack);
     color: var(--turqoise);
@@ -29,7 +36,7 @@
 }
 
 .scrollerWrapper::-webkit-scrollbar-thumb {
-    background: #fff;
+    background: #aaa;
     border-radius: 10px;
   
 }
