@@ -58,6 +58,7 @@
     background-color: var(--turqoise);
     color: var(--buttonText);
     font-weight: bold;
+    border: 0;
 }
 
 .movie-details .movie-details-buttons .disabled {
