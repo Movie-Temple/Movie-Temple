@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/movie-temple/static/css/main.843b3024.chunk.css",
+    "main.js": "/movie-temple/static/js/main.84f31962.chunk.js",
+    "main.js.map": "/movie-temple/static/js/main.84f31962.chunk.js.map",
+    "runtime-main.js": "/movie-temple/static/js/runtime-main.0c250f2f.js",
+    "runtime-main.js.map": "/movie-temple/static/js/runtime-main.0c250f2f.js.map",
+    "static/css/2.61b4cb56.chunk.css": "/movie-temple/static/css/2.61b4cb56.chunk.css",
+    "static/js/2.ee3bf04f.chunk.js": "/movie-temple/static/js/2.ee3bf04f.chunk.js",
+    "static/js/2.ee3bf04f.chunk.js.map": "/movie-temple/static/js/2.ee3bf04f.chunk.js.map",
+    "index.html": "/movie-temple/index.html",
+    "static/css/2.61b4cb56.chunk.css.map": "/movie-temple/static/css/2.61b4cb56.chunk.css.map",
+    "static/css/main.843b3024.chunk.css.map": "/movie-temple/static/css/main.843b3024.chunk.css.map",
+    "static/js/2.ee3bf04f.chunk.js.LICENSE.txt": "/movie-temple/static/js/2.ee3bf04f.chunk.js.LICENSE.txt",
+    "static/media/MTLogoTurqPerspTrans.56f4f0e1.png": "/movie-temple/static/media/MTLogoTurqPerspTrans.56f4f0e1.png",
+    "static/media/user.8a3c03fa.png": "/movie-temple/static/media/user.8a3c03fa.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0c250f2f.js",
+    "static/css/2.61b4cb56.chunk.css",
+    "static/js/2.ee3bf04f.chunk.js",
+    "static/css/main.843b3024.chunk.css",
+    "static/js/main.84f31962.chunk.js"
+  ]
+}
